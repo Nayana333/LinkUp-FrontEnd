@@ -1,12 +1,12 @@
 export interface FormValues {
-    username: string;
+    userName: string;
     email: string;
     password: string;
     confirmPassword: string;
   }
 
   export interface initialValues {
-    username: "";
+    userName: "";
     email: "";
     password: "";
     confirmPassword: "";

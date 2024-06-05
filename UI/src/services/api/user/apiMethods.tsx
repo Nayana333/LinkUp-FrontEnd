@@ -1,11 +1,13 @@
 import { userUrls } from "../endPoints";
-import { apiCall } from "./apiCalls";
+import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
 
 export const postRegister = (userData: FormValues) => {
+  console.log(userData);
+  
   return new Promise((resolve, reject) => {
     try {
-      apiCall("post", userUrls.register, userData)
+      apiCalls("post", userUrls.register, userData)
         .then((response) => {
           resolve(response);
         })

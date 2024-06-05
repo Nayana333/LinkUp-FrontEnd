@@ -1,3 +1,3 @@
 export const userUrls ={
-    register:'/register'
+    register:'/users/register' 
 }

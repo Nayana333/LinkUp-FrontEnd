@@ -1,38 +1,46 @@
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import { api } from "./api";
 
-export const apiCall = async (method: string, url: string, data: any): Promise<any> => {
-  try {
-    let response: AxiosResponse;
-    
-    if (method === 'post') {
-      response = await axios.post(url, data);
-    } else if (method === 'get') {
-      response = await axios.get(url, { params: data });
-    } else if (method === 'put') {
-      response = await axios.put(url, data);
-    } else if (method === 'patch') {
-      response = await axios.patch(url, data);
-    } else if (method === 'delete') {
-      response = await axios.delete(url, { data });
-    } else {
-      throw new Error('Invalid HTTP method');
-    }
-    
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      // Handle Axios error
-      const axiosError: AxiosError = error;
-      if (axiosError.response) {
-        // Server responded with an error status code
-        throw axiosError.response.data;
-      } else if (axiosError.request) {
-        // No response received
-        throw { status: 500, message: 'No response from server' };
-      } else {
-        // Request setup error
-        throw { status: 500, message: axiosError.message || 'Unknown error' };
+export const apiCalls = async (method: string, url: string, data: any) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response: any, error: any;
+
+      if (method === 'post') {
+        
+        response = await api.post(url, data).catch((err) => {
+          error = err;
+        });
+      } else if (method === 'get') {
+        response = await api.get(url, data).catch((err) => {
+          error = err;
+        });
+      } else if (method === 'put') {
+        response = await api.put(url, data).catch((err) => {
+          error = err;
+        });
+      } else if (method === 'delete') {
+        response = await api.delete(url,  data ).catch((err) => {
+          error = err;
+        });
+      } else if (method === 'patch') {
+        response = await api.patch(url, data).catch((err) => {
+          error = err;
+        });
       }
-    } 
-  }
+
+      if (error) {
+        console.log(error);
+        reject(error?.response?.data);
+        if (error.response?.status === 401) {
+          console.log('not authorized');
+        }
+      } else {
+        resolve(response);
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
 };
+
+export default apiCalls
