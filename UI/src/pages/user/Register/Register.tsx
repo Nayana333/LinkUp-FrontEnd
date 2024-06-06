@@ -6,12 +6,17 @@ import { useEffect, useState } from 'react';
 import { postRegister } from '../../../services/api/user/apiMethods';
 import { logged } from '../../../utils/context/reducers/authSlice';
 import { FormValues } from '../../../utils/validation/signUpValidation';
+import { useNavigate } from "react-router-dom"
+
 
 function Register() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get('email') || '';
   const [userEmail, setUserEmail] = useState(email);
+
+  const navigate=useNavigate();
+
 
   const selectUser = (state: any) => state.auth.user;
   const user = useSelector(selectUser);
@@ -34,6 +39,8 @@ function Register() {
     postRegister(values)
       .then((response: any) => {
         if (response.status === 200) {
+          navigate('/otp')
+
           console.log(response.message);
         } else {
           console.log(response.message);
@@ -130,7 +137,7 @@ function Register() {
 
                   <button
                     type="submit"
-                    className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    className="mt-5 tracking-wide font-semibold bg-#239852 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none" id="button"
                   >
                     <svg
                       className="w-6 h-6 -ml-2"
