@@ -1,0 +1,14 @@
+export interface FormValues{
+
+    email:string,
+    password:string
+
+}
+
+export const initialValues:FormValues={
+
+    email:'',
+    password:''
+
+
+}

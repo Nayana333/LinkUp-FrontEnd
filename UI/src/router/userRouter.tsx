@@ -4,6 +4,7 @@ import LandingPage from '../pages/user/Landing/LandingPage'
 import Register from '../pages/user/Register/Register'
 import OtpPage from '../pages/user/otp-page/OtpPage'
 import Rsuccess from '../pages/user/RsuccessPage/Rsuccess'
+import Login from '../pages/user/LoginPage/Login'
 
 
 const appRouter=createBrowserRouter([
@@ -19,6 +20,9 @@ const appRouter=createBrowserRouter([
   },{
     path:'/success',
     element:<Rsuccess/>
+  },{
+    path:'/login',
+    element:<Login/>
   }
 
 ])

@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { postRegister } from '../../../services/api/user/apiMethods';
-import { logged } from '../../../utils/context/reducers/authSlice';
 import { FormValues } from '../../../utils/validation/signUpValidation';
 import { useNavigate } from "react-router-dom"
 
