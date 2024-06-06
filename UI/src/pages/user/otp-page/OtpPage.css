@@ -4,3 +4,12 @@
   .text-custom-green{
     color:#239852 ;
   }
+
+.otp-input {
+  margin: 0 8px; 
+}
+
+#box{
+  width: 78%;
+    margin-left: 40px;
+}
