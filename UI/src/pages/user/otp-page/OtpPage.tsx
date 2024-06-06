@@ -103,6 +103,7 @@ function OtpPage() {
       const data = response.data;
       if (response.status === 200) {
         toast.success(data.message);
+        navigate('/success')
       } else {
         console.log(response.message);
         toast.error(data.message);

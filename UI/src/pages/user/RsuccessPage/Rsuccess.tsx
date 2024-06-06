@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
 
-import "./registerSucces.css";
+import './Rsuccess.css'
 
-function RegisterSucces() {
+
+function Rsuccess() {
   return (
     <div className="flex h-screen">
-      <div id='register' className="hidden login lg:flex items-center justify-center flex-1 bg-white text-black" >
-        {/* Content for registration form */}
-      </div>
+      <div className="container hidden login lg:flex items-center justify-center flex-1 bg-white text-black">
+      <img className="bg-image" src='src/assets/bg2.jpg' alt="Background" />
+    </div>
 
-      <div className="w-full  lg:w-1/2 flex items-center justify-center">
-        <div className='logo'>
+    <div className="w-full  lg:w-1/2 flex items-center justify-center">
+        {/* <div className='logo'>
           <img src="https://i.postimg.cc/YC7Hwhxb/Screenshot-2024-03-04-151411.png" alt="Logo" />
-        </div>
+        </div> */}
         
         <div className="max-w-md w-full p-6">
           <p className="title text-4xl font-black mb-2 text-black">Registration successful.</p>
@@ -41,4 +42,4 @@ function RegisterSucces() {
   );
 }
 
-export default RegisterSucces;
+export default Rsuccess;
