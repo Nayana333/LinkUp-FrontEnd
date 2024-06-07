@@ -1,6 +1,7 @@
 import { userUrls } from "../endPoints";
 import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
+import { useRouteLoaderData } from "react-router-dom";
 
 export const postRegister = (userData: FormValues) => {
   console.log(userData);
@@ -102,5 +103,23 @@ export const postForgotOtp = (otp: { otp: string }) => {
     }
   });
 };
+
+
+export const newPassword = (userData: { password: string; confirmPassword: string }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls('put', userUrls.newPassword, userData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "something went wrong" });
+    }
+  });
+};
+
 
 

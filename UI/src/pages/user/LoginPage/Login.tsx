@@ -44,11 +44,11 @@ function Login() {
       })
     }
 
-    // useEffect(()=>{
-    //   if(user){
-    //     navigate('/')
-    //   }
-    // },[user,navigate])
+    useEffect(()=>{
+      if(user){
+        navigate('/')
+      }
+    },[user,navigate])
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
