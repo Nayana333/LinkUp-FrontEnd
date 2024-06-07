@@ -5,6 +5,9 @@ import Register from '../pages/user/Register/Register'
 import OtpPage from '../pages/user/otp-page/OtpPage'
 import Rsuccess from '../pages/user/RsuccessPage/Rsuccess'
 import Login from '../pages/user/LoginPage/Login'
+import ForgotPsw from '../pages/user/Forgot/ForgotPsw'
+import ForgotOtpPage from '../pages/user/Forgot-otp/Forgot-otp'
+import Reset from '../pages/user/ResetPSW/Reset'
 
 
 const appRouter=createBrowserRouter([
@@ -23,6 +26,15 @@ const appRouter=createBrowserRouter([
   },{
     path:'/login',
     element:<Login/>
+  },{
+    path:'/forgot',
+    element:<ForgotPsw/>
+  },{
+    path:'/forgot-otp',
+    element:<ForgotOtpPage/>
+  },{
+    path:'/reset',
+    element:<Reset/>
   }
 
 ])

@@ -1,8 +1,9 @@
 import './Register.css';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage} from 'formik';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { postRegister } from '../../../services/api/user/apiMethods';
 import { FormValues } from '../../../utils/validation/signUpValidation';
 import { useNavigate } from "react-router-dom"
@@ -152,17 +153,12 @@ function Register() {
                     </svg>
                     <span className="ml-3">Sign Up</span>
                   </button>
+                  <div className="mt-4 text-xs text-gray-600 text-center">
+            <p>already have an account ?  <Link className="font-semibold text-green-600 hover:underline" to="/login">Login Now</Link> </p>
+            
+          </div>
 
-                  <p className="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by templatana's
-                    <a href="#" className="border-b border-gray-500 border-dotted">
-                      Terms of Service
-                    </a>
-                    and its
-                    <a href="#" className="border-b border-gray-500 border-dotted">
-                      Privacy Policy
-                    </a>
-                  </p>
+                  
                 </Form>
               </Formik>
             </div>

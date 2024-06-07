@@ -1,21 +1,26 @@
-/* Rsuccess.css */
 #title {
     font-family: 'Arial', sans-serif;
-    /* other styles */
   }
   
   #names {
     font-family: 'Roboto', sans-serif;
-    /* other styles */
   }
   #images{
     background-image: url('src/assets/bg3.jpg');
-    /* background-size:cover;  */
     background-repeat: no-repeat;
     background-position: 0px -500px;
     margin: 30px;
     border-radius : 30px;
   
+  }
+
+  #forgot
+  {
+     
+        position: relative;
+        left: 93px;
+      
+    
   }
 
   

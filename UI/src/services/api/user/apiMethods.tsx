@@ -52,6 +52,8 @@ export const postResendOtp=(email:{email:string})=>{
 }
 
 export const postLogin = (userData:{email:string,password:string}) => {
+  console.log(userData);
+  
   return new Promise((resolve, reject) => {
       try {
           apiCalls('post', userUrls.login, userData).then((response)=>{
@@ -65,3 +67,40 @@ export const postLogin = (userData:{email:string,password:string}) => {
   })
 
 }
+
+
+export const postForgot=(email:{email:string})=>{
+  console.log(email);
+  
+  return new Promise((resolve)=>{
+    try{
+      apiCalls('post',userUrls.forgotPsw,email).then((response)=>{
+
+        resolve(response)
+      })
+    }catch(error){
+      resolve({status:500,message:"something went wrong"})
+    }
+  })
+}
+
+
+export const postForgotOtp = (otp: { otp: string }) => {
+  console.log(otp);
+  
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", userUrls.forgotOtp, otp)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Something went wrong" });
+    }
+  });
+};
+
+
