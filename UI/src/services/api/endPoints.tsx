@@ -11,3 +11,10 @@ export const userUrls ={
     
    
 }
+
+
+export const adminUrl = {
+    login: "/admin/adminLogin",
+    
+
+}

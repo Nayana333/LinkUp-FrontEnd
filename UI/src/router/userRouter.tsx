@@ -9,6 +9,7 @@ import ForgotPsw from '../pages/user/Forgot/ForgotPsw'
 import ForgotOtpPage from '../pages/user/Forgot-otp/Forgot-otp'
 import Reset from '../pages/user/ResetPSW/Reset'
 import UserHome from '../pages/user/userHome/UserHome'
+import { adminLoginRouter, adminRoute } from "./adminRoute";
 
 
 const appRouter=createBrowserRouter([
@@ -39,7 +40,9 @@ const appRouter=createBrowserRouter([
   },{
     path:'/home',
     element:<UserHome/>
-  }
+  },
+  adminRoute,  
+  adminLoginRouter,
 
 ])
 
