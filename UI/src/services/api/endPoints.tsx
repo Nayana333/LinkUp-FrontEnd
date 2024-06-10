@@ -7,7 +7,8 @@ export const userUrls ={
     login:'/users/login',
     forgotPsw:'/users/forgotPsw',
     forgotOtp:'/users/forgotOtp',
-    newPassword:'/users/resetPsw'
+    newPassword:'/users/resetPsw',
+    googleAuth:'/users/googleAuth'
     
    
 }

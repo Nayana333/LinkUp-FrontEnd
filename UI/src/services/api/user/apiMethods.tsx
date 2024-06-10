@@ -121,5 +121,17 @@ export const newPassword = (userData: { password: string; confirmPassword: strin
   });
 };
 
+export const  googleAuthenticate = (userData:{userName:string,email:string}) => {
+  return new Promise((resolve, reject) => {
+      try {
+          apiCalls('post', userUrls.googleAuth, userData).then((response)=>{
+              resolve(response);
+          }).catch((err)=>{
+              reject(err);
+          })
+      } catch (error) {
+          resolve({ status: 500, message:"Somethings wrong." });
+      }
+  })
 
-
+}

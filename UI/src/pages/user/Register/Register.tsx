@@ -10,6 +10,11 @@ import { useNavigate } from "react-router-dom"
 import {toast} from 'sonner';
 import TextError from '../../../Components/TextError';
 import Linkup from '../../../assets/Linkup.svg'
+import {auth,provider} from "../../../utils/fireConfig"
+import { googleAuthenticate} from '../../../services/api/user/apiMethods';
+import {signInWithPopup} from "firebase/auth";
+import { logged } from '../../../utils/context/reducers/authSlice';
+import { string } from 'yup';
 
 
 function Register() {
@@ -53,6 +58,47 @@ function Register() {
       });
   };
 
+
+
+  const googleSubmit = () => {
+    signInWithPopup(auth, provider).then((data: any) => {
+      console.log(data);
+  
+      const userData = {
+        userName: data.user.displayName,
+        email: data.user.email,
+      };
+  
+      googleAuthenticate(userData).then((response: any) => {
+        const data = response.data;
+        if (response.status === 200) {
+          toast.success(data.message);
+          dispatch(logged({ user: data }));
+          localStorage.setItem('userToken', data.token);      
+          localStorage.setItem('userRefreshToken', data.refreshToken);
+          navigate('/home');
+        } else {
+          console.log(response.message);
+          toast.error(data.message);
+        }
+      }).catch((error) => {
+        console.log(error?.message);
+        toast.error(error?.message);
+      });
+    });
+  };
+  
+
+  useEffect(() => {
+   
+
+    if (user) {
+      navigate('/home')
+    }
+
+   
+  }, [user, navigate])
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -68,7 +114,8 @@ function Register() {
             <h1 className="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
-                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                onClick={googleSubmit}>
                   <div className="bg-white p-2 rounded-full">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
                       <path
