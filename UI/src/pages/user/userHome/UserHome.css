@@ -1,0 +1,269 @@
+
+
+.home-main{
+    height: 500vh;
+    position: fixed;
+    display: flex;
+    width: 100%;
+    background-color: rgb(234, 233, 233);
+    z-index: -100;
+
+   
+    
+}
+
+.home-section-1{
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    top: 10%;
+    left: 5%;
+  
+    
+}
+.home-section-2{
+    width: 40%;
+    height: 90%;
+    position: fixed;
+    left: 25%;
+    top: 10%;
+
+    
+}
+.home-notification-section-2{
+    width: 60%;
+    height: 100%;
+    position: fixed;
+    left: 25%;
+    top: 10%;
+    
+}
+.home-recommed-section{
+    height: 134px;
+    margin: 20px 0px 0px 0px  ;
+   width: 440px;
+    border-radius: 10px;
+
+  
+
+}
+
+.home-section-3{
+    width: 30%;
+    height: 84%;
+    position:fixed;
+    right:5%;
+    top: 10%;
+    overflow: auto;
+    z-index: -1;
+   
+
+}
+
+
+
+
+
+.home-profile-card{
+    height: 35%;
+    margin: 20px;
+    border-radius: 10px;
+
+}
+.home-info-card{
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+
+}
+
+.home-addpost-section{
+    height: 20%;
+    margin: 20px;
+    border-radius: 10px;
+    z-index: -100;
+    
+
+}
+
+
+.home-post-section{
+   
+    margin: 20px;
+    border-radius: 10px;
+   
+
+}
+
+.job-post-section{
+   
+    margin: 20px;
+    border-radius: 10px;
+    margin-bottom: 45px;
+
+}
+
+
+
+.home-scroll{
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+
+
+}
+.job-scroll{
+    width: 100%;
+    height: 85%;
+    overflow: auto;
+ 
+ 
+ }
+.home-people-scroll{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 0px 20px;
+ 
+ }
+.home-scrollbox{
+    width: 100%;
+    height: 90%;
+
+}
+.home-scroll-post{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  
+ 
+ }
+ .home-scrollbox-post{
+     width: 100%;
+     height: 350px;
+     overflow-y: scroll;
+     padding-bottom: 30px;
+   
+
+
+ 
+ }
+
+
+.saved-post-scroll{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+}
+.saved-post-scrollbox{
+    
+    width: 100%;
+
+    overflow-y: scroll;
+    padding-bottom: 30px;
+
+
+}
+
+ .message-scroll-post{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  
+ 
+ }
+ .message-scrollbox-post{
+     width: 100%;
+     height: 350px;
+     overflow-y: scroll;
+     padding-bottom: 30px;
+
+
+ 
+ }
+
+
+
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+.addpost-popup{
+    width: 100%;
+ 
+    background-color: rgba(0, 0, 0, 0.407);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+
+.post-info-section{
+    display: flex;
+   justify-content: space-between;
+   padding: 10px;
+   gap: 10px;
+
+}
+.post-inputs{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+
+
+}
+.user-post-inputs{
+    display: flex;
+    flex-direction: column;
+   padding-right: 15px;
+
+}
+.image-preview{
+   border: solid rgba(75, 75, 75, 0.214) 1px;
+    width: 300px;
+    height: 290px;
+    margin: 10px;
+    border-radius: 10px;
+ 
+}
+
+.hide {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.442);
+}
+
+@media only screen and (max-width: 768px) {
+    .home-section-2 {
+        width: 100%;
+        left: 0%;
+        top: 60px;
+     
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 8px;
+  }
+
+  .liked-users-section{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+ 
+    
+  }
+  .background{
+    background-image: url('../../../assets/bioBg5.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px -900px;
+  }

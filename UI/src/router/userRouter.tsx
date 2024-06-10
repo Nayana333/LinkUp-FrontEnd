@@ -8,6 +8,7 @@ import Login from '../pages/user/LoginPage/Login'
 import ForgotPsw from '../pages/user/Forgot/ForgotPsw'
 import ForgotOtpPage from '../pages/user/Forgot-otp/Forgot-otp'
 import Reset from '../pages/user/ResetPSW/Reset'
+import UserHome from '../pages/user/userHome/UserHome'
 
 
 const appRouter=createBrowserRouter([
@@ -35,6 +36,9 @@ const appRouter=createBrowserRouter([
   },{
     path:'/reset',
     element:<Reset/>
+  },{
+    path:'/home',
+    element:<UserHome/>
   }
 
 ])

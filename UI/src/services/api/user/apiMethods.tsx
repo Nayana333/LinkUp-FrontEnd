@@ -3,7 +3,7 @@ import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
 import { useRouteLoaderData } from "react-router-dom";
 
-export const postRegister = (userData: FormValues) => {
+export const postRegister = (userData: FormValues) => { 
   console.log(userData);
   
   return new Promise((resolve, reject) => {

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { postRegister } from '../../../services/api/user/apiMethods';
 import { FormValues } from '../../../utils/validation/signUpValidation';
 import { useNavigate } from "react-router-dom"
+import { toast } from 'sonner';
 
 
 function Register() {
@@ -40,10 +41,9 @@ function Register() {
       .then((response: any) => {
         if (response.status === 200) {
           navigate('/otp')
-
-          console.log(response.message);
+          toast.success(response.message)
         } else {
-          console.log(response.message);
+          toast.error(response.message)
         }
       })
       .catch((error: Error) => {

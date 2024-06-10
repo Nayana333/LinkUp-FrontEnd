@@ -1,0 +1,133 @@
+.logo {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 70px;
+  }
+  
+  #home {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px -200px;
+    z-index: 100;
+  }
+  
+  .circles {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -100;
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-1000px) rotate(30deg);
+    }
+  }
+  
+  .circles div {
+    position: absolute;
+    display: block;
+    width: 45px;
+    height: 45px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: solid rgb(0, 143, 40);
+    bottom: -150px;
+    animation: animate 25s linear infinite;
+    border-radius: 50%;
+    z-index: -100;
+  }
+  
+  .circles div:nth-child(1) {
+    left: 25%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 0s;
+    background-position: center;
+    background-image: url("https://media.istockphoto.com/id/1386217759/photo/portrait-of-a-confident-young-businesswoman-standing-against-an-urban-background.jpg?s=1024x1024&w=is&k=20&c=aKFi0_478PRARsw5Akz0Z9KcMqHLjbYoC6R2cNFbzEA=");
+  }
+  
+  .circles div:nth-child(2) {
+    left: 10%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+    background-image: url("https://media.istockphoto.com/id/1171169099/photo/man-with-crossed-arms-isolated-on-gray-background.jpg?s=1024x1024&w=is&k=20&c=STK0wru6a2H2DoiFprd3xdq2IKFS2P3_swZWrh0h9Mg=");
+  }
+  
+  .circles div:nth-child(3) {
+    left: 70%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 4s;
+    background-image: url("https://media.istockphoto.com/id/498323493/photo/happy-businesswoman-holding-digital-tablet.jpg?s=612x612&w=0&k=20&c=EHDfnejkQ_RgUv8cMtwmSwbhFmgd3d-6c1tUls3Lvz8=");
+  }
+  
+  .circles div:nth-child(4) {
+    left: 20%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+    background-image: url("https://media.istockphoto.com/id/1300304411/photo/beautiful-smiling-african-ethnicity-businesswoman.jpg?s=1024x1024&w=is&k=20&c=zFZ4GZcnmMu2St8dzyyJIRSH1Ay7FMsVRUKTcX4TaJw=");
+  }
+  
+  .circles div:nth-child(5) {
+    left: 80%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 0s;
+    background-image: url("https://media.istockphoto.com/id/1365606637/photo/shot-of-a-young-businesswoman-using-a-digital-tablet-while-at-work.jpg?s=1024x1024&w=is&k=20&c=86YL4K3ZkolUzK9SP5JPcS0nLfSGtuxNhXrNunS4P9w=l");
+  }
+  
+  .circles div:nth-child(6) {
+    left: 75%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 3s;
+    background-image: url("https://unsplash.com/photos/man-carrying-blue-jacket-while-looking-sideways-u5T5b3lNYw8");
+  }
+  
+  .circles div:nth-child(7) {
+    left: 25%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 3s;
+    background-image: url("https://unsplash.com/photos/man-wearing-black-notched-lapel-suit-jacket-in-focus-photography-WMD64tMfc4k");
+  }
+  
+  .circles div:nth-child(8) {
+    left: 90%;
+    width: 55px;
+    height: 55px;
+    animation-delay: 4s;
+    animation-duration: 45s;
+    background-image: url("https://images.unsplash.com/photo-1517957529813-dff55f7d5285?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  }
+  
+  .circles div:nth-child(9) {
+    left: 20%;
+    width: 45px;
+    height: 45px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+    background-image: url("https://unsplash.com/photos/man-wearing-henley-top-portrait-7YVZYZeITc8");
+  }
+  
+  .circles div:nth-child(10) {
+    left: 85%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+    background-image: url("https://media.istockphoto.com/id/1354898581/photo/shot-of-a-young-businessman-using-a-laptop-in-a-modern-office.jpg?s=1024x1024&w=is&k=20&c=DRQIR4z4FrRCEMgUBNHFTrmkj9SX-3e7BXbp1DMxrks=");
+  }
+   

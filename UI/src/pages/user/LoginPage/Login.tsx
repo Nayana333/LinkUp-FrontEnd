@@ -31,7 +31,7 @@ function Login() {
             dispatch(logged({user:data}));
             localStorage.setItem('userToken',data.token);
             localStorage.setItem('userRefreshToken',data.refreshToken)
-            //need to navigate to home
+            navigate('/home')
         }else{
             console.log(response.message);
             toast.error(data.message)
@@ -44,11 +44,15 @@ function Login() {
       })
     }
 
-    useEffect(()=>{
-      if(user){
-        navigate('/')
+    useEffect(() => {
+   
+
+      if (user) {
+        navigate('/home')
       }
-    },[user,navigate])
+  
+     
+    }, [user, navigate])
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
