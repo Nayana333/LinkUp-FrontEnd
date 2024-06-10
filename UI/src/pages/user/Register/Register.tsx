@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { postRegister } from '../../../services/api/user/apiMethods';
-import { FormValues } from '../../../utils/validation/signUpValidation';
+import { FormValues,validationSchema } from '../../../utils/validation/signUpValidation';
 import { useNavigate } from "react-router-dom"
-import { toast } from 'sonner';
+import {toast} from 'sonner';
+import TextError from '../../../Components/TextError';
 
 
 function Register() {
@@ -97,7 +98,7 @@ function Register() {
                 </div>
               </div>
               
-              <Formik initialValues={initialValues} onSubmit={submit}>
+              <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submit}>
                 <Form className="mx-auto max-w-xs">
                   <Field
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
@@ -106,7 +107,7 @@ function Register() {
                     id="userName"
                     placeholder="User Name"
                   />
-                  <ErrorMessage name='userName' component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage name='userName' component={TextError} className="text-red-500 text-xs mt-1" />
 
                   <Field
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -115,7 +116,7 @@ function Register() {
                     id="email"
                     placeholder="Email"
                   />
-                  <ErrorMessage name='email' component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage name='email'  component={TextError} className="text-red-500 text-xs mt-1" />
 
                   <Field
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -124,7 +125,7 @@ function Register() {
                     id="password"
                     placeholder="Password"
                   />
-                  <ErrorMessage name='password' component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage name='password'component={TextError} className="text-red-500 text-xs mt-1" />
 
                   <Field
                     className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
@@ -133,7 +134,7 @@ function Register() {
                     id="confirmPassword"
                     placeholder="Confirm Password"
                   />
-                  <ErrorMessage name='confirmPassword' component="div" className="text-red-500 text-xs mt-1" />
+                  <ErrorMessage name='confirmPassword' component={TextError} className="text-red-500 text-xs mt-1" />
 
                   <button
                     type="submit"

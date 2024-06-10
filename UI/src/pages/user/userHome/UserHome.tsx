@@ -11,17 +11,7 @@ function UserHome() {
   const user = useSelector(selectUser) || "";
   const userId = user._id || "";
   
-
- 
     const navigate = useNavigate();
-        
-  
-
-  
-
-
-
-  
   return (
 
   
@@ -29,17 +19,6 @@ function UserHome() {
         <>
 
        <Header1/>
-
-        
-  
-        {/* {!user.userType&&(
-          <Preferences/>
-        )}
-
-        {!user.profile?.fullname!&&!user.companyProfile?.companyName&&user.userType&&(
-          <BasicInformation/>
-        )} */}
-
        
       <div className="home-section-2">
         <div  className="home-scroll">

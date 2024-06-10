@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import {Form,Formik,Field,ErrorMessage} from 'formik'
 import { Link } from 'react-router-dom';
-import { initialValues } from '../../../utils/validation/LoginValidation';
+import { initialValues ,validationSchema} from '../../../utils/validation/LoginValidation';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import {logged} from '../../../utils/context/reducers/authSlice'
 import { useSelector } from "react-redux";
 import { postLogin } from '../../../services/api/user/apiMethods';
+import TextError from '../../../Components/TextError'
 
 
 
@@ -102,7 +103,7 @@ function Login() {
                   Or sign in with Cartesian E-mail
                 </div>
               </div>
-            <Formik  initialValues={initialValues} onSubmit={submit}>
+            <Formik  initialValues={initialValues} onSubmit={submit} validationSchema={validationSchema}>
                 <Form>
               <div className="mx-auto max-w-xs">
                 <Field
@@ -110,14 +111,17 @@ function Login() {
                   type="email"
                   placeholder="Email"
                   name="email"
-
                 />
+
+                <ErrorMessage name='email' component={TextError} className="text-red-500 text-xs mt-1" />
+
                 <Field
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
                   name="password"
                 /><br></br>
+                <ErrorMessage name='passwor' component={TextError} className="text-red-500 text-xs mt-1" />
 
                 <button
                   className="mt-5 tracking-wide font-semibold  bg-green-700 text-white w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
