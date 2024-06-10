@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import './OtpPage.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { postOtp,postResendOtp } from '../../../services/api/user/apiMethods';
-
+import Linkup from '../../../assets/Linkup.svg'
 function OtpPage() {
   const [code, setCode] = useState<string[]>(Array(4).fill(''));
 
@@ -114,7 +114,13 @@ function OtpPage() {
   };
 
   return (
+    
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
+       { <img
+            src={Linkup}
+            className="mr-3 h-6 sm:h-9"
+            alt="CircleUp logo"
+          /> }<br></br>
       <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">

@@ -1,5 +1,6 @@
 
 import { useLocation, useNavigate } from 'react-router-dom';
+import Linkup from '../assets/Linkup.svg'
 
 function Header() {
   const location = useLocation();
@@ -11,9 +12,11 @@ function Header() {
     <div>
       <nav className="z-10 bg-white border px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          {/* <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
-            <img src="https://i.postimg.cc/YC7Hwhxb/Screenshot-2024-03-04-151411.png" className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-          </div> */}
+        { <img
+            src={Linkup}
+            className="mr-3 h-6 sm:h-9"
+            alt="CircleUp logo"
+          /> }
           <div className="flex items-center lg:order-2 ms-10">
             <button
               onClick={() => navigate('/register')}

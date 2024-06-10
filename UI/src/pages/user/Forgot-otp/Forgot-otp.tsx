@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
 import { useLocation, useNavigate,Link } from 'react-router-dom';
 import { postForgotOtp,postResendOtp } from '../../../services/api/user/apiMethods';
+import Linkup from '../../../assets/Linkup.svg'
 
 function ForgotOtpPage() {
   const [code, setCode] = useState<string[]>(Array(4).fill(''));
@@ -113,6 +114,11 @@ function ForgotOtpPage() {
 
   return (
     <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-12">
+       { <img
+            src={Linkup}
+            className="mr-3 h-6 sm:h-9"
+            alt="CircleUp logo"
+          /> }
       <div className="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
         <div className="mx-auto flex w-full max-w-md flex-col space-y-16">
           <div className="flex flex-col items-center justify-center text-center space-y-2">
@@ -182,7 +188,7 @@ function ForgotOtpPage() {
                   </button> : ""}
                 </div>
                 <div>
-                  <button type="submit" className="w-full text-sm bg-green-700 text-white p-3 mt-5 rounded-md hover:bg-gray-800  focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300">Verify Account</button>
+                  <button type="submit" className="w-full text-sm bg-green-700 text-white p-3 mt-5 rounded-md hover:bg-gray-800  focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300" style={{width:'445px'}}>Verify Account</button>
                 </div>
               </div>
             </form>

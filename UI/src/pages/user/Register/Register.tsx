@@ -9,6 +9,7 @@ import { FormValues,validationSchema } from '../../../utils/validation/signUpVal
 import { useNavigate } from "react-router-dom"
 import {toast} from 'sonner';
 import TextError from '../../../Components/TextError';
+import Linkup from '../../../assets/Linkup.svg'
 
 
 function Register() {
@@ -57,11 +58,11 @@ function Register() {
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div>
-            <img
-              src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
-              className="w-32 mx-auto"
-              alt="Logo"
-            />
+          { <img
+            src={Linkup}
+            className="mr-3 h-6 sm:h-9"
+            alt="CircleUp logo"
+          /> }
           </div>
           <div className="mt-12 flex flex-col items-center">
             <h1 className="text-2xl xl:text-3xl font-extrabold">Sign up</h1>

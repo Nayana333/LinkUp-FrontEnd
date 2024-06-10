@@ -9,7 +9,7 @@ import {logged} from '../../../utils/context/reducers/authSlice'
 import { useSelector } from "react-redux";
 import { postLogin } from '../../../services/api/user/apiMethods';
 import TextError from '../../../Components/TextError'
-
+import Linkup from '../../../assets/Linkup.svg'
 
 
 
@@ -34,7 +34,10 @@ function Login() {
             localStorage.setItem('userRefreshToken',data.refreshToken)
             navigate('/home')
         }else{
-            console.log(response.message);
+          
+        console.log(response.message);
+        
+           
             toast.error(data.message)
             
         }
@@ -55,17 +58,19 @@ function Login() {
      
     }, [user, navigate])
 
+  
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-          {/* <div>
+          <div>
             <img
-              src="https://drive.google.com/uc?export=view&id=1MFiKAExRFF0-2YNpAZzIu1Sh52J8r16v"
+              src={Linkup} alt="Logo"
               className="w-mx-auto"
-              alt="Logo"
+          
             />
-          </div> */}
+          </div>
           <div className="mt-12 flex flex-col items-center">
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
@@ -121,7 +126,7 @@ function Login() {
                   placeholder="Password"
                   name="password"
                 /><br></br>
-                <ErrorMessage name='passwor' component={TextError} className="text-red-500 text-xs mt-1" />
+                <ErrorMessage name='password' component={TextError} className="text-red-500 text-xs mt-1" />
 
                 <button
                   className="mt-5 tracking-wide font-semibold  bg-green-700 text-white w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
@@ -143,10 +148,7 @@ function Login() {
                 </button><br></br>
 
                 <Link to="/forgot">
-  <p className='text-xs' style={{ color: 'rgba(38, 220, 76, 1)' }} id="forgot">
-    Forgot password ?
-  </p>
-</Link>
+                <p className='text-xs' style={{ color: 'rgba(38, 220, 76, 1)' }} id="forgot"> Forgot password ?</p></Link>
 
 
                 <div className="mt-4 text-xs text-gray-600 text-center">
@@ -159,12 +161,12 @@ function Login() {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-green-100 text-center hidden lg:flex">
+        <div className="flex-1 text-center hidden lg:flex">
           <div id='images'
             className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
             style={{
               backgroundImage:
-              "url('src/assets/bg3.jpg')",
+              "url('https://i.pinimg.com/564x/a5/00/a1/a500a116b35fbcadbfd9618c0406015e.jpg')",
             }}
           ></div>
         </div>

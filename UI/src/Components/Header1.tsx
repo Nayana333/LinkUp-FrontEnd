@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { logout } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
 import { Bell, Bookmark, Mail } from "react-feather"; 
+import Linkup from '../assets/Linkup.svg'
 
 function Header1()  {
   const selectUser = (state:any) => state.auth.user || {};
@@ -55,11 +56,11 @@ function Header1()  {
     <nav className="border bg-white lg:px-6 py-2.5 h-16 sticky top-0">
       <div className="flex flex-wrap justify-between">
         <a href="/" className="flex items-center">
-          {/* <img
-            src="https://i.postimg.cc/YC7Hwhxb/Screenshot-2024-03-04-151411.png"
+          { <img
+            src={Linkup}
             className="mr-3 h-6 sm:h-9"
             alt="CircleUp logo"
-          /> */}
+          /> }
         </a>
 
         <div className="hidden justify-between items-center w-full lg:flex lg:w-auto" id="mobile-menu-2">

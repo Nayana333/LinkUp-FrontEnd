@@ -1,5 +1,9 @@
 /* styles.css */
-
+#logo{
+  position: relative;
+  bottom: 290px;
+  left: 437px;
+}
 
   
   .container {

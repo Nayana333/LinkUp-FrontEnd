@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Linkup from '../../../assets/Linkup.svg'
 
 import './Rsuccess.css'
 
@@ -11,9 +12,11 @@ function Rsuccess() {
     </div>
 
     <div className="w-full  lg:w-1/2 flex items-center justify-center">
-        {/* <div className='logo'>
-          <img src="https://i.postimg.cc/YC7Hwhxb/Screenshot-2024-03-04-151411.png" alt="Logo" />
-        </div> */}
+    { <img id="logo"
+            src={Linkup}
+            className="mr-3 h-6 sm:h-9"
+            alt="CircleUp logo"
+          /> }
         
         <div className="max-w-md w-full p-6">
           <p className="title text-4xl font-black mb-2 text-black">Registration successful.</p>

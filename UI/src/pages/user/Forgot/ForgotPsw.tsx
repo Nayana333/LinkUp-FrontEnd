@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast,Toaster } from 'sonner'
 import { postForgot } from '../../../services/api/user/apiMethods'
+import Linkup from '../../../assets/Linkup.svg'
 
 const ForgotPsw = () => {
   const navigate = useNavigate();
   localStorage.removeItem('otpTimer');
 
   const initialValues = { email: "" };
-  toast('dumb dumb dubm')
-
   const submit = (values: { email: string }) => {
     postForgot(values)
       .then((response: any) => {
@@ -26,8 +25,14 @@ const ForgotPsw = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
+      
       <Toaster/>
       <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+      { <img
+            src={Linkup}
+            className="mr-3 h-6 sm:h-9"
+            alt="CircleUp logo"
+          /> }
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div className="mt-12 flex flex-col items-center">
             <div className="w-full flex-1 mt-8">
@@ -60,11 +65,11 @@ const ForgotPsw = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-green-100 text-center hidden lg:flex">
+        <div className="flex-1   lg:flex">
           <div
-            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+            className=" w-full bg-contain bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('https://drive.google.com/uc?export=view&id=1KZ_Ub_2lZ0dHbKV0fAIhxVhiQA183RCz')",
+              backgroundImage: "url('https://i.pinimg.com/736x/62/b0/81/62b081991ac67bb1345112c553612737.jpg')",
             }}
           />
         </div>
