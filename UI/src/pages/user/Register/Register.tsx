@@ -75,7 +75,6 @@ function Register() {
           toast.success(data.message);
           dispatch(logged({ user: data }));
           localStorage.setItem('userToken', data.token);      
-          localStorage.setItem('userRefreshToken', data.refreshToken);
           navigate('/home');
         } else {
           console.log(response.message);

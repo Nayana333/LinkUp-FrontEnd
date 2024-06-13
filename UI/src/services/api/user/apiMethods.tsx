@@ -135,3 +135,37 @@ export const  googleAuthenticate = (userData:{userName:string,email:string}) => 
   })
 
 }
+
+export const postPreferences = (userData:{userType:any,isHiring:any,userId:string}) => {
+  return new Promise((resolve, reject) => { 
+    try {
+      apiCalls('post', userUrls.setPreferences, userData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: 'Something went wrong' }); 
+    }
+  });
+};
+
+export const setBasicInformation=(userData:any)=>{
+  console.log(userData);
+  
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',userUrls.basicInformation,userData)
+      .then((response)=>{
+        resolve(response)
+      })
+      .catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      resolve({status:500,message:"something went wrong"})
+    }
+  })
+}

@@ -7,9 +7,12 @@ import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import {logged} from '../../../utils/context/reducers/authSlice'
 import { useSelector } from "react-redux";
-import { postLogin } from '../../../services/api/user/apiMethods';
+import { postLogin,googleAuthenticate } from '../../../services/api/user/apiMethods';
 import TextError from '../../../Components/TextError'
 import Linkup from '../../../assets/Linkup.svg'
+import {auth,provider} from "../../../utils/fireConfig"
+import {signInWithPopup} from "firebase/auth";
+
 
 
 
@@ -47,6 +50,36 @@ function Login() {
       })
     }
 
+
+
+    const googleSubmit = () => {
+      signInWithPopup(auth, provider).then((data: any) => {
+        console.log(data);
+    
+        const userData = {
+          userName: data.user.displayName,
+          email: data.user.email,
+        };
+    
+        googleAuthenticate(userData).then((response: any) => {
+          const data = response.data;
+          if (response.status === 200) {
+            toast.success(data.message);
+            dispatch(logged({ user: data }));
+            localStorage.setItem('userToken', data.token);      
+            navigate('/home');
+          } else {
+            console.log(response.message);
+            toast.error(data.message);
+          }
+        }).catch((error) => {
+          console.log(error?.message);
+          toast.error(error?.message);
+        });
+      });
+    };
+    
+
     useEffect(() => {
    
 
@@ -75,6 +108,7 @@ function Login() {
               <div className="flex flex-col items-center">
                 <button
                   className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-green-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                  onClick={googleSubmit}
               type="submit" >
                   <div className="bg-white p-2 rounded-full">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">

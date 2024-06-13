@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { postOtp,postResendOtp } from '../../../services/api/user/apiMethods';
 import Linkup from '../../../assets/Linkup.svg'
 function OtpPage() {
-  const [code, setCode] = useState<string[]>(Array(4).fill(''));
+  // const [code, setCode] = useState<string[]>(Array(4).fill(''));
 
   const location = useLocation();
   const navigate = useNavigate();
