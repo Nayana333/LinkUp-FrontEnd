@@ -1,13 +1,12 @@
+import React from 'react';
+import Profile from './Components/Profile/Profile';
 
 function App() {
-
   return (
-    <>
-      <div>
-     
-      </div>
-    </>
-  )
+    <div>
+      <Profile />
+    </div>
+  );
 }
 
-export default App
+export default App;

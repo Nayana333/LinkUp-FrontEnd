@@ -1,113 +1,113 @@
-import React, { useState } from 'react';
-import './Preferences.css'
+import { useState } from 'react';
 import { Modal } from 'flowbite-react';
-import { User, Users, BriefcaseBusiness, UserRoundPlus } from 'lucide-react';
+import { BriefcaseBusiness, User, UserRoundPlus, Users } from 'lucide-react';
 import { toast } from 'sonner';
-import { useSelector, useDispatch } from 'react-redux';
 import { postPreferences } from '../../services/api/user/apiMethods';
-import { updateUser } from '../../utils/context/reducers/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {  updateUser } from '../../utils/context/reducers/authSlice';
 
-const Preferences = () => {
-  const userSelect = (state: any) => state.auth.user || '';
-  const user = useSelector(userSelect);
-  const userId = user._id;
+function Preferences() {
+    
+  const selectUser = (state: any) => state.auth.user || ''; 
+  const user = useSelector(selectUser) || '';
+  const userId = user._id || '';
   const dispatch = useDispatch();
-  const [isHiring, setHiring] = useState('');
-  const [userType, setUserType] = useState('');
+  const [userType, setuserType] = useState('');
+  const [isHiring, setisHiring] = useState('');
 
-  const handleTypeSelection = (type: string) => {
-    setUserType(type);
+  const handleTypeSelection = (type:any) => {
+    setuserType(type);
   };
 
-  const handleStatusSelection = (status: string) => {
-    setHiring(status);
+  const handleStatusSelection = (status:any) => {
+    setisHiring(status);
   };
 
   const handleSave = () => {
-    if (isHiring && userType) {
-      postPreferences({ userId, userType, isHiring })
-        .then((response: any) => {
-          const data = response.data;
-          if (response.status === 200) {
-            console.log(response.message);
-            
-            toast.success(response.message);
-            dispatch(updateUser({ user: data }));
-          } else {
-            toast.error(response.error);
-          }
-        })
-        .catch((error) => {
-          console.log(error?.message);
-          toast.error(error?.message);
-        });
+    if (userType && isHiring) {
+      postPreferences({userId:userId,userType:userType,isHiring:isHiring}) .then((response: any) => {
+        const data = response.data;
+        if (response.status === 200) {
+          dispatch(updateUser({ user: data }));
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error?.message);
+        toast.error('An error occurred. Please try again.');
+      });
+      
+    } else {
+     toast.error('Please select both options before saving.');
     }
   };
 
- return (
-    <div className="overlay">
-      <div className="modalContainer">
-        <div className="modalBody">
-          <h3><b>Basic Information</b></h3>
-        </div>
-        <div className="modalFooter">
-          <div className="content">
-            <p className="question">
+  return (
+    <>
+      <Modal show={true}>
+        <Modal.Body>
+          <p className="text-sm font-semibold">Basic Information</p>
+        </Modal.Body>
+     
+        <Modal.Footer className="flex flex-col items-start">
+          <div className="space-y-6">
+            <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
               Are you an individual person/person representing a company or an organization?
+              <div className="flex gap-14 mt-4 mb-8">
+                <button
+                  className={`border rounded-md w-28 h-28 ${userType === 'individual' ? 'bg-green-200' : ''}`}
+                  onClick={() => handleTypeSelection('individual')}
+                >
+                  <div className="flex flex-col gap-2 items-center ">
+                    <User color="black" size={18} /> Individual
+                  </div>
+                </button>
+                <button
+                  className={`border rounded-md w-28 h-28 ${userType === 'organization' ? 'bg-green-200' : ''}`}
+                  onClick={() => handleTypeSelection('organization')}
+                >
+                  <div className="flex flex-col gap-2 items-center ">
+                    <Users color="black" size={18} /> Organization
+                  </div>
+                </button>
+              </div>
             </p>
-            <div className="buttonGroup">
-              <button
-                className="button"
-                style={{ backgroundColor: userType === 'individual' ? '#c6f6d5' : '' }}
-                onClick={() => handleTypeSelection('individual')}
-              >
-                <div className="buttonContent">
-                  <User color="black" size={18} /> Individual
-                </div>
-              </button>
-              <button
-                className="button"
-                style={{ backgroundColor: userType === 'organization' ? '#c6f6d5' : '' }}
-                onClick={() => handleTypeSelection('organization')}
-              >
-                <div className="buttonContent">
-                  <Users color="black" size={18} /> Organization
-                </div>
-              </button>
-            </div>
-            <p className="question">
+            <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
               Are you looking for a job or planning to hire an individual?
+              <div className="flex gap-14 mt-4 mb-8">
+                <button
+                  className={`border rounded-md w-28 h-28 ${isHiring === 'openToWork' ? 'bg-green-200' : ''}`}
+                  onClick={() => handleStatusSelection('openToWork')}
+                >
+                  <div className="flex flex-col gap-2 items-center ">
+                    <BriefcaseBusiness color="black" size={18} /> Open to Work
+                  </div>
+                </button>
+                <button
+                  className={`border rounded-md w-28 h-28 ${isHiring === "isHiring"? 'bg-green-200' : ''}`}
+                  onClick={() => handleStatusSelection("isHiring")}
+                >
+                  <div className="flex flex-col gap-2 items-center ">
+                    <UserRoundPlus color="black" size={18} /> Is Hiring
+                  </div>
+                </button>
+              </div>
             </p>
-            <div className="buttonGroup">
-              <button
-                className="button"
-                style={{ backgroundColor: isHiring === 'openToWork' ? '#c6f6d5' : '' }}
-                onClick={() => handleStatusSelection('openToWork')}
-              >
-                <div className="buttonContent">
-                  <BriefcaseBusiness color="black" size={18} /> Open to Work
-                </div>
-              </button>
-              <button
-                className="button"
-                style={{ backgroundColor: isHiring === 'isHiring' ? '#c6f6d5' : '' }}
-                onClick={() => handleStatusSelection('isHiring')}
-              >
-                <div className="buttonContent">
-                  <UserRoundPlus color="black" size={18} /> Is Hiring
-                </div>
-              </button>
-            </div>
           </div>
-          <div className="footer">
-            <button className="saveButton" onClick={handleSave}>
+          <div className="w-full flex justify-end">
+            <button
+              className="text-xs rounded btn border w-24 px-4 py-2 cursor-pointer text-white ml-2 bg-gray-900  hover:bg-green-600"
+              onClick={handleSave}
+            >
               Save
             </button>
           </div>
-        </div>
-      </div>
-    </div>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
-};
+}
 
 export default Preferences;

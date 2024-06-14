@@ -12,48 +12,33 @@ function UserHome() {
   const userId = user._id || "";
 
 
-  
-  
+
+
   return (
 
-      <div>
-        <Header1/>
+    <div>
+      <Header1 />
 
-        {!user.userType&&(
-          <Preferences/>
-        )}
+      {!user.userType && (
+        <Preferences />
+      )}
 
-        {!user.profile?.fullname!&&!user.companyProfile?.companyName&&user.userType&&(
-          <BasicInformation/>
-        )}
-
-       
-      <div className="home-section-2">
-        <div  className="home-scroll">
-          <div className="home-scrollbox">
+      {!user.profile?.fullname! && !user.companyProfile?.companyName && user.userType && (
+        <BasicInformation />
+      )}
 
 
-
-          </div>
-        </div>
-    
-      </div>
 
       <div className="hidden lg:block home-section-3" id="mobile-menu-2">
         <div className="home-people-scroll">
           <div className="home-scrollbox">
-         
-      
-     
-    
-   
           </div>
         </div>
       </div>
 
-      </div>
+    </div>
 
-    
+
   );
 }
 

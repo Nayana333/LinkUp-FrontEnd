@@ -156,8 +156,11 @@ export const setBasicInformation=(userData:any)=>{
   console.log(userData);
   
   return new Promise((resolve,reject)=>{
+    console.log(userData);
+
     try{
       apiCalls('post',userUrls.basicInformation,userData)
+      
       .then((response)=>{
         resolve(response)
       })
