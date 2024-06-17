@@ -11,6 +11,7 @@ import Reset from '../pages/user/ResetPSW/Reset'
 import UserHome from '../pages/user/userHome/UserHome'
 import { adminLoginRouter, adminRoute } from "./adminRoute";
 import Profile from '../Components/Profile/Profile'
+import UserBio from '../Components/UserBio'
 
 
 const appRouter=createBrowserRouter([
@@ -41,10 +42,12 @@ const appRouter=createBrowserRouter([
   },{
     path:'/home',
     element:<UserHome/>
-  },{
-    path:'/test',
-    element:<Profile/>
   },
+  {
+    path:'/bio',
+    element:<UserBio/>
+  },
+  
   adminRoute,  
   adminLoginRouter,
 

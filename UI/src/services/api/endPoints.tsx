@@ -10,7 +10,8 @@ export const userUrls ={
     newPassword:'/users/resetPsw',
     googleAuth:'/users/googleAuth',
     setPreferences:'/users/setPreferences',
-    basicInformation:'/users/basicInformation'
+    basicInformation:'/users/basicInformation',
+    setUserRole:'/users/SetUserRole'
     
    
 }

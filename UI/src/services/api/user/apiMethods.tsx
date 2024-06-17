@@ -172,3 +172,20 @@ export const setBasicInformation=(userData:any)=>{
     }
   })
 }
+
+
+export const setUserRole=(userData:{userId:string,isHiring:boolean})=>{
+   return new Promise((resolve, reject) => {
+    try{
+      apiCalls('put',userUrls.setUserRole,userData)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      resolve({status:500,message:'something wrong'})
+    }
+  })
+  
+}

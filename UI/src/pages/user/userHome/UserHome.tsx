@@ -4,6 +4,7 @@ import Preferences from "../../../Components/Preferences/Preferences";
 import BasicInformation from "../../../Components/Basicinformations";
 import { useSelector } from "react-redux";
 import Header1 from "../../../Components/Header1";
+import Profile from "../../../Components/Profile/Profile";
 
 function UserHome() {
 
@@ -27,7 +28,7 @@ function UserHome() {
         <BasicInformation />
       )}
 
-
+<Profile/>
 
       <div className="hidden lg:block home-section-3" id="mobile-menu-2">
         <div className="home-people-scroll">
