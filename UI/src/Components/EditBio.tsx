@@ -14,7 +14,6 @@ function EditBio({ onCancelEdit }:any) {
   const user = useSelector(selectUser) || "";
   const userId = user._id || "";
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
 
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -46,7 +45,6 @@ const basicFormCompanyInitialValues = {
 
 
   const BasicFormHandleSubmit = async (values: any) => {
-    setLoading(true);
     const { image,fullname,designation,location,dateOfBirth,phone,gender,about} = values;
 
     try {
@@ -106,13 +104,11 @@ const basicFormCompanyInitialValues = {
       console.log(error);
       toast.error("Failed to update basic information.");
     } finally {
-      setLoading(false);
     }
   };
 
 
   const BasicFormCompanyHandleSubmit = async (values: any) => {
-    setLoading(true);
     const { image,fullname,companyType,location,noOfEmployees,phone,establishedOn,about} = values;
 
     try {
@@ -172,7 +168,6 @@ const basicFormCompanyInitialValues = {
       console.log(error);
       toast.error("Failed to update basic information.");
     } finally {
-      setLoading(false);
     }
   };
   return (

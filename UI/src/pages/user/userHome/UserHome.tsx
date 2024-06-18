@@ -5,6 +5,7 @@ import BasicInformation from "../../../Components/Basicinformations";
 import { useSelector } from "react-redux";
 import Header1 from "../../../Components/Header1";
 import Profile from "../../../Components/Profile/Profile";
+import AddPost from "../../../Components/AddPost/AddPost";
 
 function UserHome() {
 
@@ -19,6 +20,8 @@ function UserHome() {
 
     <div>
       <Header1 />
+      <AddPost/>
+
 
       {!user.userType && (
         <Preferences />

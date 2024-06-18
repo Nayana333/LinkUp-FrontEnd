@@ -17,6 +17,11 @@ export const userUrls ={
 }
 
 
+export const postUrls={
+    addPost:'/post/addPost'
+}
+
+
 export const adminUrl = {
     login: "/admin/adminLogin",
     

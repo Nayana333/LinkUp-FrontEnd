@@ -1,4 +1,4 @@
-import { userUrls } from "../endPoints";
+import { userUrls,postUrls } from "../endPoints";
 import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
 import { useRouteLoaderData } from "react-router-dom";
@@ -189,3 +189,20 @@ export const setUserRole=(userData:{userId:string,isHiring:boolean})=>{
   })
   
 }
+
+
+export const addPost = (postData: {userId:any, imageUrl: string; title: string; description:string,hideLikes:boolean,hideComments:boolean }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", postUrls.addPost, postData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
