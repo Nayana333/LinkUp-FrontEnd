@@ -16,34 +16,47 @@ function UserHome() {
 
 
 
-  return (
+//   return (
 
-    <div>
-      <Header1 />
-      <AddPost/>
-
-
-      {!user.userType && (
-        <Preferences />
-      )}
-
-      {!user.profile?.fullname! && !user.companyProfile?.companyName && user.userType && (
-        <BasicInformation />
-      )}
-
-<Profile/>
-
-      <div className="hidden lg:block home-section-3" id="mobile-menu-2">
-        <div className="home-people-scroll">
-          <div className="home-scrollbox">
-          </div>
-        </div>
-      </div>
-
-    </div>
+//     <div>
+//       <Header1 />
+//       <AddPost/>
 
 
-  );
+//       {!user.userType && (
+//         <Preferences />
+//       )}
+
+//       {!user.profile?.fullname! && !user.companyProfile?.companyName && user.userType && (
+//         <BasicInformation />
+//       )}
+
+// <Profile/>
+
+//       <div className="hidden lg:block home-section-3" id="mobile-menu-2">
+//         <div className="home-people-scroll">
+//           <div className="home-scrollbox">
+//           </div>
+//         </div>
+//       </div>
+
+//     </div>
+
+
+//   );
+
+return (
+  <>
+  <Header1/>
+    <div className="flex">
+ 
+ <Profile />
+ <AddPost />
+</div>
+  </>
+
+);
+
 }
 
 export default UserHome;

@@ -87,7 +87,7 @@ function BasicInformation() {
       if (image) {
         const formData = new FormData();
         formData.append("file", image);
-        formData.append("upload_preset", "izfeaxkx");
+        formData.append("upload_preset", "ctmfcyuf");
 
         const uploadRes = await axios.post(
           "https://api.cloudinary.com/v1_1/dngp3n0ql/image/upload",

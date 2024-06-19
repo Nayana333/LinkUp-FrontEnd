@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Cropper from "react-easy-crop";
-import useCropImage from '../../Hooks/GetCroppedImage';
+import UseCropImage from '../../Hooks/GetCroppedImage'
 
 interface Props {
   imgUrl: string;
   aspectInit: { value: number };
-  setCroppedImg: React.Dispatch<React.SetStateAction<string[]>>;
+  setCroppedImg: React.Dispatch<React.SetStateAction<string[]>>; 
   handleNextImage: () => void;
 }
 
@@ -16,10 +16,12 @@ const CropImage: React.FC<Props> = ({
   handleNextImage
 }) => {
   const [disable, setDisable] = useState<boolean>(false);
-  const [zoom, setZoom] = useState<number>(1);
-  const [crop, setCrop] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const zoomInit: number = 1;
+  const cropInit: { x: number; y: number } = { x: 0, y: 0 };
+  
+  const [zoom, setZoom] = useState<number>(zoomInit);
+  const [crop, setCrop] = useState<{ x: number; y: number }>(cropInit);
   const [croppedAreaPx, setCroppedAreaPx] = useState<any>(null);
-  const [imgSelected, setImgSelected] = useState<boolean>(true); // Added state for imgSelected
 
   const onCropChange = (crop: { x: number; y: number }) => {
     setCrop(crop);
@@ -29,21 +31,21 @@ const CropImage: React.FC<Props> = ({
     setZoom(zoom);
   };
 
-  const onCropComplete = (croppedArea: any, croppedAreaPx: any) => {
-    setCroppedAreaPx(croppedAreaPx);
+  const onCropComplete = (croppedArea: any, croppedAreaPxc: any) => {
+    setCroppedAreaPx(croppedAreaPxc);
   };
 
   const onCrop = async () => {
     setDisable(true);
     try {
-      const croppedUrl = await useCropImage(imgUrl, croppedAreaPx);
+      const croppedUrl = await UseCropImage(imgUrl, croppedAreaPx);
       setDisable(false);
-      setCroppedImg((prevImages) => [...prevImages, croppedUrl]);
-      handleNextImage();
-      console.log(croppedUrl);
+      setCroppedImg(prevImages => [...prevImages, croppedUrl]);
+      handleNextImage()
+      console.log(croppedUrl)
     } catch (error) {
-      console.error(error); // Log the error for debugging
       setDisable(false);
+     
     }
   };
 
@@ -70,32 +72,28 @@ const CropImage: React.FC<Props> = ({
             step={0.1}
             value={zoom}
             onInput={(e) => {
-              onZoomChange(parseFloat(e.currentTarget.value));
+              onZoomChange(parseFloat(e.target.value));
             }}
             className="w-[50%]"
           />
         </div>
         <div className="text-center">
-          <button
-            type="button"
+          <button type="button"
             className="bg-red-500 text-white px-4 p-1 mr-5 rounded-lg"
-            onClick={() => setImgSelected(false)} 
+            onClick={() => setimgSelected(false)}
           >
-            Cancel
+            cancel
           </button>
           {disable ? (
-            <button
-              type="button"
-              className="bg-green-500 text-white px-4 p-1 rounded-lg pointer-events-none"
-            >
-              Crop
+            <button type="button" className="bg-green-500 text-white px-4 p-1 rounded-lg pointer-events-none">
+              crop
             </button>
           ) : (
             <button
               className="bg-green-500 text-white px-4 p-1 rounded-lg"
               onClick={onCrop}
             >
-              Crop
+              crop
             </button>
           )}
         </div>

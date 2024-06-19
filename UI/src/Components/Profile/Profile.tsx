@@ -10,8 +10,8 @@ function Profile() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-start p-4">  
-      <div className="w-1/4 space-y-4" style={{ margin: '-21px' }}>
+    <div className="flex justify-start p-4 w-1/4">  
+      <div className=" space-y-4">
         <div className="home-profile-card bg-white shadow-lg rounded-lg flex flex-col justify-around items-center pt-6 px-6">
           <img className="w-16 h-16 rounded-full" src={user.profileImageUrl} alt="" />
           <div className="flex flex-col items-center">
@@ -63,6 +63,11 @@ function Profile() {
       </div>
     </div>
   );
+
+
+
+ 
+
 }
 
 export default Profile;
