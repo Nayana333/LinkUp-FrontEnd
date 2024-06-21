@@ -315,3 +315,40 @@ export const addComment=(commentData:{postId:any,userId:any,comment:string})=>{
 }
 
 
+export const replyComment=(commentData:{commentId:any,userId:any,replyComment:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',postUrls.replyComment,commentData)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      reject({status:500,message:'something went wronh'})
+    }
+  })
+}
+
+export const deleteComment = ( commentId:{commentId:any}) => {
+
+  return new Promise((resolve, reject) => {
+   
+    
+    try {
+      const url = `${postUrls.deleteComment}?commentId=${commentId}`;
+      apiCalls("get", url,commentId)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+

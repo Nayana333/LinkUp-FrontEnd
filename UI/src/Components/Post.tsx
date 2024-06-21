@@ -1,39 +1,104 @@
 import { Bookmark, Heart, MessageCircle,X } from "lucide-react";
-import {likePost} from '../services/api/user/apiMethods'
-import { UseSelector,useDispatch } from "react-redux";
+import { likePost  } from "../services/api/user/apiMethods";
+import { useDispatch, useSelector } from "react-redux";
 import { setUsePosts, updateUser } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
 import { useState } from "react";
 import PostDetails from "./PostDetails";
-import ReportModal from "./ReportModel";
+// import ReportModal from "./ReportModel";
 import { Dropdown } from "flowbite-react";
 
 
-function Post(){
+
+interface PostProps {
+  post: {
+    _id: string;
+    userId: {
+      _id: string;
+      username: string;
+      profileImageUrl: string;
+    };
+    title: string;
+    imageUrl: string;
+    description: string;
+    likes: any[];
+    isHidden: boolean;
+    isBlocked: boolean;
+    hideComment: boolean;
+    hideLikes: boolean;
+    date: string;
+  };
+}
+
+const Post: React.FC<PostProps> = ({ post }) => {
+  const dispatch = useDispatch();
+  const selectUser = (state: any) => state.auth.user || "";
+  const user = useSelector(selectUser) || "";
+  const userId = user._id || "";
+ const[value1,setValue1]=useState(false)
+ const[value2,setValue2]=useState(false)
+ const [reportModal, setReportModal] = useState(false);
+  const[isCommentSection,SetIsCommentSection]=useState(false)
+  const handleHideCommentToggle = () => {
+    SetIsCommentSection(!isCommentSection);
+    setValue1(true)
+    setValue2(false)
+  };
+  const handleLikedPeople=()=>{
+    SetIsCommentSection(!isCommentSection);
+    setValue1(false)
+    setValue2(true)
+  }
+  const handleClosePostDetails = () => {
+    SetIsCommentSection(false); 
+  };
+  const [isLikedByUser, setIsLikedByUser] = useState(
+    post?.likes?.some((like) => like._id === userId)
+  );
+  const[likeCount,setLikeCount]=useState(post?.likes?.length)
 
 
-    interface PostProps {
-        post: {
-          _id: string;
-          userId: {
-            _id: string;
-            username: string;
-            profileImageUrl: string;
-          };
-          title: string;
-          imageUrl: string;
-          description: string;
-          likes: any[];
-          isHidden: boolean;
-          isBlocked: boolean;
-          hideComment: boolean;
-          hideLikes: boolean;
-          date: string;
-        };
-      }
+  const openReportModal = () => {
+    setReportModal(true);
+  };
+  const closeReportModal = () => {
+    setReportModal(false);
+  };
+  const [isSavedByUser, setIsSavedByUser] = useState(
+    user.savedPosts?.includes(post._id)
+  );
+
+  
+  const handleLike = (postId: string, userId: string) => {
+    try {
+      likePost({ postId, userId })
+        .then((response: any) => {
+          const postData = response.data;
+          dispatch(setUsePosts({ userPost: postData.posts }));
+          setIsLikedByUser(!isLikedByUser);
+          if (isLikedByUser) {
+         
+            setLikeCount((prev) => prev - 1);
+            post.likes.pop();
+          } else {
+           
+            setLikeCount((prev) => prev + 1);
+            post.likes.push({ _id: userId, username: user.username, profileImageUrl: user.profileImageUrl })
+          }
+
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
 
-return (
+ 
+
+  return (
     <div className=" home-post-section bg-white">
       <div className="flex w-full justify-between px-2">
         <div>
@@ -109,17 +174,7 @@ return (
 
 
         
-{isSavedByUser?(     <button
-           onClick={() => handleSave(post._id, user._id)}
-          type="button">
-            
-            <Bookmark color="green" strokeWidth={1.5} size={22} />
-          </button>):(     <button
-           onClick={() => handleSave(post._id, user._id)}
-          type="button">
-            
-            <Bookmark color="gray" strokeWidth={1.5} size={22} />
-          </button>)}
+
 
      
         </div>
@@ -152,14 +207,14 @@ return (
             </div>
           )}
 
-{reportModal && (
+{/* {reportModal && (
   <ReportModal
     userId={userId}
     postId={post._id}
     openReportModal={openReportModal}
     closeReportModal={closeReportModal}
   />
-)}
+)} */}
    
 
     </div>

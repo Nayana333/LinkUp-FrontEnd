@@ -24,7 +24,9 @@ export const postUrls={
     deletePost:'/post/deletePost',
     editPost:'/post/editPost',
     getAllPostComments:'/post/getAllPostComments',
-    addComment:'/post/addComment'
+    addComment:'/post/addComment',
+    replyComment:'post/replyComment',
+    deleteComment:'/post/deleteComment'
 }
 
 

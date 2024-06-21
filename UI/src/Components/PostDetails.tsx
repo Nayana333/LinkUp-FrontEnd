@@ -33,7 +33,6 @@ import { setUsePosts } from "../utils/context/reducers/authSlice";
 import {  Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
-
 interface PostProps {
   post: {
     _id: string;
@@ -231,7 +230,7 @@ const PostDetails: React.FC<PostProps> = ({
 
   const ReplyCommentHandleSubmit = (values: any, { resetForm }: any) => {
     try {
-      const commentData = {
+      const commentData:any = {
         commentId: parentCommentId,
         userId: userId,
         replyComment: values.comment,
