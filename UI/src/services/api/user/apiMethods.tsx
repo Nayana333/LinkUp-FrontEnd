@@ -206,3 +206,112 @@ export const addPost = (postData: {userId:any, imageUrl: string; title: string; 
     }
   });
 };
+
+export const    getAllPosts = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("get", postUrls.getAllPosts, null)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+
+export const likePost = (postData: { postId: string, userId: string }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls('post', postUrls.likePost, postData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      reject({ status: 500, message: 'something went wrong' });
+    }
+  });
+};
+
+
+export const deletePost=(postData:{postId:string,userId:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('delete',postUrls.deletePost,postData)
+      .then((response)=>{
+        resolve(response)
+      })
+      .catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      reject({status:500,message:'something went wrong'})
+    }
+  })
+}
+
+
+export const editPost = (postData: {
+  userId: any,
+  postId: any,
+  title: string,
+  description: string,
+  hideComment: boolean,
+  hideLikes: boolean,
+}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls('put', postUrls.editPost, postData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      reject({ status: 500, message: 'Something went wrong' });
+    }
+  });
+};
+
+
+export const  getPostComments=(postId:{postId:any})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',postUrls.getAllPostComments,postId)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      reject({status:500,message:'something went wrong'})
+    }
+  })
+}
+
+
+export const addComment=(commentData:{postId:any,userId:any,comment:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',postUrls.addComment,commentData)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      reject({status:500,message:'something went wrong'})
+    }
+  })
+}
+
+

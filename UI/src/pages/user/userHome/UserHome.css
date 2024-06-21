@@ -1,5 +1,4 @@
 
-
 .home-main{
     height: 500vh;
     position: fixed;
@@ -262,13 +261,7 @@
     
   }
   .background{
-    background-image: url('../../../assets/bioBg5.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0px -900px;
   }
-
-
-
-
-  
