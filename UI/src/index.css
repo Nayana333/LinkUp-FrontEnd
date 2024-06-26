@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 
+
 body{
-
-  font-family:"DM sans",sans-serif;
-
+  font-family: "DM Sans", sans-serif;
+ 
 }
+
 .title{
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -34,4 +35,7 @@ body{
 font-size: 12px;
 color: #828282;
 
+
+
 }
+

@@ -53,7 +53,7 @@ function Header1()  {
   const inactiveLinkStyle = "text-gray-700";
 
   return (
-    <nav className="border bg-white lg:px-6 py-2.5 h-16 sticky top-0">
+    <nav className="border bg-white lg:px-6 py-2.5 h-16 sticky top-0 z-20">
       <div className="flex flex-wrap justify-between">
         <a href="/" className="flex items-center">
           { <img

@@ -3,6 +3,7 @@
 
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import UserPost from '../../../Components/UserPost';
 
 interface userData{
   user:any,
@@ -45,6 +46,7 @@ const authSlice=createSlice({
       state.user=action.payload.user.user     
     },
     setUsePosts:(state,action:PayloadAction<{userPost:any[]}>)=>{
+      
       state.userPost=action.payload.userPost
     }
     

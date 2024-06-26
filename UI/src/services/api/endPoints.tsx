@@ -26,7 +26,8 @@ export const postUrls={
     getAllPostComments:'/post/getAllPostComments',
     addComment:'/post/addComment',
     replyComment:'post/replyComment',
-    deleteComment:'/post/deleteComment'
+    deleteComment:'/post/deleteComment',
+    getUserPost:'/post/getUserPost'
 }
 
 
@@ -34,4 +35,9 @@ export const adminUrl = {
     login: "/admin/adminLogin",
     
 
+}
+
+
+export const jobUrls={
+    addJob:'/job/addJob'
 }

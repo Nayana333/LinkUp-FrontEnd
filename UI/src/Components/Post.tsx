@@ -7,7 +7,7 @@ import { useState } from "react";
 import PostDetails from "./PostDetails";
 // import ReportModal from "./ReportModel";
 import { Dropdown } from "flowbite-react";
-
+import { formatDistanceToNow } from "date-fns";
 
 
 interface PostProps {
@@ -15,7 +15,7 @@ interface PostProps {
     _id: string;
     userId: {
       _id: string;
-      username: string;
+      userName: string;
       profileImageUrl: string;
     };
     title: string;
@@ -83,7 +83,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           } else {
            
             setLikeCount((prev) => prev + 1);
-            post.likes.push({ _id: userId, username: user.username, profileImageUrl: user.profileImageUrl })
+            post.likes.push({ _id: userId, userName: user.userName, profileImageUrl: user.profileImageUrl })
           }
 
         })
@@ -100,7 +100,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   return (
     <div className=" home-post-section bg-white">
-      <div className="flex w-full justify-between px-2">
+      <div className="w-full justify-between px-2">
         <div>
         <div className="flex items-center px-4 py-3">
         <img
@@ -110,7 +110,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
         />
         <div className="ml-3 ">
           <span className="text-sm font-semibold antialiased block leading-tight">
-            {post.userId.username}
+            {post.userId.userName}
           </span>
           <span className="text-gray-600 text-xs block">
             Asheville, North Carolina
@@ -146,7 +146,16 @@ const Post: React.FC<PostProps> = ({ post }) => {
         {post.title}
       </p>
 
-      <p className="ms-5 text-xs text-gray-700 ">{post.description}</p>
+      <p className="ms-5 text-xs text-gray-700 ">{post.description}</p><br></br>
+      <p
+className="text-xs text-gray-400"
+style={{ fontSize: "12px", marginLeft:"10px" }}
+>
+{formatDistanceToNow(
+new Date(post.createdAt),
+ { addSuffix: true }
+)}
+</p>
 
       <div className="flex items-center justify-between mx-4 pb-4 mt-2">
         <div className="flex gap-5">
@@ -172,11 +181,6 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
           )}
 
-
-        
-
-
-     
         </div>
       </div>
 
@@ -192,10 +196,6 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
     )}
 
-
-      
-  
-  
 
       {isCommentSection && (
             <div className="addpost-popup">
@@ -215,6 +215,8 @@ const Post: React.FC<PostProps> = ({ post }) => {
     closeReportModal={closeReportModal}
   />
 )} */}
+
+
    
 
     </div>

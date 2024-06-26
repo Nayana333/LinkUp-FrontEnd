@@ -5,3 +5,23 @@ export const api=axios.create({
     headers:{"Content-Type":'application/json'},
     withCredentials:true
 })
+
+api.interceptors.request.use(
+    async (config) => {
+  
+  
+  
+      const authToken = localStorage.getItem('userToken');
+         
+      if (authToken) {
+       
+      config.headers['Authorization'] = `Bearer ${authToken}`;
+      }
+  
+  
+      return config;
+    },
+    async (error) => {
+      return Promise.reject(error);
+    }
+  );

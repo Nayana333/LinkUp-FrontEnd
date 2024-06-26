@@ -1,4 +1,4 @@
-import { userUrls,postUrls } from "../endPoints";
+import { userUrls,postUrls,jobUrls } from "../endPoints";
 import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
 import { useRouteLoaderData } from "react-router-dom";
@@ -226,6 +226,7 @@ export const    getAllPosts = () => {
 
 
 export const likePost = (postData: { postId: string, userId: string }) => {
+  
   return new Promise((resolve, reject) => {
     try {
       apiCalls('post', postUrls.likePost, postData)
@@ -243,6 +244,8 @@ export const likePost = (postData: { postId: string, userId: string }) => {
 
 
 export const deletePost=(postData:{postId:string,userId:string})=>{
+  console.log("pst data axios",postData);
+    
   return new Promise((resolve,reject)=>{
     try{
       apiCalls('delete',postUrls.deletePost,postData)
@@ -283,20 +286,25 @@ export const editPost = (postData: {
 };
 
 
-export const  getPostComments=(postId:{postId:any})=>{
-  return new Promise((resolve,reject)=>{
-    try{
-      apiCalls('post',postUrls.getAllPostComments,postId)
-      .then((response)=>{
-        resolve(response)
-      }).catch((err)=>{
-        reject(err)
-      })
-    }catch(error){
-      reject({status:500,message:'something went wrong'})
+export const    getPostComments = (postId:{postId:any}) => {
+  console.log(postId);
+  
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", postUrls.getAllPostComments, postId)
+        .then((response) => {
+          console.log(response);
+          
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
     }
-  })
-}
+  });
+};
 
 
 export const addComment=(commentData:{postId:any,userId:any,comment:string})=>{
@@ -349,6 +357,40 @@ export const deleteComment = ( commentId:{commentId:any}) => {
     }
   });
 };
+
+
+export const addJob= (data:any) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", jobUrls.addJob, data)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+export const    getUserPost = (userId:{userId:any}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", postUrls.getUserPost, userId)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+}
 
 
 

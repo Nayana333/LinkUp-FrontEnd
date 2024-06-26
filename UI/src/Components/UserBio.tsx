@@ -1,16 +1,11 @@
 import { useSelector } from "react-redux";
-import { Edit, LocateIcon, Mail, Phone, Target, X} from "lucide-react";
+import { Edit, LocateIcon, Mail, Phone, Target, X } from "lucide-react";
 import EditBio from "./EditBio";
 import { useState } from "react";
 import SetUserType from "./SetUserType";
-import { Tabs } from "flowbite-react";
-
-import {  Modal } from "flowbite-react";
+import { Tabs, Modal } from "flowbite-react";
 
 function UserBio() {
-
-
-  
   const selectUser = (state: any) => state.auth.user || "";
   const user = useSelector(selectUser) || "";
   const [isEdit, setIsEdit] = useState(false);
@@ -24,6 +19,7 @@ function UserBio() {
   const handleCancelEdit = () => {
     setIsEdit(false);
   };
+
 
   return (
 

@@ -38,7 +38,7 @@ interface PostProps {
     _id: string;
     userId: {
       _id: string;
-      username: string;
+      userName: string;
       profileImageUrl: string;
     };
     title: string;
@@ -109,7 +109,7 @@ const PostDetails: React.FC<PostProps> = ({
         if (response.status === 200) {
           const commentData = data.comments;
           setComments(commentData);
-          toast.error(data.message);
+          toast.success(data.message);
         } else {
           toast.error(data.message);
         }
@@ -174,6 +174,8 @@ const PostDetails: React.FC<PostProps> = ({
           .then((response: any) => {
             const postsData = response.data;
             dispatch(setUsePosts({ userPost: response.data }));
+            console.log(response.data,'userPostttttt');
+            
 
             toast.success("Post updated successfully");
 
@@ -307,12 +309,14 @@ const PostDetails: React.FC<PostProps> = ({
 
 
 
+  
+
   return (
     <div
-      className=" bg-white overflow-hidden shadow-none mt-7 rounded-md"
+      className="bg-white overflow-hidden shadow-none z-50 w-full mt-7 rounded-md"
       style={{ width: "1136px", height: "476px" }}
     >
-      <div className="grid grid-cols-3 min-w-full">
+      <div className=" grid grid-cols-3 min-w-full">
         <div className="col-span-2 w-full">
           <img
             style={{ width: "768px" }}
@@ -334,17 +338,17 @@ const PostDetails: React.FC<PostProps> = ({
                   className="h-9 w-9 rounded-full object-cover"
                   alt="user"
                 />
-                <p className="block ml-2 font-bold"> {post.userId.username}</p>
+                <p className="block ml-2 font-bold"> {post.userId.userName}</p>
               </a>
             </div>
 
-            {post.userId.username == user.username && (
+            {post.userId.userName == user.userName && (
               <button onClick={toggleDropdown} className="me-2">
                 <EllipsisVertical size={18} />
               </button>
             )}
           </header>
-          {isOpen && post.userId.username == user.username && (
+          {isOpen && post.userId.userName == user.userName && (
             <div className="absolute right-7 top-5 mt-2 w-40 bg-white divide-y divide-gray-100 rounded-lg shadow-lg">
               <ul className="py-2">
                 <li>
@@ -567,7 +571,7 @@ const PostDetails: React.FC<PostProps> = ({
                             />
                             <div className="w-full flex me-2">
                               <p className=" text-xs mx-3 font-semibold text-black">
-                                {comment.userId.username}
+                                {comment.userId.userName}
                               </p>
                               <p
                                 className="text-xs text-gray-400"
@@ -588,7 +592,7 @@ const PostDetails: React.FC<PostProps> = ({
                             >
                               Reply{" "}
                             </button>
-                            {user.username == comment.userId.username && (
+                            {user.userName == comment.userId.userName && (
                               <button
                                 onClick={() => {setOpenModal(true);setParentCommentId(comment._id)}}
                                 className="ms-2"
@@ -616,7 +620,7 @@ const PostDetails: React.FC<PostProps> = ({
                               />
                               <div className="w-full flex me-2">
                                 <p className=" text-xs mx-3 font-semibold text-black">
-                                  {reply.userId.username}
+                                  {reply.userId.userName}
                                 </p>
                                 <p
                                   className="text-xs text-gray-400"
@@ -655,7 +659,7 @@ const PostDetails: React.FC<PostProps> = ({
                   <Form>
                     <div className="w-full items-center absolute bottom-0 pe-6 bg-white h-20">
                       <div>
-                        <p className="text-xs font-bold mb-1">@{post.userId.username}</p>
+                        <p className="text-xs font-bold mb-1">@{post.userId.userName}</p>
                       </div>
                       <div className="flex">
                         <Field
@@ -737,7 +741,7 @@ const PostDetails: React.FC<PostProps> = ({
                       />
                       <div className="w-full flex justify-between items-center">
                         <p className="text-xs text-black ms-3">
-                          {like.username}
+                          {like.userName}
                         </p>
                       </div>
                     </div>
