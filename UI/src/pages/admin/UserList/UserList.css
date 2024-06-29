@@ -1,0 +1,25 @@
+.main{
+    height: 100vh;
+}
+.sidebar-menu{
+    height: 85%;
+
+}
+
+.pagnation .w-12 {
+    padding: 10.5px !important; 
+    border: none !important;
+
+ }
+ .pagnation button{
+  
+    border: none !important;
+
+ }
+.bg-cyan-50 {
+    background-color: rgb(241, 241, 241) !important;
+}
+ 
+ .text-cyan-600{
+    color: green !important;
+ }

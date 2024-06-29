@@ -1,10 +1,11 @@
 import axios,{AxiosError} from "axios";
+import config from "../../../config";
 
-export const api=axios.create({
-    baseURL:'http://localhost:3000/api/',
-    headers:{"Content-Type":'application/json'},
-    withCredentials:true
-})
+export const api = axios.create({
+  baseURL: config.baseURL,
+  headers: config.headers,
+  withCredentials: true,
+});
 
 api.interceptors.request.use(
     async (config) => {

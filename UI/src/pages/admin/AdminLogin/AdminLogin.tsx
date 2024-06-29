@@ -19,7 +19,7 @@ function AdminLogin() {
     AdminLoginPost(values).then((response:any)=>{
         const data=response.data;
         if(response.status===200){
-            toast.success(response.message)
+            toast.success(data.message)
             
             dispatch(LoginAdmin({admin:data}))
             console.log(data.token);

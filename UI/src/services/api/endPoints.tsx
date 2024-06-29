@@ -1,4 +1,4 @@
-import { newPassword } from "./user/apiMethods";
+import { newPassword, reportPost } from "./user/apiMethods";
 
 export const userUrls ={
     register:'/users/register' ,
@@ -27,12 +27,17 @@ export const postUrls={
     addComment:'/post/addComment',
     replyComment:'post/replyComment',
     deleteComment:'/post/deleteComment',
-    getUserPost:'/post/getUserPost'
+    getUserPost:'/post/getUserPost',
+    reportPost:'/post/reportPost'
 }
 
 
 export const adminUrl = {
     login: "/admin/adminLogin",
+    adminUserList:'/admin/userList',
+    adminUserBlock:'/admin/blockUser',
+    ReportList:'/admin/reportList',
+    reportPostBlock:'/admin/reportPostBlock'
     
 
 }

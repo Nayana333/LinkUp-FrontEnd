@@ -8,7 +8,7 @@ import PostDetails from "./PostDetails";
 // import ReportModal from "./ReportModel";
 import { Dropdown } from "flowbite-react";
 import { formatDistanceToNow } from "date-fns";
-
+import ReportModal from'../Components/ReportModal'
 
 interface PostProps {
   post: {
@@ -146,9 +146,10 @@ const Post: React.FC<PostProps> = ({ post }) => {
         {post.title}
       </p>
 
-      <p className="ms-5 text-xs text-gray-700 ">{post.description}</p><br></br>
+      <p className="ms-5 mt-2 text-xs text-gray-700 ">{post.description}</p>
+      {post.isEdited && <p className="ms-5 mt-2 text-xs text-gray-300">Edited</p>}
       <p
-className="text-xs text-gray-400"
+className="text-xs mt-2 text-gray-400"
 style={{ fontSize: "12px", marginLeft:"10px" }}
 >
 {formatDistanceToNow(
@@ -207,14 +208,14 @@ new Date(post.createdAt),
             </div>
           )}
 
-{/* {reportModal && (
+{reportModal && (
   <ReportModal
     userId={userId}
     postId={post._id}
     openReportModal={openReportModal}
     closeReportModal={closeReportModal}
   />
-)} */}
+)}
 
 
    

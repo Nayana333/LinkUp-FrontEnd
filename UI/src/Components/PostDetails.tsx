@@ -173,10 +173,7 @@ const PostDetails: React.FC<PostProps> = ({
         })
           .then((response: any) => {
             const postsData = response.data;
-            dispatch(setUsePosts({ userPost: response.data }));
-            console.log(response.data,'userPostttttt');
-            
-
+            dispatch(setUsePosts({ userPost: response.data.posts }));
             toast.success("Post updated successfully");
 
             console.log(postsData);

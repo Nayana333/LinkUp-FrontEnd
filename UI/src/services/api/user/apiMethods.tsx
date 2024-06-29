@@ -207,10 +207,12 @@ export const addPost = (postData: {userId:any, imageUrl: string; title: string; 
   });
 };
 
-export const    getAllPosts = () => {
+export  const    getAllPosts = (requestData:{userId:string,page:number}) => {
+  console.log("request data",requestData);
+  
   return new Promise((resolve, reject) => {
     try {
-      apiCalls("get", postUrls.getAllPosts, null)
+      apiCalls("get", postUrls.getAllPosts, requestData)
         .then((response) => {
           resolve(response);
         })
@@ -392,5 +394,21 @@ export const    getUserPost = (userId:{userId:any}) => {
   });
 }
 
+export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',postUrls.reportPost,reportData)
+      .then((response)=>{
+        resolve(response)
+      })
+      .catch((err)=>{
+       reject(err)
+      })
+    }catch(error){
+      resolve({status:500,message:'something went wrong'})
+    }
+  })
+
+  }
 
 
