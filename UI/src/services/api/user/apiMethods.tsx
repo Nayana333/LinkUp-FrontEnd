@@ -410,5 +410,107 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
   })
 
   }
+//////////////////////////////
+  export const listUserJob= (userId:{userId:string|undefined,page:number}) => {
+  
+    return new Promise((resolve, reject) => {
+      try {
+        const queryParams = `?page=${userId.page}`
+        apiCalls("post", jobUrls.listUserJob+queryParams, userId)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };
 
 
+
+  export const userJobBlock = (jobId:{jobId:string}) => {
+    return new Promise((resolve, reject) => {
+        try {
+          apiCalls("post",jobUrls.userJobBlock, jobId).then((response) => {
+                resolve(response);
+              }
+            ).catch((err) => {
+                reject(err);
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+  };
+
+
+
+  export const listJob= (filterData:any) => {
+  
+    return new Promise((resolve, reject) => {
+      try {
+        apiCalls("post", jobUrls.listJob, filterData)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };
+  export const savePost = (postData: { postId: string|null,jobId:string|null, userId: string }) => {
+    return new Promise((resolve, reject) => {
+      try {
+        apiCalls("post", postUrls.savePost, postData)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };
+
+
+ 
+
+  export const editJob= (data:any) => {
+    return new Promise((resolve, reject) => {
+      try {
+        apiCalls("put", jobUrls.editJob, data)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };
+
+  export const getJobDetails = ( jobId:{jobId: string|undefined}) => {
+    return new Promise((resolve, reject) => {
+      try {
+        apiCalls("post", jobUrls.getJobDetails,jobId)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };

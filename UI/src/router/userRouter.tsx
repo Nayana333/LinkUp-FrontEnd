@@ -18,6 +18,15 @@ import App from '../App';
 import Error from '../Components/ErrorPage/Error';
 import UserPost from '../Components/UserPost';
 import ProfilePage from '../pages/user/ProfilePage/ProfilePage';
+import JobsHiring from '../pages/user/jobs/JobsHiring';
+import  HiringJobList from '../Components/HiringJobList';
+import JobsOpenWork from '../pages/user/jobs/JobsOpenToWork'
+import Jobs from '../Components/Jobs';
+import AddJob from '../Components/AddJob';
+import EditJob from '../Components/EditJob';
+
+
+
 
 const appRouter = createBrowserRouter([
   {
@@ -83,8 +92,49 @@ const appRouter = createBrowserRouter([
       {
         path: 'user-post',
         element: <UserPost />,
-        errorElement:<Error/>
+        errorElement: <Error />,
       },
+    ],
+  },
+  {
+    path: '/jobs',
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: '/jobs/hiring',
+        element: <JobsHiring />,
+        children:[
+          {
+            
+              path:"/jobs/hiring/jobList",
+              element:<HiringJobList/>
+            
+          },
+          {
+            path:"/jobs/hiring/add-job",
+            element:<AddJob/>
+          },
+          {
+            path:"/jobs/hiring/edit-job/:jobId",
+            element:<EditJob/>
+          }
+        ]
+      },
+      {
+        path:"/jobs/open-to-work",
+        element: ( 
+           <JobsOpenWork/>
+        ),
+        
+        
+        children:[
+          {
+            path:'/jobs/open-to-work/job-list',
+            element:<Jobs/>
+          }
+        ]
+      }
     ],
   },
   adminRoute,

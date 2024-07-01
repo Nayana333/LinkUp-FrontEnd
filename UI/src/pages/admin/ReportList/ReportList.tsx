@@ -8,7 +8,7 @@ import {adminPostBlockReport,ReportList} from '../../../services/api/admin/Admin
 
 
 
-function reportList(){
+function AdminReportList(){
 
 
 const [posts,setPostes]=useState<any[]>([])
@@ -23,7 +23,7 @@ useEffect(()=>{
   const fetchPost=async()=>{
     try{
         setIsLoading(true)
-        const response:any=await ReportList(currentPage);
+        const response:any=await ReportList(currentPage);    
         const {report:report,totalPages:fetchTotalPages}=response.data
         setPostes(report)
         setTotalPages(fetchTotalPages)
@@ -50,6 +50,8 @@ const handlePostBlock = (postId: string,status:string) => {
       adminPostBlockReport(requestData)
         .then((response: any) => {
           const data = response.data;
+          console.log(data);
+          
           if(status=="block"){
             toast.error(data.message);
           }else{
@@ -122,13 +124,13 @@ return (
             </td>
             <td className=" px-6 py-4">
             <div className="text-xs">
-                <div className="font-medium text-gray-700">{post.postId.userId.username}</div>
+                <div className="font-medium text-gray-700">{post.postId.userId.userName}</div>
                 <div className="text-gray-400">{post.postId.userId.email}</div>
               </div>
             </td>
             <td className=" px-6 py-4">
             <div className="text-xs">
-                <div className="font-medium text-gray-700">{post.userId.username}</div>
+                <div className="font-medium text-gray-700">{post.userId.userName}</div>
                 <div className="text-gray-400">{post.userId.email}</div>
               </div>
             </td>
@@ -181,4 +183,4 @@ return (
   );
 }
 
-export default reportList
+export default AdminReportList

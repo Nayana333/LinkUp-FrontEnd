@@ -87,7 +87,7 @@ function Header1()  {
             </li>
             <li>
               <a
-                onClick={() => navigate('#')}
+                onClick={() => navigate('/jobs/open-to-work/job-list')}
                 className={`text-xs font-bold block py-2 pr-4 pl-3 ${
                   location.pathname.startsWith('/jobs') ? activeLinkStyle : inactiveLinkStyle
                 }`}

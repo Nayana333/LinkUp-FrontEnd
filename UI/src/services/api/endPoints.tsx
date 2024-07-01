@@ -1,4 +1,4 @@
-import { newPassword, reportPost } from "./user/apiMethods";
+import { editJob, getJobDetails, newPassword, postForgot, reportPost } from "./user/apiMethods";
 
 export const userUrls ={
     register:'/users/register' ,
@@ -28,7 +28,8 @@ export const postUrls={
     replyComment:'post/replyComment',
     deleteComment:'/post/deleteComment',
     getUserPost:'/post/getUserPost',
-    reportPost:'/post/reportPost'
+    reportPost:'/post/reportPost',
+    savePost:'/post/savePost'
 }
 
 
@@ -37,12 +38,21 @@ export const adminUrl = {
     adminUserList:'/admin/userList',
     adminUserBlock:'/admin/blockUser',
     ReportList:'/admin/reportList',
-    reportPostBlock:'/admin/reportPostBlock'
+    reportPostBlock:'/admin/reportPostBlock',
+    adminPostList:'/admin/adminPostList',
+    postBlock:'/admin/postBlock'
     
 
 }
 
 
 export const jobUrls={
-    addJob:'/job/addJob'
-}
+    addJob:'/job/addJob',
+    listUserJob:'/job/listUserJob',
+    userJobBlock:'/job/userJobBlock',
+    listJob:'/job/listJob',
+    editJob:'job/editJob',
+    getJobDetails:'/job/getJobDetails',
+    
+
+}   

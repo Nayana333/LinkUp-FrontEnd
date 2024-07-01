@@ -72,7 +72,7 @@ export const ReportList=(page:number)=>{
 }
 
 
-export const adminPostBlockReport=(postId:{postId:string,})=>{
+export const adminPostBlockReport=(postId:{postId:string})=>{
     return new Promise((resolve,reject)=>{
         try{
             adminApiCalls("post",adminUrl.reportPostBlock,postId)
@@ -86,3 +86,36 @@ export const adminPostBlockReport=(postId:{postId:string,})=>{
         }
     })
 }
+
+export const adminPostList=(page:number)=>{
+    return new Promise((resolve,reject)=>{
+        try{
+        const queryParams=`?page=${page}`
+        adminApiCalls('get',adminUrl.adminPostList+queryParams,null)
+        .then((response)=>{
+            resolve(response)
+        }).catch((err)=>{
+            reject(err)
+        })
+    }catch(error){
+        reject(error)
+        
+    }
+    })
+}
+
+export const postBlock=(postId:{postId:string})=>{
+    return new Promise((resolve,reject)=>{
+        try{
+            adminApiCalls("post",adminUrl.postBlock,postId)
+            .then((response)=>{
+                resolve(response)
+            }).catch((err)=>{
+                reject(err)
+            })
+        }catch(error){
+            reject(error)
+        }
+    })
+}
+

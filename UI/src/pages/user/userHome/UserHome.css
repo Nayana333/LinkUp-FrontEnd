@@ -2,7 +2,6 @@
 .home-main{
   height: 500vh;
   position: fixed;
-  display: flex;
   width: 100%;
   background-color: rgb(234, 233, 233);
   z-index: -100;
