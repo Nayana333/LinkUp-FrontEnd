@@ -36,7 +36,7 @@ const EditJob=()=>{
     const initialValues = {
         companyName: job.companyName || '',
         jobRole: job.jobRole || '',
-        experience: job.experience || '',
+        experience: job.experience === 0 ? 'Fresher' : job.experience || '',       
         salary: job.salary || '',
         jobType: job.jobType || '',
         jobLocation: job.jobLocation || '',

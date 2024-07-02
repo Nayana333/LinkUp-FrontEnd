@@ -3,83 +3,81 @@ import { Pagination} from "flowbite-react";
 import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import {  listUserJob, userJobBlock } from "../services/api/user/apiMethods";
+import {  adminJobList, adminJobBlock } from "../../../services/api/admin/AdminApiMethods";
 import { useEffect, useState } from "react";
-import '../pages/admin/UserList/UserList.css'
 
 function HiringJobList(){
 
-    const selectUser=(state:any)=>state.auth.user;
-    const user=useSelector(selectUser)
-    const navigate=useNavigate()
-    const userId=user._id
-    const [currentPage,setCurrentPage]=useState(1)
-    const [jobs,setJobs]=useState<any[]>([])
-    const [loading,setLoading]=useState(false)
-    const [totalPages, setTotalPages] = useState(1);
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(()=>{
-        const fetchData=async()=>{
-            setLoading(true)
-            try{
-                const response:any=await listUserJob({userId,page:currentPage})
-                const { jobs: jobsData, totalPages: fetchedTotalPages } =response.data
-                setJobs(jobsData)
-                setTotalPages(fetchedTotalPages)
-            }catch(error:any){
-                console.log(error.message);
-                
-            }finally{
-                setLoading(false)
-            }
-        }
-        fetchData()
-    },[currentPage,userId])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response: any = await adminJobList(currentPage);
+        const { jobs: fetchedJobs, totalPages: fetchedTotalPages } = response.data;
+        setJobs(fetchedJobs);
+        setTotalPages(fetchedTotalPages);
+      } catch (error: any) {
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [currentPage]);
 
+  const handleJobBlock = (jobId: string, status: string) => {
+    try {
+      const requestData = { jobId };
+      adminJobBlock(requestData)
+        .then((response: any) => {
+          const data = response.data;
+          console.log(data,'block data');
 
-
-    const handleJobBlock=(jobId:string,status:string)=>{
-        try{
-            const requestData={jobId}
-            userJobBlock(requestData)
-            .then((response:any)=>{
-                const data=response.data
-
-                if(status==='block'){
-                    toast.error(data.message)
-                }
-                else{
-                    toast.info(data.message)
-                }
-                setJobs(response.data.jobs)
+          if (status === "block") {
+            toast.error(data.message);
+          } else {
+            toast.info(data.message);
+          }
+          setJobs(prevJobs =>
+            prevJobs.map(job => {
+              if (job._id === jobId) {
+                return { ...job, isBlocked: !job.isBlocked };
+              }
+              return job;
             })
-            .catch((error:any)=>{
-                toast.error(error.message)
-            })
-        }catch(error:any){
-            toast.error(error.message)
-        }
+          );
+        })
+        .catch((error: any) => {
+          toast.error(error.message);
+        });
+    } catch (err: any) {
+      toast.error(err.message);
     }
+  };
 
-    const onPageChange=(page:number)=>{
-        setCurrentPage(page)
-    }
-
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
 
 return (
     <>
-      {jobs.length === 0 ? (
-        <div className="text-gray-600 text-xs border-dashed border opacity-75 bg-white border-gray-400 flex justify-center p-6 rounded-lg mx-5 mt-9">
-          <p className="py-2">No Job postings</p>
-        </div>
-      ) : (
-        <div className="w-full overflow-hidden rounded-lg mx-5 mt-5 mb-3" style={{ height:'440px',width: '1053px' }}>
+    
+        <div className="w-full overflow-hidden rounded-lg mx-5 mt-5 mb-3" style={{ height:'440px' }}>
           <table className="w border-collapse bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50">
               <tr>
+             
                 <th scope="col" className="text-xs px-6 py-4 font-medium text-gray-900">
                   Job Role
+                </th>
+                <th scope="col" className="text-xs px-6 py-4 font-medium text-gray-900">
+                  posted by
                 </th>
                 <th scope="col" className="text-xs px-6 py-4 font-medium text-gray-900">
                   Job Type
@@ -100,10 +98,10 @@ return (
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
               {jobs?.map((job: any) => (
-                <tr key={job._id} className={`hover:bg-gray-50 ${job.isAdminBlocked ? 'relative' : ''}`}>
-                  {job.isAdminBlocked && (
+                <tr key={job._id} className={`hover:bg-gray-50 ${job.isBlocked ? 'relative' : ''}`}>
+                  {job.isBlocked && (
                     <div className="absolute z-50 inset-0 bg-gray-400 bg-opacity-50 text-xs text-red-600 flex items-center justify-center pb-8">
-                      <p>Blocked by admin</p>
+                      <p>{`Blocked by  ${job.userId.userName}` }</p>
                     </div>
                   )}
                   <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
@@ -115,16 +113,22 @@ return (
                       <div className="text-gray-400">{job.jobRole}</div>
                     </div>
                   </th>
-                  <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-green-600">
-                      <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                      {job.jobType}
-                    </span>
-                  </td>
+                  <th>
+                  <div className="text-xs">
+                    <div className="font-medium text-gray-700">{job.userId?.userName}</div>
+                    <div className="text-gray-400">{job.userId?.email}</div>
+                  </div>
+                </th>
+                    <td className="px-6 py-4">
+                      <span className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold text-green-600">
+                        <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                        {job.jobType}
+                      </span>
+                    </td>
                   <td className="font-xs px-6 py-4">{new Date(job.createdAt).toLocaleDateString()}</td>
                   <td className="font-xs px-6 py-4">{new Date(job.lastDateToApply).toLocaleDateString()}</td>
                   <td className="text-xs px-6 py-4">
-                    {job.isBlocked? (
+                    {job.isAdminBlocked? (
                       <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
                         Blocked
                       </span>
@@ -135,7 +139,7 @@ return (
                     )}
                   </td>
                   <td className="flex text-xs py-4">
-                    <button
+                    {/* <button
                       onClick={() => {
                         navigate(`/jobs/view-job/job-info/${job._id}`);
                       }}
@@ -143,20 +147,12 @@ return (
                       className="text-xs px-5 bg-white text-green-600 hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg py-2.5 text-center inline-flex items-center me-2 mb-2"
                     >
                       View
-                    </button>
+                    </button> */}
   
-                    <button
-                      onClick={() => {
-                        navigate(`/jobs/hiring/edit-job/${job._id}`);
-                      }}
-                      type="button"
-                      className="text-xs px-5 bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg py-2.5 text-center inline-flex items-center me-2 mb-2"
-                    >
-                      Edit
-                    </button>
+                    
   
                     <div className="justify-end gap-4">
-                      {job.isBlocked ? (
+                      {job.isAdminBlocked ? (
                         <button
                           type="button"
                           onClick={() => handleJobBlock(job._id,"block")}
@@ -179,13 +175,12 @@ return (
               ))}
             </tbody>
           </table>
-
-        </div>
-        
-      )}
-                <div className="pagnation flex justify-end pe-1">
+          <div className="pagnation flex justify-end pe-1">
         <Pagination className='text-xs ' currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} showIcons />
       </div>
+
+        </div>      
+      
     </>
   );
 }

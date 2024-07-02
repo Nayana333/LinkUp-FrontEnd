@@ -212,7 +212,9 @@ export  const    getAllPosts = (requestData:{userId:string,page:number}) => {
   
   return new Promise((resolve, reject) => {
     try {
-      apiCalls("get", postUrls.getAllPosts, requestData)
+
+      console.log(requestData)
+      apiCalls("post", postUrls.getAllPosts, requestData)
         .then((response) => {
           resolve(response);
         })
@@ -250,7 +252,7 @@ export const deletePost=(postData:{postId:string,userId:string})=>{
     
   return new Promise((resolve,reject)=>{
     try{
-      apiCalls('delete',postUrls.deletePost,postData)
+      apiCalls('post',postUrls.deletePost,postData)
       .then((response)=>{
         resolve(response)
       })
@@ -514,3 +516,19 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
       }
     });
   };
+
+  export const  viewJob=(data:any)=>{
+    return new Promise((resolve,reject)=>{
+      try{
+        apiCalls('post',jobUrls.viewJob,data)
+        .then((response)=>{
+          resolve(response)
+
+        }).catch((err)=>{
+          reject(resolve)
+        })
+      }catch(error){
+        resolve({status:500,message:'something went wrong'})
+      }
+    })
+  }

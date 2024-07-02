@@ -22,7 +22,7 @@ function AdminLogin() {
             toast.success(data.message)
             
             dispatch(LoginAdmin({admin:data}))
-            console.log(data.token);
+            console.log(data);
             localStorage.setItem("adminToken",data.token),
             navigate('/admin/');  
         }else{

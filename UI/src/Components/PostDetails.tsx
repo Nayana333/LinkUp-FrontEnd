@@ -263,6 +263,8 @@ const PostDetails: React.FC<PostProps> = ({
       deletePost({ postId, userId })
         .then((response: any) => {
           const postData = response.data;
+          console.log(postData);
+          
          
           dispatch(setUsePosts({userPost: postData.posts}));
           toast.info("Post Deleted");

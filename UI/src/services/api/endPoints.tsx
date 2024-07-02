@@ -40,7 +40,9 @@ export const adminUrl = {
     ReportList:'/admin/reportList',
     reportPostBlock:'/admin/reportPostBlock',
     adminPostList:'/admin/adminPostList',
-    postBlock:'/admin/postBlock'
+    postBlock:'/admin/postBlock',
+    adminJobList:'/admin/adminJobList',
+    adminJobBlock  :'/admin/adminJobBlock  '
     
 
 }
@@ -53,6 +55,7 @@ export const jobUrls={
     listJob:'/job/listJob',
     editJob:'job/editJob',
     getJobDetails:'/job/getJobDetails',
+    viewJob:'/job/viewJob'
     
 
 }   

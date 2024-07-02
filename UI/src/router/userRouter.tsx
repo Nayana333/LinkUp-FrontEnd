@@ -24,6 +24,9 @@ import JobsOpenWork from '../pages/user/jobs/JobsOpenToWork'
 import Jobs from '../Components/Jobs';
 import AddJob from '../Components/AddJob';
 import EditJob from '../Components/EditJob';
+import JobDetails from '../pages/user/jobs/JobDetails';
+import ViewJob from '../Components/ViewJob/ViewJob';
+import Protect from './Protect/Protect';
 
 
 
@@ -71,18 +74,29 @@ const appRouter = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <App />,
+    element:
+    (
+      <Protect>
+         <App />
+      </Protect>
+   
+  ), 
     errorElement: <Error />,
     children: [
       {
-        path: '',
+        path: '/home',
         element: <UserHome />,
       },
     ],
   },
   {
     path: '/profile',
-    element: <ProfilePage />,
+     
+    element: (
+      <Protect>
+    <ProfilePage />
+    </Protect>
+  ),
     errorElement: <Error />,
     children: [
       {
@@ -98,7 +112,12 @@ const appRouter = createBrowserRouter([
   },
   {
     path: '/jobs',
-    element: <App />,
+    element:(
+      <Protect>
+    <App />
+    </Protect>
+
+    ) ,
     errorElement: <Error />,
     children: [
       {
@@ -118,7 +137,8 @@ const appRouter = createBrowserRouter([
           {
             path:"/jobs/hiring/edit-job/:jobId",
             element:<EditJob/>
-          }
+          },
+          
         ]
       },
       {
@@ -134,6 +154,20 @@ const appRouter = createBrowserRouter([
             element:<Jobs/>
           }
         ]
+      },
+      {
+        path:'/jobs/view-job/',
+        element:(
+          <JobDetails/>
+        ),
+        children:[
+        {
+          path:'/jobs/view-job/job-info/:jobId',
+          element:<ViewJob/>
+        }
+
+        ]
+
       }
     ],
   },

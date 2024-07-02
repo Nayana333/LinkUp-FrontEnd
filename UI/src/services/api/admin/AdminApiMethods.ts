@@ -119,3 +119,36 @@ export const postBlock=(postId:{postId:string})=>{
     })
 }
 
+
+export const adminJobList=(page:number)=>{
+    return new Promise((resolve,reject)=>{
+        try{
+        const queryParams=`?page=${page}`
+        adminApiCalls('get',adminUrl.adminJobList+queryParams,null)
+        .then((response)=>{
+            resolve(response)
+        }).catch((err)=>{
+            reject(err)
+        })
+    }catch(error){
+        reject(error)
+        
+    }
+    })
+}
+
+
+  export const adminJobBlock  = (jobId:{jobId:string}) => {
+    return new Promise((resolve, reject) => {
+        try {
+         adminApiCalls("post",adminUrl.adminJobBlock , jobId).then((response) => {
+                resolve(response);
+              }
+            ).catch((err) => {
+                reject(err);
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+  };

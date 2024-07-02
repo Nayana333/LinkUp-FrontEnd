@@ -7,6 +7,10 @@ import UserList from '../pages/admin/UserList/UserList';
 import Error from '../Components/ErrorPage/Error';
 import AdminReportList from '../pages/admin/ReportList/ReportList';
 import PostList from '../pages/admin/PostList/PostList';
+import JobList from '../pages/admin/JobList/JobList'
+import Protect from './Protect/AdminProtect';
+
+
 
 export const adminLoginRouter = {
     path: "/admin/login",
@@ -15,7 +19,11 @@ export const adminLoginRouter = {
 
 export const adminRoute = {
     path: '/admin',
-    element: <AdminDashboard />,
+    element: (
+        <Protect>
+    <AdminDashboard />
+    </Protect>
+),
     children: [
         {
             path: 'users',
@@ -30,6 +38,9 @@ export const adminRoute = {
        },{
         path:'posts',
         element:<PostList/>
+       },{
+        path:'jobs',
+        element:<JobList/>
        }
     ],
 };

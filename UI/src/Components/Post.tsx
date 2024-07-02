@@ -1,5 +1,5 @@
 import { Bookmark, Heart, MessageCircle,X } from "lucide-react";
-import { likePost  } from "../services/api/user/apiMethods";
+import { likePost,savePost  } from "../services/api/user/apiMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsePosts, updateUser } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
@@ -96,6 +96,48 @@ const Post: React.FC<PostProps> = ({ post }) => {
   };
 
 
+  // const handleSave = (postId: string, userId: string) => {
+  //   try {
+  //     savePost({ postId, userId,jobId:null })
+  //       .then((response: any) => {
+  //         const userData = response.data;
+      
+  //         dispatch(updateUser({ user: userData }));
+  //         setIsSavedByUser(!isSavedByUser);
+         
+          
+  //       })
+  //       .catch((error) => {
+  //         toast.error(error.message);
+  //       });
+  //   } catch (error: any) {
+  //     console.log(error.message);
+  //   }
+  // };
+
+
+  const handleSave = (postId: string, userId: string) => {
+    try {
+      savePost({ postId, userId, jobId: null })
+        .then((response: any) => {
+          const message = response.data.message;
+          const userData = response.data;
+          console.log("User data after saving post:", message); // Debugging line
+          dispatch(updateUser({ user: userData }));
+          setIsSavedByUser(!isSavedByUser);
+          toast.success(message)
+          
+        })
+        .catch((error) => {
+          console.error("Error saving post:", error.message); // Debugging line
+          toast.error(error.message);
+        });
+    } catch (error: any) {
+      console.error("Try-catch error:", error.message); // Debugging line
+    }
+  };
+  
+
  
 
   return (
@@ -181,6 +223,18 @@ new Date(post.createdAt),
 
 
           )}
+
+{isSavedByUser?(     <button
+           onClick={() => handleSave(post._id, user._id)}
+          type="button">
+            
+            <Bookmark color="green" strokeWidth={1.5} size={22} />
+          </button>):(     <button
+           onClick={() => handleSave(post._id, user._id)}
+          type="button">
+            
+            <Bookmark color="gray" strokeWidth={1.5} size={22} />
+          </button>)}
 
         </div>
       </div>

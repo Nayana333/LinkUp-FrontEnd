@@ -15,15 +15,17 @@ function UserHome() {
   const user = useSelector(selectUser) || "";
   const userId = user._id || "";
   const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState<any[]>([]); 
+  const [posts, setPosts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
+    console.log("use Effect calling")
     const fetchPost = async () => {
       try {
         setLoading(true)
         setTimeout(() => {
+
           getAllPosts({ userId, page })
             .then((response: any) => {
               const postsData = response.data;
@@ -44,17 +46,19 @@ function UserHome() {
         console.log(error);
       }
     };
-
-    fetchPost();
+    if (page > 1 || posts.length === 0) {
+      console.log(page, posts.length)
+      fetchPost();
+    }
   }, [page]);
 
-  console.log("pages",page);
-  
+
 
   const handleScroll = () => {
+    console.log("handling scroll event")
     if (
-        window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.scrollHeight &&
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight &&
       hasMore &&
       !loading
     ) {
@@ -63,9 +67,15 @@ function UserHome() {
   };
 
   useEffect(() => {
+    console.log("Handle Scrolll functiuon")
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
+  const handlePageCount = () => {
+    setPage((prev) => prev + 1);
+
+  }
 
   return (
     <div>
@@ -84,6 +94,7 @@ function UserHome() {
 
             {loading && page === 1 ? (
               <div>
+
                 {Array.from({ length: 5 }).map((_, index) => (
                   <div key={index}>
                     <PostSkeletonUi />
@@ -97,11 +108,26 @@ function UserHome() {
                     {posts.map((post: any) => (
                       <Post key={post._id} post={post} />
                     ))}
+                    {hasMore &&
+                      <div className="flex justify-center">
+                        < button className="flex items-center text-green-500 border border-green-600 py-2 px-6 gap-2 rounded inline-flex items-center" onClick={handlePageCount}>
+                          <span>
+                            View More
+                          </span>
+                          <svg className="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24" className="w-6 h-6 ml-2">
+                            <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                          </svg>
+                        </button>
+
+                      </div>}
                   </div>
                 )}
 
                 {loading && page > 1 && (
                   <div className="lg:col-span-2 lg:ms-96 w-12/12 lg:pl-4 s pt-2 lg:pt-4 flex justify-center">
+
+                    
                     <Spinner
                       color="purple"
                       size="md"
@@ -125,7 +151,7 @@ function UserHome() {
     </div>
   );
 }
- export default UserHome;
+export default UserHome;
 
 
 
