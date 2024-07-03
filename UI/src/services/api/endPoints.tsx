@@ -42,7 +42,7 @@ export const adminUrl = {
     adminPostList:'/admin/adminPostList',
     postBlock:'/admin/postBlock',
     adminJobList:'/admin/adminJobList',
-    adminJobBlock  :'/admin/adminJobBlock  '
+    adminJobBlock :'/admin/adminJobBlock'
     
 
 }

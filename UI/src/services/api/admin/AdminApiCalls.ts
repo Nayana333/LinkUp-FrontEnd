@@ -5,7 +5,10 @@ import { AdminLogout } from "../../../utils/context/reducers/adminAuthSlice";
 
 
 const adminApiCalls=async(method:string,url:string,data:any)=>{
+    
     return new Promise(async(resolve,reject)=>{
+        
+        
         try{
             let response:any,error:any
 
@@ -13,7 +16,7 @@ const adminApiCalls=async(method:string,url:string,data:any)=>{
                 response=await adminApi.post(url,data).catch((err)=>{
                     error=err;
                 });
-
+                    
             }
            else if(method==='get'){
                 response=await adminApi.get(url,data).catch((err)=>{
@@ -46,9 +49,6 @@ const adminApiCalls=async(method:string,url:string,data:any)=>{
                 }
                 
             }
-
-            
-            
 
         }catch(err){
             reject(err)

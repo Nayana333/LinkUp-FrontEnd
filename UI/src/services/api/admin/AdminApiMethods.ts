@@ -138,7 +138,9 @@ export const adminJobList=(page:number)=>{
 }
 
 
-  export const adminJobBlock  = (jobId:{jobId:string}) => {
+  export const adminJobBlock  = (jobId:string) => {
+    console.log('job id',jobId);
+    
     return new Promise((resolve, reject) => {
         try {
          adminApiCalls("post",adminUrl.adminJobBlock , jobId).then((response) => {

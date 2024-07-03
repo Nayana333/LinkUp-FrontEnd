@@ -30,7 +30,7 @@ import { setUsePosts } from "../utils/context/reducers/authSlice";
 
 ("use client");
 
-import {  Modal } from "flowbite-react";
+import { Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 interface PostProps {
@@ -229,7 +229,7 @@ const PostDetails: React.FC<PostProps> = ({
 
   const ReplyCommentHandleSubmit = (values: any, { resetForm }: any) => {
     try {
-      const commentData:any = {
+      const commentData: any = {
         commentId: parentCommentId,
         userId: userId,
         replyComment: values.comment,
@@ -264,9 +264,9 @@ const PostDetails: React.FC<PostProps> = ({
         .then((response: any) => {
           const postData = response.data;
           console.log(postData);
-          
-         
-          dispatch(setUsePosts({userPost: postData.posts}));
+
+
+          dispatch(setUsePosts({ userPost: postData.posts }));
           toast.info("Post Deleted");
           setIsOpen(!isOpen);
         })
@@ -304,11 +304,11 @@ const PostDetails: React.FC<PostProps> = ({
     if (commentBoxRef.current) {
       commentBoxRef.current.scrollTop = commentBoxRef.current.scrollHeight;
     }
-  }, [comments, replyComments,isComment]);
+  }, [comments, replyComments, isComment]);
 
 
 
-  
+
 
   return (
     <div
@@ -510,35 +510,22 @@ const PostDetails: React.FC<PostProps> = ({
                         <Heart color="gray" strokeWidth={1.5} size={22} />
                       )}
                     </button>
+                    {post.hideComment == false && (
 
-                    
-          {post.hideComment==false&&(
-           
-           <button type="button" onClick={handleIsComment}>
-           <MessageCircle color="gray" strokeWidth={1.5} size={22} />
-         </button>
+                      <button type="button" onClick={handleIsComment}>
+                        <MessageCircle color="gray" strokeWidth={1.5} size={22} />
+                      </button>
+                    )}
+                  </div>
+                  {post.hideLikes == false && (
+                    <button onClick={handleIsLikes}>
+                      <span className="text-gray-600 text-sm font-bold">
+                        {post.likes.length} Likes
+                      </span>
+                    </button>
+                  )}
 
-
-          )}
-              </div>
-
-
-{post.hideLikes==false&&(
-    <button onClick={handleIsLikes}>
-    <span className="text-gray-600 text-sm font-bold">
-      {post.likes.length} Likes
-    </span>
-  </button>
-            
-      
-
-
-    )}
-
-
-              
-                
-                </div>
+               </div>
                 <span className="block ml-2 text-xs text-gray-600">
                   5 minutes
                 </span>
@@ -557,7 +544,7 @@ const PostDetails: React.FC<PostProps> = ({
               </div>
 
               <div className="home-scroll-post">
-                <div ref={commentBoxRef}  className="home-scrollbox-post  ">
+                <div ref={commentBoxRef} className="home-scrollbox-post  ">
                   {comments.map((comment: any) => (
                     <div key={comment._id}>
                       <div className="mb-6">
@@ -593,7 +580,7 @@ const PostDetails: React.FC<PostProps> = ({
                             </button>
                             {user.userName == comment.userId.userName && (
                               <button
-                                onClick={() => {setOpenModal(true);setParentCommentId(comment._id)}}
+                                onClick={() => { setOpenModal(true); setParentCommentId(comment._id) }}
                                 className="ms-2"
                               >
                                 <Trash2 color="gray" size={10} />
@@ -640,14 +627,14 @@ const PostDetails: React.FC<PostProps> = ({
                           </div>
                         </div>
                       ))}
-                      
+
                     </div>
-                    
-                  
+
+
                   ))}
                 </div>
 
-             
+
               </div>
               {replyComments && (
                 <Formik
@@ -752,39 +739,39 @@ const PostDetails: React.FC<PostProps> = ({
         </div>
       </div>
       <Modal
-                  show={openModal}
-                  size="md"
-                  onClose={() => setOpenModal(false)}
-                  popup
-                >
-                  <Modal.Header />
-                  <Modal.Body>
-                    <div className="text-center">
-                      <HiOutlineExclamationCircle className="mx-auto text-xs  mb-4 h-10 w-10 text-gray-400 dark:text-gray-200" />
-                      <h3 className="mb-5 text-xs font-normal text-gray-500 dark:text-gray-400">
-                        Are you sure you want to delete this this comment?
-                      </h3>
-                      <div className="flex justify-center gap-4 ">
-                        <button
-                          className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600"
-                          onClick={() => {
-                            setOpenModal(false);
-                            handleDeleteComments(parentCommentId);
-                            setParentCommentId("")
-                          }}
-                        >
-                          Yes, I'm sure
-                        </button>{" "}
-                        <button
-                          className="text-xs border px-4 py-1 rounded-md border-gray-600"
-                          onClick={() => setOpenModal(false)}
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  </Modal.Body>
-                </Modal>
+        show={openModal}
+        size="md"
+        onClose={() => setOpenModal(false)}
+        popup
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="mx-auto text-xs  mb-4 h-10 w-10 text-gray-400 dark:text-gray-200" />
+            <h3 className="mb-5 text-xs font-normal text-gray-500 dark:text-gray-400">
+              Are you sure you want to delete this this comment?
+            </h3>
+            <div className="flex justify-center gap-4 ">
+              <button
+                className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600"
+                onClick={() => {
+                  setOpenModal(false);
+                  handleDeleteComments(parentCommentId);
+                  setParentCommentId("")
+                }}
+              >
+                Yes, I'm sure
+              </button>{" "}
+              <button
+                className="text-xs border px-4 py-1 rounded-md border-gray-600"
+                onClick={() => setOpenModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
