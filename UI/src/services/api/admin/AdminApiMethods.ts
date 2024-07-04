@@ -138,12 +138,12 @@ export const adminJobList=(page:number)=>{
 }
 
 
-  export const adminJobBlock  = (jobId:string) => {
+  export const jobBlock= (jobId:string) => {
     console.log('job id',jobId);
     
     return new Promise((resolve, reject) => {
         try {
-         adminApiCalls("post",adminUrl.adminJobBlock , jobId).then((response) => {
+         adminApiCalls("post",adminUrl.jobBlock , jobId).then((response) => {
                 resolve(response);
               }
             ).catch((err) => {

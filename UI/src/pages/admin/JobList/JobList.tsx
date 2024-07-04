@@ -3,12 +3,14 @@ import { Pagination } from "flowbite-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { adminJobList, adminJobBlock } from "../../../services/api/admin/AdminApiMethods";
+import { adminJobList, jobBlock } from "../../../services/api/admin/AdminApiMethods";
 import { useEffect, useState } from "react";
 
 function HiringJobList() {
 
   const [jobs, setJobs] = useState<any[]>([]);
+  console.log(jobs);
+  
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -27,35 +29,36 @@ function HiringJobList() {
         setLoading(false);
       }
     };
-    fetchData();
+    fetchData();  
   }, [currentPage]);
+
 
   const handleJobBlock = (jobId: string, status: string) => {
     try {
-      console.log("ram raj", jobId)
-
-      adminJobBlock(jobId)
-        .then((response: any) => {
+          const requestData:any = { jobId };
+          jobBlock(requestData)
+          .then((response: any) => {
+            console.log(response);
+          
           const data = response.data;
-          console.log(data, 'block data');
-
           if (status === "block") {
             toast.error(data.message);
           } else {
-            toast.info(data.message);
+            toast.info(data.message); 
           }
           setJobs(prevJobs =>
             prevJobs.map(job => {
               if (job._id === jobId) {
-                return { ...job, isBlocked: !job.isBlocked };
+                return { ...job, isAdminBlocked: !job.isAdminBlocked };
               }
               return job;
             })
           );
         })
         .catch((error: any) => {
-          toast.error(error);
+          toast.error(error.message);
         });
+
     } catch (err: any) {
       toast.error(err.message);
     }
@@ -106,9 +109,7 @@ function HiringJobList() {
                   </div>
                 )}
                 <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-                  <div className="relative rounded-full h-10 w-10 bg-green-600 flex items-center justify-center font-bold text-white">
-                    {job.jobRole.slice(0, 1)}
-                  </div>
+                
                   <div className="text-xs">
                     <div className="font-medium text-gray-700">{job.companyName}</div>
                     <div className="text-gray-400">{job.jobRole}</div>
