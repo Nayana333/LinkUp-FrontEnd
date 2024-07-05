@@ -29,7 +29,8 @@ export const postUrls={
     deleteComment:'/post/deleteComment',
     getUserPost:'/post/getUserPost',
     reportPost:'/post/reportPost',
-    savePost:'/post/savePost'
+    savePost:'/post/savePost',
+    getSavedPost:'/post/getSavedPost'
 }
 
 

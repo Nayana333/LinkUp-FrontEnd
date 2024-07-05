@@ -412,7 +412,8 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
   })
 
   }
-//////////////////////////////
+
+
   export const listUserJob= (userId:{userId:string|undefined,page:number}) => {
   
     return new Promise((resolve, reject) => {
@@ -525,10 +526,28 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
           resolve(response)
 
         }).catch((err)=>{
-          reject(resolve)
+          reject(err)
         })
       }catch(error){
         resolve({status:500,message:'something went wrong'})
       }
     })
   }
+
+
+  export const getSavedPost = (userId: string|undefined) => {
+    return new Promise((resolve, reject) => {
+      try {
+        const url:string = `${postUrls.getSavedPost}/${userId}`
+        apiCalls("get", url, null)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };

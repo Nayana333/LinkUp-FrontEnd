@@ -27,6 +27,8 @@ import EditJob from '../Components/EditJob';
 import JobDetails from '../pages/user/jobs/JobDetails';
 import ViewJob from '../Components/ViewJob/ViewJob';
 import Protect from './Protect/Protect';
+import SavedCollection from '../Components/SavedCollections';
+import SavedPost from '../Components/SavedPost';
 
 
 
@@ -86,7 +88,20 @@ const appRouter = createBrowserRouter([
       {
         path: '/home',
         element: <UserHome />,
+       
       },
+      {
+        path:'/home/saved',
+        element:<SavedCollection/>,
+
+        children:[
+          {
+            path:'/home/saved/posts',
+             element:<SavedPost/>
+
+          }
+        ]
+      }
     ],
   },
   {
