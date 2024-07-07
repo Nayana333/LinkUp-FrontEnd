@@ -2,6 +2,7 @@ import { userUrls,postUrls,jobUrls } from "../endPoints";
 import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
 import { useRouteLoaderData } from "react-router-dom";
+import { connectUrl } from "../endPoints";
 
 export const postRegister = (userData: FormValues) => { 
   console.log(userData);
@@ -551,3 +552,121 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
       }
     });
   };
+
+//////////////////////////////////////////////////////////////////////
+  export const getUserConnection=(userId:{userId:string|undefined})=>{
+    return new Promise((resolve,reject)=>{
+
+      try{
+        apiCalls('post',connectUrl.getUserConnection,userId)
+        .then((response)=>{
+          resolve(response)
+        }).catch((err)=>{
+          reject(err)
+        })
+
+      }catch(error){
+        resolve({status:200,message:'something went wrong'})
+      }
+
+    })
+  }
+
+
+export const  getUserSuggestions=(userId:{userId:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',userUrls.userSuggestions,userId)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      resolve({status:500,message:'somethig went wrong'})
+    }
+  })
+}
+
+
+export const unfollowUser=(data:{userId:string|undefined , unfollowingUser:string|undefined})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+    apiCalls("post",connectUrl.unfollow,data)
+    .then((response)=>{
+      resolve(response)
+    }).catch((error)=>{
+      reject(error)
+    })
+  }catch(error){
+   reject({status:500,message:'something went wrong'})
+    
+  }
+  })
+}
+
+
+export const acceptFollowRequest=(data:{userId:string,requestedUser:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',connectUrl.acceptRequest,data)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject({status:500,message:'something wrong'})
+      })
+    }catch(error){
+      reject({status:500,message:'something went wrong'})
+    }
+  })
+}
+
+
+export const cancelFollowRequest = (data: { userId: string |undefined,cancellingUser:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", connectUrl.cancelRequest, data)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+export const followUser = (data: { userId: string|undefined ,followingUser:string|undefined}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", connectUrl.follow, data)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+export const rejectFollowRequest = (data: { userId: string ,requestedUser:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", connectUrl.rejectRequest, data)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};

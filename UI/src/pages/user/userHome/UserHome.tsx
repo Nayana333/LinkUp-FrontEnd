@@ -2,12 +2,13 @@ import "./UserHome.css";
 import AddPost from '../../../Components/AddPost/AddPost';
 import Post from "../../../Components/Post";
 import { useEffect, useState } from "react";
-import { getAllPosts } from "../../../services/api/user/apiMethods";
+import { getAllPosts, getUserSuggestions } from "../../../services/api/user/apiMethods";
 import PostSkeletonUi from '../../../Components/SkeltonUi/PostSkeltonUi';
 import Preferences from "../../../Components/Preferences/Preferences";
 import BasicInformations from "../../../Components/Basicinformations";
 import { useSelector } from "react-redux";
 import { Spinner } from "flowbite-react";
+import PeopleCard from "../../../Components/PeopleCard";
 
 function UserHome() {
 
@@ -18,6 +19,8 @@ function UserHome() {
   const [posts, setPosts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [users,setUsers] = useState([]);
+
 
   useEffect(() => {
     console.log("use Effect calling")
@@ -42,6 +45,12 @@ function UserHome() {
               setLoading(false);
             });
         }, 2000);
+
+        getUserSuggestions({userId}).then((response:any)=>{
+          console.log(response.data,'suggestions');
+          
+          setUsers(response.data.suggestedUsers)
+        })
       } catch (error) {
         console.log(error);
       }
@@ -145,7 +154,13 @@ function UserHome() {
         <div className="hidden lg:block home-section-3" id="mobile-menu-2">
           <div className="home-people-scroll">
             <div className="home-scrollbox">
-              {/* Additional content can be placed here */}
+            {users?.map((user: any) => (
+       
+       <PeopleCard user={user}   />
+      
+     
+    
+     ))}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { editJob, getJobDetails, newPassword, postForgot, reportPost } from "./user/apiMethods";
+import { editJob, getJobDetails, getUserConnection, getUserSuggestions, newPassword, postForgot, reportPost } from "./user/apiMethods";
 
 export const userUrls ={
     register:'/users/register' ,
@@ -11,7 +11,8 @@ export const userUrls ={
     googleAuth:'/users/googleAuth',
     setPreferences:'/users/setPreferences',
     basicInformation:'/users/basicInformation',
-    setUserRole:'/users/SetUserRole'
+    setUserRole:'/users/SetUserRole',
+    userSuggestions:'/users/userSuggestions'
     
    
 }
@@ -60,3 +61,13 @@ export const jobUrls={
     
 
 }   
+
+export const connectUrl={
+    getUserConnection:'/connect/getConnection',
+    unfollow:'/connect/unfollow',
+    follow:'/connect/follow',
+    acceptRequest:'/connect/acceptRequest',
+    cancelRequest:'/connect/cancelRequest',
+    rejectRequest:'/connect/rejectRequest',
+    
+}
