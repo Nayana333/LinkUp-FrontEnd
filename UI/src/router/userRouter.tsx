@@ -36,6 +36,9 @@ import ViewerConnections from '../Components/ViewerConnections';
 import ViewerJobs from '../Components/ViewerJob';
 import People from '../pages/People/People';
 import PeopleDiscover from '../Components/PeopleDIscover';
+import PeopleConnections from '../Components/PeopleConnections';
+import PeopleRequests from '../Components/PeopleRequests';
+import PeopleRequested from '../Components/PeopleRequested';
 
 
 
@@ -231,6 +234,17 @@ const appRouter = createBrowserRouter([
           {
             path:'/people/discover',
             element:<PeopleDiscover/>
+          },{
+            path:'/people/connections',
+            element:<PeopleConnections/>
+          },
+          {
+            path:'/people/requests',
+            element:<PeopleRequests/>
+          },
+          {
+            path:'/people/requested',
+            element:<PeopleRequested/>
           }
         ]
       }

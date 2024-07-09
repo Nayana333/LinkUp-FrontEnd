@@ -135,14 +135,14 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
             ) : connections?.some((connection: any) => connection._id === user?._id) ? (
               <button
                 onClick={() => handleUnFollowFromViewProfile(user)}
-                className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600"
+                className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600" style={{marginRight:'69px'}}
               >
                 Unfollow <CircleArrowDownIcon size={15} />
               </button>
             ) : (
               <button
-                onClick={() => handleFollowFromViewProfile(user?._id, user.username)}
-                className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600"
+                onClick={() => handleFollowFromViewProfile(user?._id, user.userName)}
+                className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600" 
               >
                 Follow <CircleArrowUp size={15} />
               </button>
@@ -152,19 +152,19 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
 
         {location.pathname === '/people/discover' && (
           <button
-            onClick={() => handleFollow(user?._id, user.username)}
+            onClick={() => handleFollow(user?._id, user.userName)}
             className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600"
           >
-            circle up <CircleArrowUp size={15} />
+            Link up <CircleArrowUp size={15} />
           </button>
         )}
 
         {location.pathname === '/people/connections' && (
           <button
             onClick={() => handleUnFollow(user)}
-            className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600"
+            className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600" style={{marginRight:'69px'}}
           >
-            circle down <CircleArrowDownIcon size={15} />
+            Link down <CircleArrowDownIcon size={15} />
           </button>
         )}
 
@@ -178,7 +178,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
             </button>
             <button
               onClick={() => handleReject(user)}
-              className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600"
+              className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600" 
             >
               Reject <CircleX size={15} />
             </button>
@@ -193,14 +193,17 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
             Cancel <Ban size={15} />
           </button>
         )}
+
+<button
+              onClick={() => navigate(`/visit-profile/bio/${user?._id}`)}
+              className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600 "
+            >
+              View <CircleCheck size={15} />
+            </button>
       </div>
 
-      <button
-        onClick={() => navigate(`/visit-profile/bio/${user?._id}`)}
-        className="text-xs border px-4 py-1 rounded-md border-green-600 absolute bottom-4 right-4"
-      >
-        view
-      </button>
+     
+   
     </div>
   </>
 );
