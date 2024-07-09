@@ -396,7 +396,7 @@ const Header: React.FC<HeaderProps> = () => {
               >
                 <div className="px-4 py-4">
                   <span className="block text-xs font-semibold text-gray-900">
-                   {user.username}
+                   {user.userName}
                   </span>
                   <span className="block text-xs text-gray-500 truncate">
          

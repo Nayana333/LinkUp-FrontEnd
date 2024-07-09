@@ -1,4 +1,3 @@
-import { editJob, getJobDetails, getUserConnection, getUserSuggestions, newPassword, postForgot, reportPost } from "./user/apiMethods";
 
 export const userUrls ={
     register:'/users/register' ,
@@ -12,7 +11,8 @@ export const userUrls ={
     setPreferences:'/users/setPreferences',
     basicInformation:'/users/basicInformation',
     setUserRole:'/users/SetUserRole',
-    userSuggestions:'/users/userSuggestions'
+    userSuggestions:'/users/userSuggestions',
+    userDeatils:'/users/userDeatils',
     
    
 }

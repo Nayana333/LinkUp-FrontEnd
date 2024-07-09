@@ -29,6 +29,13 @@ import ViewJob from '../Components/ViewJob/ViewJob';
 import Protect from './Protect/Protect';
 import SavedCollection from '../Components/SavedCollections';
 import SavedPost from '../Components/SavedPost';
+import ViewerProfile from '../pages/user/ViewerProfile/ViewerProfile';
+import ViewerBio from '../Components/ViewerBio';
+import ViewerPost from '../Components/ViewerPost';
+import ViewerConnections from '../Components/ViewerConnections';
+import ViewerJobs from '../Components/ViewerJob';
+import People from '../pages/People/People';
+import PeopleDiscover from '../Components/PeopleDIscover';
 
 
 
@@ -185,6 +192,49 @@ const appRouter = createBrowserRouter([
 
       }
     ],
+  },
+  {
+    path: '/visit-profile/',
+    element: <ViewerProfile />,
+    children: [
+      {
+        path: 'bio/:userId', 
+        element: <ViewerBio />
+      },
+      {
+        path:'posts/:userId',
+        element:<ViewerPost/>
+      },
+      {
+        path:'connections/:userId',
+        element:<ViewerConnections/>
+      },
+      {
+        path:'jobs/:userId',
+        element:<ViewerJobs/>
+      }
+
+    ]
+  },{
+
+    path:'/people',
+    element: (
+      <Protect>
+     <App/>
+      </Protect>
+    ),
+    children:[
+      {
+        path:'/people',
+        element:<People/>,
+        children:[
+          {
+            path:'/people/discover',
+            element:<PeopleDiscover/>
+          }
+        ]
+      }
+    ]
   },
   adminRoute,
   adminLoginRouter,

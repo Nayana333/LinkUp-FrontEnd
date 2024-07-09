@@ -553,7 +553,6 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
     });
   };
 
-//////////////////////////////////////////////////////////////////////
   export const getUserConnection=(userId:{userId:string|undefined})=>{
     return new Promise((resolve,reject)=>{
 
@@ -659,6 +658,25 @@ export const rejectFollowRequest = (data: { userId: string ,requestedUser:string
   return new Promise((resolve, reject) => {
     try {
       apiCalls("post", connectUrl.rejectRequest, data)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+
+
+export const getUserDetails = (  userId: string|undefined) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("get", userUrls.userDeatils + `/${userId}`, null)
         .then((response) => {
           resolve(response);
         })
