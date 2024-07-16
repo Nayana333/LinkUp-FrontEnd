@@ -61,6 +61,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
 
  const handleCancel=(user:any)=>{
   cancelFollowRequest({userId,cancellingUser:user?._id}).then((response:any)=>{
+    console.log(response.data,"responseed data ");
     toast.error('Request cancelled')
     updateRequested(response.data.connection.requestSent)
 
@@ -162,7 +163,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
         {location.pathname === '/people/connections' && (
           <button
             onClick={() => handleUnFollow(user)}
-            className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600" style={{marginRight:'69px'}}
+            className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600" 
           >
             Link down <CircleArrowDownIcon size={15} />
           </button>

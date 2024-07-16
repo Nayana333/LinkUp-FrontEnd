@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux'
 
 function PeopleConnections(){
 
-  const [connections,setConnections]=useState<any>(null)
+  const [connections,setConnections]=useState<any[]>([])
+  console.log(connections);
+  
   const [loading,setLoading]=useState(true)
   const selectUser=(state:any)=>state.auth.user;
   const userData=useSelector(selectUser)
@@ -17,8 +19,9 @@ function PeopleConnections(){
 
       getUserConnection({userId})
       .then((response:any)=>{
-        const connectionData=response.data.connections;
-        setConnections(connectionData)
+        const connections=response.data.connection.connections;
+        
+        setConnections(connections)
         setLoading(false)
       }).catch((error)=>{
         console.log(error.message);

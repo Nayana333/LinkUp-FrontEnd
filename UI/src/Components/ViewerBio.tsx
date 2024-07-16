@@ -148,7 +148,7 @@ function ViewerBio() {
         </div>
         <div>
          
-          <p className="text-sm font-bold text-green-600 my-5" > {connections.connections.length} Circles </p>
+          <p className="text-sm font-bold text-green-600 my-5" > {connections.connections.length} Links</p>
         </div>
         <div className="flex gap-4">
         {location.pathname.startsWith('/visit-profile/bio/') && (
@@ -160,7 +160,7 @@ function ViewerBio() {
     ) : loggedUserConnections?.some((connection:any) => connection._id === userId) ? (
       <div className="flex gap-2">
            <button onClick={() =>  handleUnFollowFromViewProfile(user)} className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md ">
-       Circle Down <CircleArrowDownIcon size={15} />
+       Link Down <CircleArrowDownIcon size={15} />
       </button>
       <Link to={`/chat?userId=${user._id}`} className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md broder" >
         Message <MessageCircle size={15} />
@@ -171,7 +171,7 @@ function ViewerBio() {
    
     ) : (
       <button onClick={() => handleFollowFromViewProfile(userId, user.username)} className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600">
-        Circle Up <CircleArrowUp size={15} />
+        Link Up <CircleArrowUp size={15} />
       </button>
     )}
   </div>

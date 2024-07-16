@@ -17,7 +17,7 @@ function ViewerConnections() {
       try {
         setLoading(true);
         const response :any= await getUserConnection({ userId });
-        const connectionData = response.data.connection;
+        const connectionData = response.data.connection.connections;
 
         if (Array.isArray(connectionData)) {
           setConnections(connectionData);

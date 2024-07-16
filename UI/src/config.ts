@@ -5,6 +5,6 @@ const config = {
       'Content-Type': 'application/json',
     },
   };
-  
+  export const baseURL = config.baseURL;
   export default config;
   

@@ -19,6 +19,7 @@ function PeopleRequests() {
       .then((response: any) => {
         const requestData = response.data.connection;
         setRequests(requestData.requested);
+        
         setLoading(false);
       })
       .catch((error) => {
@@ -36,7 +37,7 @@ function PeopleRequests() {
       ) : (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-0">
           {requests?.map((user: any) => (
-            <PeopleCard key={user._id} user={user} updateRequests={setRequests} />
+            <PeopleCard key={user._id} user={user} updateRequestes={setRequests} />
           ))}
         </div>
       )}

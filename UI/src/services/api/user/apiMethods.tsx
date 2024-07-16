@@ -469,7 +469,11 @@ export const reportPost=(reportData:{userId:any,postId:any,cause:string})=>{
     });
   };
   export const savePost = (postData: { postId: string|null,jobId:string|null, userId: string }) => {
+    
     return new Promise((resolve, reject) => {
+      console.log(postData);
+      
+
       try {
         apiCalls("post", postUrls.savePost, postData)
           .then((response) => {
@@ -677,6 +681,23 @@ export const getUserDetails = (  userId: string|undefined) => {
   return new Promise((resolve, reject) => {
     try {
       apiCalls("get", userUrls.userDeatils + `/${userId}`, null)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+export const getFormSelectFormData= () => {
+    
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("get", jobUrls.getFormSelectData,null)
         .then((response) => {
           resolve(response);
         })
