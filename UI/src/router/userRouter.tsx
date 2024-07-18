@@ -39,6 +39,7 @@ import PeopleDiscover from '../Components/PeopleDIscover';
 import PeopleConnections from '../Components/PeopleConnections';
 import PeopleRequests from '../Components/PeopleRequests';
 import PeopleRequested from '../Components/PeopleRequested';
+import Applications from '../Components/Applications';
 
 
 
@@ -163,6 +164,7 @@ const appRouter = createBrowserRouter([
             path:"/jobs/hiring/edit-job/:jobId",
             element:<EditJob/>
           },
+        
           
         ]
       },
@@ -177,6 +179,10 @@ const appRouter = createBrowserRouter([
           {
             path:'/jobs/open-to-work/job-list',
             element:<Jobs/>
+          },
+          {
+            path:'/jobs/open-to-work/applications',
+            element:<Applications/>
           }
         ]
       },

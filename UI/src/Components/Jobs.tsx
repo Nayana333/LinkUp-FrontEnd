@@ -161,7 +161,7 @@ const Jobs = () => {
                 </div>
               </div>
             </div>
-            {(user.dailyJobsApplied <3 || user.isPremium == true) &&(
+            {(user.dailyJobsApplied >=0 ) &&(
                <div className="w-full flex justify-end mt-10">
                <button
                  onClick={() => handleApplyJob(job)}
@@ -172,17 +172,7 @@ const Jobs = () => {
              </div>
 
            )}
-           {user.dailyJobsApplied>=3&&(
-               <div className="w-full flex justify-end mt-10">
-               <button
-                onClick={()=>{toast.error("Upgrade to premium to apply more jobs")}}
-                 className=" flex opacity-60 gap-1 items-center hover:border duration-300 text-xs rounded btn border w-24 px-4 py-2 cursor-auto text-white ml-2 bg-green-600"
-               >
-                 <Lock size={15}/> Apply
-               </button>
-             </div>
-
-           )}
+   
            {isApply && selectedjob._id === job._id && <ApplyJobForm job={selectedjob} cancelApplyJob={cancelApplyJob} />}
 
           </div>

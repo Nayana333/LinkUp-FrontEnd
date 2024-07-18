@@ -709,3 +709,71 @@ export const getFormSelectFormData= () => {
     }
   });
 };
+
+
+
+export const cancelJobApplication=(application:{applicationId:string,applicantId:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('patch',jobUrls.cancelJobApplication,application)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      resolve({status:500,message:'something went wrong'})
+    }
+  })
+}
+
+export const getEmployeeApplications=(applicantId:{applicantId:string})=>{
+  return new Promise((resolve,reject)=>{
+    try{
+      apiCalls('post',jobUrls.getEmployeeApplications,applicantId)
+      .then((response)=>{
+        resolve(response)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }catch(error){
+      resolve({status:500,message:'something went wrong'})
+    }
+  })
+}
+
+
+export const getemployerApplications= (userId:{userId:string}) => {
+  
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", jobUrls.employerApplications,userId)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+export const updateApplicationStatus= (applcationData:{applicationId:string,status:string,userId:string}) => {
+  
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("patch", jobUrls.updateApplicationStatus,applcationData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};

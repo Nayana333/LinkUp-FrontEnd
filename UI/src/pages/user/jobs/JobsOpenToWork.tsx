@@ -31,7 +31,7 @@ function JobsOpenToWork() {
 
   useEffect(() => {
     if (user.isHiring === true) {
-      navigate("/jobs/hiring/job-list");
+      navigate("/jobs/hiring/jobList");
     }
   }, [user, navigate]);
 

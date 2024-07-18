@@ -58,7 +58,11 @@ export const jobUrls={
     editJob:'job/editJob',
     getJobDetails:'/job/getJobDetails',
     viewJob:'/job/viewJob',
-    getFormSelectData:'job/getFormSelectData'
+    getFormSelectData:'/job/getFormSelectData',
+    cancelJobApplication:'/job/cancelJobApplication',
+    getEmployeeApplications:'/job/getEmployeeApplications',
+    employerApplications:'/job/employerApplications',
+    updateApplicationStatus:'/job/updateApplicationStatus'
     
 
 }   
