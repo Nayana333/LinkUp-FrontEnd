@@ -19,8 +19,7 @@ function UserHome() {
   const [posts, setPosts] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [users,setUsers] = useState([]);
-
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     console.log("use Effect calling")
@@ -46,22 +45,19 @@ function UserHome() {
             });
         }, 2000);
 
-        getUserSuggestions({userId}).then((response:any)=>{
-          console.log(response.data,'suggestions');
-          
-          setUsers(response.data.suggestedUsers)
-        })
+        getUserSuggestions({ userId }).then((response: any) => {
+          console.log(response.data, 'suggestions');
+          setUsers(response.data.suggestedUsers);
+        });
       } catch (error) {
         console.log(error);
       }
     };
     if (page > 1 || posts.length === 0) {
-      console.log(page, posts.length)
+      console.log(page, posts.length);
       fetchPost();
     }
   }, [page]);
-
-
 
   const handleScroll = () => {
     console.log("handling scroll event")
@@ -77,15 +73,12 @@ function UserHome() {
 
   useEffect(() => {
     console.log("Handle Scrolll functiuon")
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  
   const handlePageCount = () => {
     setPage((prev) => prev + 1);
-
   }
 
   return (
@@ -105,7 +98,6 @@ function UserHome() {
 
             {loading && page === 1 ? (
               <div>
-
                 {Array.from({ length: 5 }).map((_, index) => (
                   <div key={index}>
                     <PostSkeletonUi />
@@ -119,26 +111,24 @@ function UserHome() {
                     {posts.map((post: any) => (
                       <Post key={post._id} post={post} />
                     ))}
-                    {hasMore &&
+                    {hasMore && (
                       <div className="flex justify-center">
-                        < button className="flex items-center text-green-500 border border-green-600 py-2 px-6 gap-2 rounded inline-flex items-center" onClick={handlePageCount}>
+                        <button className="flex items-center text-green-500 border border-green-600 py-2 px-6 gap-2 rounded inline-flex items-center" onClick={handlePageCount}>
                           <span>
                             View More
                           </span>
-                          <svg className="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                             viewBox="0 0 24 24" className="w-6 h-6 ml-2">
                             <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                           </svg>
                         </button>
-
-                      </div>}
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {loading && page > 1 && (
                   <div className="lg:col-span-2 lg:ms-96 w-12/12 lg:pl-4 s pt-2 lg:pt-4 flex justify-center">
-
-                    
                     <Spinner
                       color="purple"
                       size="md"
@@ -154,13 +144,9 @@ function UserHome() {
         <div className="hidden lg:block home-section-3" id="mobile-menu-2">
           <div className="home-people-scroll">
             <div className="home-scrollbox">
-            {users?.map((user: any) => (
-       
-       <PeopleCard user={user}   />
-      
-     
-    
-     ))}
+              {users?.map((user: any) => (
+                <PeopleCard key={user._id} user={user} />
+              ))}
             </div>
           </div>
         </div>
@@ -168,8 +154,5 @@ function UserHome() {
     </div>
   );
 }
+
 export default UserHome;
-
-
-
-

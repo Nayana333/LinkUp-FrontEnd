@@ -13,6 +13,7 @@ export const userUrls ={
     setUserRole:'/users/SetUserRole',
     userSuggestions:'/users/userSuggestions',
     userDeatils:'/users/userDeatils',
+    search:'/users/search'
     
    
 }
@@ -75,4 +76,15 @@ export const connectUrl={
     cancelRequest:'/connect/cancelRequest',
     rejectRequest:'/connect/rejectRequest',
     
+}
+
+export const chatUrls={
+    addConversation:'/chat/addConversation',
+    getUserConversation:'/chat/getUserConversation',
+    findConversation:'/chat/findConversation',
+    getMessages:'/chat/getMessages',
+    addMessage:'/chat/addMessage',
+    setMessageRead:'/chat/setMessageRead',
+    getUnreadMessages:'/chat/getUnreadMessages'
+
 }

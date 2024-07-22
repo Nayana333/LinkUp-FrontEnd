@@ -1,3 +1,26 @@
+
+import { useEffect,useState } from "react"
+import {Outlet, useLocation, useNavigate} from 'react-router-dom';
+
+
+function SearchPage(){
+  const location=useLocation()
+  const navigate=useNavigate()
+  const [searchQuery,setSearchQuery]=useState<string |null>('')
+
+  useEffect(()=>{
+    const searchparams=new URLSearchParams(location.search)
+    const searchparamValue=searchparams.get('search')
+    setSearchQuery(searchparamValue)
+  },[location.search])
+
+
+
+
+
+return(
+
+
 <div>
 
                
@@ -42,3 +65,6 @@
 
     </div>
   )
+}
+
+export default SearchPage

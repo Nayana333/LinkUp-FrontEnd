@@ -1,0 +1,11 @@
+.applications-container {
+    max-height: 80vh; /* Adjust based on your requirement */
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  
+  .application-item {
+    margin-bottom: 1rem;
+    /* Ensure this does not have a fixed height */
+  }
+  

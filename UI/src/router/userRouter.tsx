@@ -40,6 +40,12 @@ import PeopleConnections from '../Components/PeopleConnections';
 import PeopleRequests from '../Components/PeopleRequests';
 import PeopleRequested from '../Components/PeopleRequested';
 import Applications from '../Components/Applications';
+import HiringJobApplicant from '../Components/HiringJobApplicant/HiringApplicants';
+import SavedJobs from '../Components/SavedJobs';
+import SearchPage from '../pages/user/Search/SearchPage';
+import SearchPosts from '../Components/SearchPosts';
+import SearchJobs from '../Components/SearchJobs';
+import Chat from '../pages/user/Chat/Chat';
 
 
 
@@ -110,6 +116,11 @@ const appRouter = createBrowserRouter([
             path:'/home/saved/posts',
              element:<SavedPost/>
 
+          },
+          {
+            path:'/home/saved/jobs',
+             element:<SavedJobs/>
+
           }
         ]
       }
@@ -163,6 +174,10 @@ const appRouter = createBrowserRouter([
           {
             path:"/jobs/hiring/edit-job/:jobId",
             element:<EditJob/>
+          },
+          {
+            path:"/jobs/hiring/applicants",
+            element:<HiringJobApplicant/>
           },
         
           
@@ -256,6 +271,42 @@ const appRouter = createBrowserRouter([
       }
     ]
   },
+  {
+    path:'/search',
+    element:(
+      <Protect>
+        <App/>
+      </Protect>
+    ),
+    errorElement:<Error/>
+    ,
+    children:[
+     {
+       path:'/search',
+       element:<SearchPage/>,
+       children:[
+        {
+          path:'/search/posts',
+          element:<SearchPosts/>
+        },
+        {
+          path:'/search/jobs',
+          element:<SearchJobs/>
+        }
+       ]
+     }
+    ]
+  },
+  {
+    path:"/chat",
+    element: (
+      <Protect>
+   <Chat/>
+      </Protect>
+    ),
+    errorElement:<Error/>
+   
+   },
   adminRoute,
   adminLoginRouter,
 ]);

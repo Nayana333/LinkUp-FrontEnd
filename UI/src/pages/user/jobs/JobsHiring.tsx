@@ -1,44 +1,42 @@
-import { useEffect,useState } from "react";
-import { Outlet,useNavigate,useLocation } from "react-router-dom";
-import {  useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useFilterContext } from '../../../utils/context/JobFilterData/FilterContext';
-import './JobsHiring.css'
+import './JobsHiring.css';
 
+function JobsHiring() {
+  const selectUser = (state: any) => state.auth.user;
+  const user = useSelector(selectUser);
+  const { filterData, setFilterData } = useFilterContext();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchText, setSearchText] = useState("");
 
-
-function JobsHiring(){
-
-    const selectUser=(state:any)=>state.auth.user
-    const user=useSelector(selectUser)
-    const { filterData, setFilterData } = useFilterContext();
-    const navigate=useNavigate();
-    const location=useLocation()
-    const [searchText, setSearchText] = useState("");
-
-useEffect(()=>{
-    if(user.isHiring===false){
-        navigate('jobs/open-to-work/job-list')
+  useEffect(() => {
+    if (user.isHiring === false) {
+      navigate('jobs/open-to-work/job-list');
     }
-},[user,navigate])
+  }, [user, navigate]);
 
-
-useEffect(()=>{
+  useEffect(() => {
     setFilterData({
-        search: searchText,
-        jobRole: null,
-        location: null,
-        jobType: null,
-        salaryRange: null,
-        experienceRange: null,
-      });
-},[searchText,setFilterData])
+      search: searchText,
+      jobRole: null,
+      location: null,
+      jobType: null,
+      salaryRange: null,
+      experienceRange: null,
+    });
+  }, [searchText, setFilterData]);
 
+  const handleInputChange = (e: any) => {
+    setSearchText(e.target.value);
+  };
 
-const handleInputChange=(e:any)=>{
-    setSearchText(e.target.value)
-}
+  useEffect(() => {
+  }, [filterData]);
 
-return (
+  return (
     <div className='tho'>
       <div className="people-section-2 " id="people-section-2">
         <div className='flex w-full'>
@@ -53,7 +51,7 @@ return (
               Job Postings
             </button>
             <button
-              // onClick={() => { navigate('/jobs/hiring/applicants') }}
+              onClick={() => { navigate('/jobs/hiring/applicants') }}
               className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
                 location.pathname === '/jobs/hiring/applicants' ? 'bg-black text-white' : ''
               }`}
@@ -62,7 +60,6 @@ return (
               Applicants
             </button>
             <button
-              // onClick={() => { navigate('/jobs/hiring/interviews') }}
               className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
                 location.pathname === '/jobs/hiring/interviews' ? 'bg-black text-white' : ''
               }`}
@@ -72,24 +69,24 @@ return (
             </button>
           </div>
           <button
-      onClick={() => navigate('/jobs/hiring/add-job')}
-      className={`text-xs w-28 font-medium text-green-600 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
-        location.pathname === '/jobs/hiring/add-job' ? 'bg-black text-white' : ' bg-white'
-      }`}
-      type="submit"
-    >
-      Add Job
-    </button>
+            onClick={() => navigate('/jobs/hiring/add-job')}
+            className={`text-xs w-28 font-medium text-green-600 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
+              location.pathname === '/jobs/hiring/add-job' ? 'bg-black text-white' : ' bg-white'
+            }`}
+            type="submit"
+          >
+            Add Job
+          </button>
           <div className="border w-1/3 profile-nav flex items-center justify-center gap-20 bg-white rounded-md ms-4">
-          <div className="flex items-center justify-start g-2 w-full p-2">
-            <p className="text-xs text-gray-500 w-1/3 ps-5">Search Job</p>
-            <input
-              type="text"
-              className="searchInput w-3/4 text-xs text-gray-400 p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-green-600 transition-colors duration-300"
-              value={searchText}
-              onChange={handleInputChange}
-            />
-          </div>
+            <div className="flex items-center justify-start g-2 w-full p-2">
+              <p className="text-xs text-gray-500 w-1/3 ps-5">Search Job</p>
+              <input
+                type="text"
+                className="searchInput w-3/4 text-xs text-gray-400 p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-green-600 transition-colors duration-300"
+                value={searchText}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
         </div>
         <div className="home-scroll">
@@ -102,4 +99,4 @@ return (
   );
 }
 
-export default JobsHiring
+export default JobsHiring;

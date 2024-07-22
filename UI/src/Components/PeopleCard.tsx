@@ -27,6 +27,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
 
           const connectionData=response.data.connection;
           
+          
           setConnections(connectionData.connections)
           setRequested(connectionData.requestSent)
           setLoading(false)

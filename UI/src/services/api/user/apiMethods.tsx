@@ -3,6 +3,8 @@ import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
 import { useRouteLoaderData } from "react-router-dom";
 import { connectUrl } from "../endPoints";
+import { reject } from "lodash";
+import { chatUrls } from "../endPoints";
 
 export const postRegister = (userData: FormValues) => { 
   console.log(userData);
@@ -777,3 +779,131 @@ export const updateApplicationStatus= (applcationData:{applicationId:string,stat
     }
   });
 };
+
+
+export const Search = (searchQuery: string) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const url: string = `${userUrls.search}?searchQuery=${searchQuery}`;
+      console.log(`Searching with query: ${searchQuery}`);
+      
+      apiCalls('get', url, null)
+        .then((response) => {  
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: 'something went wrong' });
+    }
+  });
+};
+
+
+
+export const addConversation = (conversationData: {
+  senderId: string;
+  receiverId: string;
+}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", chatUrls.addConversation, conversationData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+export const getUserConversations = (userId:string) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const url = `${chatUrls.getUserConversation}/${userId}`;
+
+      apiCalls("get", url, null)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+export const getUserMessages = (conversationId:string) => {
+  return new Promise((resolve, reject) => {
+    try {
+      const url = `${chatUrls.getMessages}/${conversationId}`;
+
+      apiCalls("get", url, null)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+export const addMessage = (messageData: {conversationId:string,sender:string,text:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", chatUrls.addMessage, messageData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+export const setMessageRead = (messageData:{conversationId: string,userId:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("patch", chatUrls.setMessageRead, messageData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+export const getUnreadMessages = (messageData:{conversationId: string,userId:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", chatUrls.getUnreadMessages, messageData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+

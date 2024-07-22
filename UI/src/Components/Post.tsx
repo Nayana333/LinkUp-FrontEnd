@@ -130,6 +130,10 @@ const Post: React.FC<PostProps> = ({ post }) => {
     };
   }, [dropdownOpen]);
 
+  if (!post || !post.userId) {
+    return null; // or a placeholder
+  }
+
   return (
     <div className="home-post-section bg-white relative">
       <div className="w-full flex justify-between px-2 relative">
@@ -137,7 +141,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           <div className="flex items-center px-4 py-3">
             <img
               className="h-8 w-8 rounded-full"
-              src={post.userId.profileImageUrl}
+              src={post.userId.profileImageUrl || ""}
               alt="Profile"
             />
             <div className="ml-3">
