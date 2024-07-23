@@ -46,6 +46,8 @@ import SearchPage from '../pages/user/Search/SearchPage';
 import SearchPosts from '../Components/SearchPosts';
 import SearchJobs from '../Components/SearchJobs';
 import Chat from '../pages/user/Chat/Chat';
+import SearchPeople from '../Components/SearchPeoples';
+import Notifications from '../Components/Notification/Notifications';
 
 
 
@@ -106,6 +108,15 @@ const appRouter = createBrowserRouter([
         path: '/home',
         element: <UserHome />,
        
+      },
+      {
+        path: "/home/notifications",
+        element: (
+        
+       <Notifications/>
+         
+        )
+        
       },
       {
         path:'/home/saved',
@@ -292,7 +303,11 @@ const appRouter = createBrowserRouter([
         {
           path:'/search/jobs',
           element:<SearchJobs/>
-        }
+        },
+        {
+          path:"/search/people",
+          element:<SearchPeople/>
+        },
        ]
      }
     ]

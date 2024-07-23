@@ -810,6 +810,8 @@ export const addConversation = (conversationData: {
     try {
       apiCalls("post", chatUrls.addConversation, conversationData)
         .then((response) => {
+          console.log(response,'responde api');
+          
           resolve(response);
         })
         .catch((err) => {
@@ -907,3 +909,21 @@ export const getUnreadMessages = (messageData:{conversationId: string,userId:str
   });
 };
 
+
+export const getNotifications= (userId: { userId: string }) => {
+  return new Promise((resolve, reject) => {
+    try {
+      
+      
+      apiCalls("post", userUrls.getNotifications, userId)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};

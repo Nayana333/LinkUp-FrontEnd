@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Search } from "../services/api/user/apiMethods";
 import { useParams, useLocation } from "react-router-dom";
+import NoConnections from "./SkeltonUi/NoConnections";
 import PeopleCardLarge from "./PeopleCardLarge";
-// import NoConnections from "./skeletonUI/NoConnections";
 
 function SearchPeople() {
   const selectUser = (state: any) => state.auth.user;
@@ -28,7 +28,7 @@ function SearchPeople() {
 
     const fetchData = async () => {
       try {
-        const response:any = await search(searchQuery);
+        const response:any = await Search(searchQuery);
         const connectionData = response.data.users;
         if (isMounted) {
           setConnections(connectionData);

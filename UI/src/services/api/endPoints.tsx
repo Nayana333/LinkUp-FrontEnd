@@ -13,7 +13,8 @@ export const userUrls ={
     setUserRole:'/users/SetUserRole',
     userSuggestions:'/users/userSuggestions',
     userDeatils:'/users/userDeatils',
-    search:'/users/search'
+    search:'/users/search',
+    getNotifications:'/users/getNotifications'
     
    
 }

@@ -18,30 +18,29 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
   useEffect(() => {
     const friend = currentChat?.members?.find((m: any) => m._id !== user._id);
     setIsOnline(() => {
-      if (onlineUsers.find((user: any) => user.userId === friend?._id)) {
-        return true;
-      } else {
-        return false;
-      }
+      return onlineUsers.some((user: any) => user.userId === friend?._id);
     });
     setFriend(friend);
     getUserMessages(currentChat._id).then((response: any) => {
       setMessages(response.data);
     });
-  }, [currentChat]);
+  }, [currentChat, onlineUsers]);
 
   useEffect(() => {
-    socket.current.on("getMessage", (data: any) => {
-      const senderId = data.senderId;
-      getUserDetails(senderId).then((response: any) => {
-        setArrivalMessage({
-          sender: response.data.user,
-          text: data.text,
-          createdAt: data.createdAt
+    if (socket.current) {
+      socket.current.on("getMessage", (data: any) => {
+        
+        
+        const senderId = data.senderId;
+        getUserDetails(senderId).then((response: any) => {
+          setArrivalMessage({
+            sender: response.data.user,
+            text: data.text,
+            createdAt: data.createdAt
+          });
         });
-        console.log(arrivalMessage);
       });
-    });
+    }
   }, [socket]);
 
   useEffect(() => {
@@ -51,10 +50,11 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
   }, [messages]);
 
   useEffect(() => {
-    if (arrivalMessage && currentChat?.members.includes(arrivalMessage?.sender)) {
+    if (arrivalMessage && currentChat?.members.some((member: any) => member._id === arrivalMessage.sender._id)) {
       setMessages((prev) => [...prev, arrivalMessage]);
+      setArrivalMessage(null); // Reset arrivalMessage after adding it to messages
     }
-  }, [arrivalMessage, currentChat]);
+  }, [arrivalMessage, currentChat?.members]);
 
   const handleSubmit = () => {
     const userId = user._id;
@@ -62,7 +62,6 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
       (member: any) => member._id !== user._id
     );
     const receiverId = receiver ? receiver._id : null;
-    console.log(receiverId);
 
     socket.current?.emit("sendMessage", {
       senderId: userId,
@@ -77,7 +76,7 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
       text: newMessage,
     }).then((response: any) => {
       setNewMessage("");
-      setMessages([...messages, response.data]);
+      setMessages((prev) => [...prev, response.data]);
     });
   };
 
@@ -88,8 +87,10 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
   };
 
   useEffect(() => {
-    setMessageRead({ conversationId: currentChat._id, userId: user._id });
-  }, [socket]);
+    if (currentChat && user) {
+      setMessageRead({ conversationId: currentChat._id, userId: user._id });
+    }
+  }, [currentChat, user]);
 
   return (
     <div className="relative flex flex-col flex-1">
