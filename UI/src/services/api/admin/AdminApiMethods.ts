@@ -154,3 +154,34 @@ export const adminJobList=(page:number)=>{
         }
     })
   };
+
+
+  export const getDashboardStatus= () => {
+    return new Promise((resolve, reject) => {
+      try {       
+        adminApiCalls("get", adminUrl.getDashboardStatus,null)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };
+
+
+  export const chartData = () => {
+    return new Promise((resolve, reject) => {
+      adminApiCalls('get', adminUrl.chartData, null)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+  

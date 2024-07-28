@@ -29,7 +29,7 @@ function Header() {
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <button
-                  onClick={() => navigate('#')}
+                  onClick={() => navigate('/about-us')}
                   className={`text-xs block py-2 pr-4 pl-3 border-b border-gray-100 lg:border-0 lg:p-0 dark:border-gray-700 ${
                     isActive('/about-us')
                       ? 'text-green-500'
@@ -41,7 +41,7 @@ function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => navigate('#')}
+                  onClick={() => navigate('/features')}
                   className={`text-xs block py-2 pr-4 pl-3 border-b border-gray-100 lg:border-0 lg:p-0 dark:border-gray-700 ${
                     isActive('/features')
                       ? 'text-green-500'
@@ -53,7 +53,7 @@ function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => navigate('#')}
+                  onClick={() => navigate('/contact-us')}
                   className={`text-xs block py-2 pr-4 pl-3 border-b border-gray-100 lg:border-0 lg:p-0 dark:border-gray-700 ${
                     isActive('/contact-us')
                       ? 'text-green-500'

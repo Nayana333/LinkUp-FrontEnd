@@ -1,9 +1,5 @@
 
-
-
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import UserPost from '../../../Components/UserPost';
 
 interface userData{
   user:any,

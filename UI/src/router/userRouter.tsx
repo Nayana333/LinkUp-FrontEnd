@@ -48,8 +48,11 @@ import SearchJobs from '../Components/SearchJobs';
 import Chat from '../pages/user/Chat/Chat';
 import SearchPeople from '../Components/SearchPeoples';
 import Notifications from '../Components/Notification/Notifications';
-
-
+import ViewJobApplications from '../Components/ViewJobApplications'
+import AboutUs from '../Components/About-us';
+import ContactUs from '../Components/ContactUs';
+import Features from '../Components/Features';
+import Settings from '../Components/Settings';
 
 
 const appRouter = createBrowserRouter([
@@ -93,6 +96,20 @@ const appRouter = createBrowserRouter([
     path: '/',
     element: <LandingPage />,
   },
+  {
+    path:'/about-us',
+    element:<AboutUs/>
+
+  },
+  {
+    path:'/contact-us',
+    element:<ContactUs/>
+  },
+  {
+    path:'/features',
+    element:<Features/>
+  },
+
   {
     path: '/home',
     element:
@@ -155,6 +172,11 @@ const appRouter = createBrowserRouter([
         path: 'user-post',
         element: <UserPost />,
         errorElement: <Error />,
+      },
+      {
+        path:'settings',
+        element:<Settings/>
+    
       },
     ],
   },
@@ -221,6 +243,19 @@ const appRouter = createBrowserRouter([
         {
           path:'/jobs/view-job/job-info/:jobId',
           element:<ViewJob/>
+        },
+        {
+          path:"/jobs/view-job/applications/pending/:jobId",
+          element:<ViewJobApplications/>
+
+        },
+        {
+          path:"/jobs/view-job/applications/accepted/:jobId",
+          element:<ViewJobApplications/>
+        },
+        {
+          path:"/jobs/view-job/applications/rejected/:jobId",
+          element:<ViewJobApplications/>
         }
 
         ]

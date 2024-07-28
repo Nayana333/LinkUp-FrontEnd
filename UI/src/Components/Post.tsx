@@ -158,7 +158,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           <div className="relative" ref={dropdownRef}>
             <MoreHorizontal size={22} className="cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)} />
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
                 <div className="py-1">
                   <div className="text-xs px-4 py-2 cursor-pointer hover:bg-gray-100" onClick={() => { /* Handle View Profile */ }}>
                     View Profile
@@ -229,7 +229,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
       )}
 
       {isCommentSection && (
-        <div className="addpost-popup">
+        <div className="addpost-popup z-50">
           <div className="addpost-popup">
             <button
               className="close-button mt-16 me-5"

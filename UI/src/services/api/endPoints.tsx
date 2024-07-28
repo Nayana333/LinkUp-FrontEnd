@@ -46,7 +46,9 @@ export const adminUrl = {
     adminPostList:'/admin/adminPostList',
     postBlock:'/admin/postBlock',
     adminJobList:'/admin/adminJobList',
-    jobBlock:'/admin/jobBlock'
+    jobBlock:'/admin/jobBlock',
+    getDashboardStatus:'/admin/getDashboardStatus',
+    chartData:'/admin/chartData'
     
 
 }

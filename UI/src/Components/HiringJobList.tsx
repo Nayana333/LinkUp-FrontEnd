@@ -126,11 +126,11 @@ return (
                   <td className="text-xs px-6 py-4">
                     {job.isBlocked? (
                       <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
-                        Blocked
+                        closed
                       </span>
                     ) : (
                       <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                        UnBlocked
+                        opened
                       </span>
                     )}
                   </td>
@@ -162,7 +162,7 @@ return (
                           onClick={() => handleJobBlock(job._id,"block")}
                           className="text-xs px-5 bg-white text-green-600 hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg py-2.5 text-center inline-flex items-center me-2 mb-2"
                         >
-                          UnBlock
+                         Open 
                         </button>
                       ) : (
                         <button
@@ -170,7 +170,7 @@ return (
                           onClick={() => handleJobBlock(job._id,"block")}
                           className="text-xs px-5 bg-white text-red-600 hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg py-2.5 text-center inline-flex items-center me-2 mb-2"
                         >
-                          Block
+                          Close
                         </button>
                       )}
                     </div>

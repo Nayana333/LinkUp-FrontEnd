@@ -9,6 +9,7 @@ import AdminReportList from '../pages/admin/ReportList/ReportList';
 import PostList from '../pages/admin/PostList/PostList';
 import JobList from '../pages/admin/JobList/JobList'
 import Protect from './Protect/AdminProtect';
+import AdminSts from '../pages/admin/DashBoard/AdminSts';
 
 
 
@@ -25,6 +26,13 @@ export const adminRoute = {
     </Protect>
 ),
     children: [
+        {
+            path:'/admin',
+            element:(
+                <AdminSts/>
+            )
+
+        },
         {
             path: 'users',
             element: <UserList />,

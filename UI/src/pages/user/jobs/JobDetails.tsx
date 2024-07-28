@@ -1,30 +1,28 @@
-import { useEffect } from "react";
-import { Outlet,useLocation,useNavigate, useParams } from "react-router-dom";
-import { UseSelector, useSelector } from "react-redux";
+import { useEffect } from 'react';
+import { Outlet, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ChevronLeft } from 'lucide-react';
-import './JobDetails.css'
 
 
-function JobDetails(){
-    const selectuser=(state:any)=>state.auth.user
-    const user=useSelector(selectuser)
-    const navigate=useNavigate()
-    const jobId=useParams()
-    const location=useLocation()
+function JobsDetails() {
+  const selectUser = (state: any) => state.auth.user;
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { jobId } = useParams();
+  useEffect(() => {
+    if (user.isHiring === false) {
+      navigate("jobs/open-to-work/job-list");
+    }
+  }, [user, navigate]);
 
-    useEffect(()=>{
-        if(user.isHiring===false){
-            navigate('jobs/open-to-work-job-list')
-        }
-    },[user,navigate])
-
-
-return (
+  return (
     <div >
       <div className="people-section-2">
-        <div className='flex w-full' id="main-div">
-          <div className="border w-full profile-nav flex items-center justify-center gap-10 bg-white rounded-md mx-5"  id='nav'>
+        <div className='flex w-full'>
+          <div className="border w-full profile-nav flex items-center justify-center gap-20 bg-white rounded-md mx-5" >
             <button
+            onClick={()=>{navigate(`/jobs/view-job/job-info/${jobId}`)}}
               className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
                 location.pathname === `/jobs/view-job/job-info/${jobId}` ? 'bg-black text-white' : ''
               }`}
@@ -33,28 +31,36 @@ return (
               Job Info
             </button>
             <button
-              className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 
-              
+              onClick={()=>{navigate(`/jobs/view-job/applications/pending/${jobId}`)}}
+              className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
+                location.pathname === `/jobs/view-job/applications/pending/${jobId}` ? 'bg-black text-white' : ''
               }`}
               type="submit"
             >
            Applications
             </button>
             <button
-              className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 
+              onClick={()=>{navigate(`/jobs/view-job/applications/accepted/${jobId}`)}}
+              className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
+                location.pathname === `/jobs/view-job/applications/accepted/${jobId}` ? 'bg-black text-white' : ''
               }`}
               type="submit"
             >
              Accepted
             </button>
             <button
-              className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300               }`}
+              onClick={()=>{navigate(`/jobs/view-job/applications/rejected/${jobId}`)}}
+              className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
+                location.pathname === `/jobs/view-job/applications/rejected/${jobId}` ? 'bg-black text-white' : ''
+              }`}
               type="submit"
             >
             Rejected
             </button>
             <button
-              className={`text-xs font-medium text-gray-400 c hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 
+              // onClick={()=>{navigate(`/jobs/view-job/interviews/${jobId}`)}}
+              className={`text-xs font-medium text-gray-400 c hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
+                location.pathname === `/jobs/view-job/interviews/${jobId}` ? 'bg-black text-white' : ''
               }`}
               type="submit"
             >
@@ -64,7 +70,7 @@ return (
           </div>
           
 
-          <div  onClick={() => { navigate('/jobs/hiring/jobList') }} className= " border cursor-pointer text-xs text-gray-400 w-32 profile-nav flex items-center justify-center  bg-white rounded-md "> <ChevronLeft size={18}/> Go back</div>
+          <div      onClick={() => { navigate('/jobs/hiring/jobList') }} className= " border cursor-pointer text-xs text-gray-400 w-32 profile-nav flex items-center justify-center  bg-white rounded-md "> <ChevronLeft size={18}/> Go back</div>
    
         </div>
 
@@ -82,4 +88,4 @@ return (
   );
 }
 
-export default JobDetails
+export default JobsDetails;

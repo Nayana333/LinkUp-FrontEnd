@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { formatDistanceToNow } from "date-fns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BellRing } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
 import { getNotifications } from "../../services/api/user/apiMethods";
-import './Notification.css'
+import { setUnreadCount } from "../../utils/context/reducers/NotificationSlice";
+import './Notification.css';
 
 interface Notification {
   _id: string;
@@ -13,13 +14,14 @@ interface Notification {
   } | null;
   message: string;
   createdAt: string;
+  link: string;
+  read?: boolean; // Ensure read property is optional
 }
 
-function Notifications() {
-  const selectUser = (state: any) => state.auth.user;
-  const user = useSelector(selectUser);
+const Notifications = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.auth.user);
   const userId = user._id || "";
-
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -27,9 +29,13 @@ function Notifications() {
     const fetchNotifications = async () => {
       try {
         setLoading(true);
-        const response:any = await getNotifications({ userId });
-        const notificationData = response.data.notifications;
+        const response: any = await getNotifications({ userId });
+        const notificationData: Notification[] = response.data.notifications;
         setNotifications(notificationData);
+
+        // Calculate unread count and update Redux store
+        const unreadCount = notificationData.filter(n => n.read === false).length;
+        dispatch(setUnreadCount(unreadCount));
       } catch (error) {
         console.error(error);
       } finally {
@@ -38,7 +44,13 @@ function Notifications() {
     };
 
     fetchNotifications();
-  }, [userId]);
+  }, [userId, dispatch]);
+
+  const handleViewClick = (link: string) => {
+    if (link) {
+      window.location.href = link.startsWith("http") ? link : `http://localhost:5173${link}`;
+    }
+  };
 
   return (
     <div>
@@ -92,7 +104,10 @@ function Notifications() {
                       </div>
 
                       <div className="flex justify-end p-4 py-2">
-                        <button className="text-xs rounded btn border px-4 py-2 cursor-pointer bg-white ml-2 text-green-600">
+                        <button
+                          className="text-xs rounded btn border px-4 py-2 cursor-pointer bg-white ml-2 text-green-600"
+                          onClick={() => handleViewClick(notification.link)}
+                        >
                           View
                         </button>
                       </div>

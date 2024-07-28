@@ -103,17 +103,16 @@ const PostDetails: React.FC<PostProps> = ({
 
   const handleDeleteComments = (commentId: any) => {
     deleteComment(commentId)
-      .then((response: any) => {
-        const data = response.data;
-
-        if (response.status === 200) {
-          const commentData = data.comments;
-          setComments(commentData);
-          toast.success(data.message);
-        } else {
-          toast.error(data.message);
-        }
-      })
+    .then((response: any) => {
+      const data = response.data;
+      if (response.status === 200) {
+        const commentData = data.comments;
+        setComments(commentData);
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    })
       .catch((error) => {
         console.log(error?.message);
         toast.error("An error occurred. Please try again.");
@@ -312,7 +311,7 @@ const PostDetails: React.FC<PostProps> = ({
 
   return (
     <div
-      className="bg-white overflow-hidden shadow-none z-50 w-full mt-7 rounded-md"
+      className="bg-white overflow-hidden shadow-none w-full mt-7 rounded-md"
       style={{ width: "1136px", height: "476px" }}
     >
       <div className=" grid grid-cols-3 min-w-full">
