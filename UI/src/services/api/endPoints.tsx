@@ -66,7 +66,11 @@ export const jobUrls={
     cancelJobApplication:'/job/cancelJobApplication',
     getEmployeeApplications:'/job/getEmployeeApplications',
     employerApplications:'/job/employerApplications',
-    updateApplicationStatus:'/job/updateApplicationStatus'
+    updateApplicationStatus:'/job/updateApplicationStatus',
+    getIntervieweeInterviews:'/job/getIntervieweeInterviews',
+    getInterviewerInterviews:'/job/getInterviewerInterviews',
+    setInterviewStatus:'/job/setInterviewStatus',
+    addInterview:'/job/addInterview'
     
 
 }   

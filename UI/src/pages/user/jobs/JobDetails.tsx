@@ -58,7 +58,7 @@ function JobsDetails() {
             Rejected
             </button>
             <button
-              // onClick={()=>{navigate(`/jobs/view-job/interviews/${jobId}`)}}
+               onClick={()=>{navigate(`/jobs/view-job/interviews/${jobId}`)}}
               className={`text-xs font-medium text-gray-400 c hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
                 location.pathname === `/jobs/view-job/interviews/${jobId}` ? 'bg-black text-white' : ''
               }`}

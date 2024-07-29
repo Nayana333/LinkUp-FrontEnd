@@ -53,6 +53,10 @@ import AboutUs from '../Components/About-us';
 import ContactUs from '../Components/ContactUs';
 import Features from '../Components/Features';
 import Settings from '../Components/Settings';
+import Interviews from '../Components/Interviews';
+import InterviewCall from '../pages/user/InterviewCall/InterviewCall';
+import HiringInterviews from '../Components/HiringInterviews';
+import ViewJobInterviews from '../Components/ViewJobInteriews';
 
 
 const appRouter = createBrowserRouter([
@@ -212,6 +216,15 @@ const appRouter = createBrowserRouter([
             path:"/jobs/hiring/applicants",
             element:<HiringJobApplicant/>
           },
+          {
+            path:"/jobs/hiring/interviews",
+            element:<HiringInterviews/>
+
+          },
+          {
+            path:"/jobs/hiring/interview-call/:roomId/:userId",
+            element:<InterviewCall/>
+          },
         
           
         ]
@@ -231,7 +244,15 @@ const appRouter = createBrowserRouter([
           {
             path:'/jobs/open-to-work/applications',
             element:<Applications/>
-          }
+          },
+          {
+            path:"/jobs/open-to-work/interviews",
+            element:<Interviews/>
+          },
+          {
+            path:"/jobs/open-to-work/interview-call/:roomId/:userId",
+            element:<InterviewCall/>
+          },
         ]
       },
       {
@@ -256,7 +277,15 @@ const appRouter = createBrowserRouter([
         {
           path:"/jobs/view-job/applications/rejected/:jobId",
           element:<ViewJobApplications/>
-        }
+        },
+        {
+          path:"/jobs/view-job/interviews/:jobId",
+          element:<ViewJobInterviews/>
+        },
+        {
+          path:"/jobs/view-job/interview-call/:roomId/:userId",
+          element:<InterviewCall/>
+        },
 
         ]
 

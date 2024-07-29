@@ -60,6 +60,7 @@ function JobsHiring() {
               Applicants
             </button>
             <button
+              onClick={() => { navigate('/jobs/hiring/interviews') }}
               className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
                 location.pathname === '/jobs/hiring/interviews' ? 'bg-black text-white' : ''
               }`}

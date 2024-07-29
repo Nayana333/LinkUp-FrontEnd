@@ -9,23 +9,21 @@ import { updateUser } from "../utils/context/reducers/authSlice";
 import PostSkeletonUi from "./SkeltonUi/PostSkeltonUi";
 import ApplyJobForm from "./ApplyJobForm";
 
-interface JobProps {
-  post: {
+interface Job {
+  _id: string;
+  userId: {
     _id: string;
-    userId: {
-      _id: string;
-      profileImageUrl: string;
-    };
-    companyName: string;
-    jobRole: string;
-    jobDescription: string;
-    requiredSkills: string;
-    jobLocation: string;
-    salary: string;
-    jobType: string;
-    experience: string;
-    qualification: string;
+    profileImageUrl: string;
   };
+  companyName: string;
+  jobRole: string;
+  jobDescription: string;
+  requiredSkills: string;
+  jobLocation: string;
+  salary: string;
+  jobType: string;
+  experience: string;
+  qualification: string;
 }
 
 const Jobs = () => {
@@ -35,20 +33,21 @@ const Jobs = () => {
   const user = useSelector(selectUser) || "";
   const userId = user._id || "";
 
-  const [jobs, setJobs] = useState<JobProps["post"][]>([]);
-  const [selectedJob, setSelectedJob] = useState<any>({});
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [isApply, setIsApply] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const handleApplyJob = (job: any) => {
+  const handleApplyJob = (job: Job) => {
     setIsApply(true);
     setSelectedJob(job);
   };
 
   const cancelApplyJob = () => {
     setIsApply(false);
+    setSelectedJob(null);
   };
 
   const debouncedListJob = useCallback(debounce((filterData, userId, page) => {
@@ -181,8 +180,8 @@ const Jobs = () => {
           )}
         </>
       )}
-      {isApply && (
-        <ApplyJobForm selectedJob={selectedJob} onCancel={cancelApplyJob} />
+      {isApply && selectedJob && (
+        <ApplyJobForm job={selectedJob} cancelApplyJob={cancelApplyJob} />
       )}
     </>
   );

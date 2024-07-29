@@ -1,12 +1,11 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import JobFilterForm from "../../../Components/JobFilterForm/JobFilterForm";
 import { useFilterContext } from "../../../utils/context/JobFilterData/FilterContext";
 
-
 function JobsOpenToWork() {
-  const selectUser = (state:any) => state.auth.user;
+  const selectUser = (state: any) => state.auth.user;
   const { filterData, setFilterData } = useFilterContext();
   const user = useSelector(selectUser);
   const location = useLocation();
@@ -14,7 +13,7 @@ function JobsOpenToWork() {
   const [searchText, setSearchText] = useState("");
 
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     setSearchText(e.target.value);
   };
 
@@ -38,32 +37,29 @@ function JobsOpenToWork() {
   return (
     <div>
       <div className="home-section-2 ">
-      <div className="border  profile-nav flex items-center justify-center gap-20  bg-white rounded-md mt-5 mx-5" >
-      <button
+        <div className="border  profile-nav flex items-center justify-center gap-20  bg-white rounded-md mt-5 mx-5" >
+          <button
             onClick={() => { navigate('/jobs/open-to-work/job-list') }}
-            className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
-              location.pathname === '/jobs/open-to-work/job-list' ? 'bg-black text-white' : ''
-            }`}
+            className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${location.pathname === '/jobs/open-to-work/job-list' ? 'bg-black text-white' : ''
+              }`}
           >
             Job Openings
           </button>
           <button
             onClick={() => { navigate('/jobs/open-to-work/applications') }}
-            className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
-              location.pathname === '/jobs/open-to-work/applications' ? 'bg-black text-white' : ''
-            }`}
+            className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${location.pathname === '/jobs/open-to-work/applications' ? 'bg-black text-white' : ''
+              }`}
           >
             Applications
           </button>
           <button
             onClick={() => { navigate('/jobs/open-to-work/interviews') }}
-            className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${
-              location.pathname === '/jobs/open-to-work/interviews' ? 'bg-black text-white' : ''
-            }`}
+            className={`text-xs font-medium text-gray-400 hover:text-white focus:bg-black focus:text-white px-7 py-2 rounded-md hover:bg-gray-800 transition-colors duration-300 ${location.pathname === '/jobs/open-to-work/interviews' ? 'bg-black text-white' : ''
+              }`}
           >
             Interviews
           </button>
-    </div>
+        </div>
 
         <div className="job-scroll">
           <div className="home-scrollbox">
