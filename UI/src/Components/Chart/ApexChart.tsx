@@ -62,27 +62,54 @@ const ApexChart: React.FC = () => {
     },
   });
 
+  // useEffect(() => {
+  //   chartData()
+  //     .then((response: { data: { userJoinStatus: ChartData[]; postCreationStats: ChartData[]; jobCreationStats: ChartData[] } }) => {
+  //       const { userJoinStatus, postCreationStats, jobCreationStats } = response.data;
+
+  //       if (!userJoinStatus || !postCreationStats || !jobCreationStats) {
+  //         console.error('Invalid data structure:', response.data);
+  //         return;
+  //       }
+
+  //       setUserData(userJoinStatus.map((item) => ({
+  //         month: new Date(item._id).toISOString(),
+  //         count: item.userCount,
+  //       })));
+
+  //       setPostData(postCreationStats.map((item) => ({
+  //         month: new Date(item._id).toISOString(),
+  //         count: item.postCount, // Adjust if needed
+  //       })));
+
+  //       setJobData(jobCreationStats.map((item) => ({
+  //         month: new Date(item._id).toISOString(),
+  //         count: item.jobCount, // Adjust if needed
+  //       })));
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching chart data:", error);
+  //     })
+  //     .finally(() => setLoading(false)); 
+  // }, []);
+
+
   useEffect(() => {
     chartData()
-      .then((response: { data: { userJoinStats: ChartData[]; postCreationStats: ChartData[]; jobCreationStats: ChartData[] } }) => {
-        const { userJoinStats, postCreationStats, jobCreationStats } = response.data;
+      .then((response:any) => {
+        const { userJoinStatus, postCreationStats, jobCreationStats } = response.data.chartData;
   
-        if (!userJoinStats || !postCreationStats || !jobCreationStats) {
-          console.error('Invalid data structure:', response.data);
-          return;
-        }
-  
-        setUserData(userJoinStats.map((item) => ({
+        setUserData(userJoinStatus.map((item:any) => ({
           month: new Date(item._id).toISOString(),
           count: item.userCount,
         })));
   
-        setPostData(postCreationStats.map((item) => ({
+        setPostData(postCreationStats.map((item:any) => ({
           month: new Date(item._id).toISOString(),
           count: item.postCount,
         })));
   
-        setJobData(jobCreationStats.map((item) => ({
+        setJobData(jobCreationStats.map((item:any) => ({
           month: new Date(item._id).toISOString(),
           count: item.jobCount,
         })));
@@ -90,7 +117,7 @@ const ApexChart: React.FC = () => {
       .catch((error) => {
         console.error("Error fetching chart data:", error);
       })
-      .finally(() => setLoading(false)); 
+      .finally(() => setLoading(false));
   }, []);
   
 
@@ -114,7 +141,7 @@ const ApexChart: React.FC = () => {
   };
 
   return (
-    <div id="chart" className="ms-20 mt-5 items-center p-10 border rounded-lg bg-white" style={{ width: "1130px" }}>
+    <div id="chart" className="ms-20 mt-5 items-center p-10 border rounded-lg bg-white" style={{ width: "980px" }}>
       <ReactApexChart
         options={options}
         series={[userSeries, postSeries, jobSeries]}

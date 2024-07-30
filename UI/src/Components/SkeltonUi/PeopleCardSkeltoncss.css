@@ -1,0 +1,45 @@
+.people-card-skeleton {
+    width: 346px;
+    background-color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: relative;
+  }
+  
+  .people-card-skeleton .avatar-placeholder {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: #d1d5db; /* bg-gray-300 */
+    margin-bottom: 12px;
+  }
+  
+  .people-card-skeleton .name-placeholder {
+    height: 16px;
+    width: 128px;
+    background-color: #d1d5db; /* bg-gray-300 */
+    margin-bottom: 4px;
+  }
+  
+  .people-card-skeleton .title-placeholder {
+    height: 12px;
+    width: 96px;
+    background-color: #e5e7eb; /* bg-gray-200 */
+    margin-bottom: 4px;
+  }
+  
+  .people-card-skeleton .company-placeholder {
+    height: 12px;
+    width: 80px;
+    background-color: #e5e7eb; /* bg-gray-200 */
+  }
+  
+  .people-card-skeleton .button-placeholder {
+    height: 32px;
+    width: 96px;
+    background-color: #d1d5db; /* bg-gray-300 */
+    border-radius: 4px;
+  }
+  

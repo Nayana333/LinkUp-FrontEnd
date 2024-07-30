@@ -1,62 +1,49 @@
-import { useState, useEffect} from "react"
-import PeopleCard from "./PeopleCard"
-import { getUserConnection } from "../services/api/user/apiMethods"
-import { useSelector } from "react-redux"
+import { useState, useEffect } from "react";
+import PeopleCard from "./PeopleCard";
+import SkeletonUserCard from "../Components/SkeltonUi/PeopleCardSkelton"; // Import the SkeletonUserCard component
+import { getUserConnection } from "../services/api/user/apiMethods";
+import { useSelector } from "react-redux";
 
-function PeopleRequested(){
+function PeopleRequested() {
+  const [loading, setLoading] = useState(true);
+  const [requested, setRequested] = useState<any[]>([]);
+  const selectUser = (state: any) => state.auth.user;
+  const userData = useSelector(selectUser);
+  const userId = userData._id;
 
-  const [loading,setLoading]=useState(true)
-  const [requested,setRequested]=useState<any>(null)
-  const selectUser=(state:any)=>state.auth.user
-  const userData=useSelector(selectUser)
-  const userId=userData._id
+  useEffect(() => {
+    if (!userId) return;
 
-  useEffect(()=>{
-    try{
-
-      setLoading(true)
-      getUserConnection({userId})
-      .then((response:any)=>{
-        const requestedData=response.data.connection;
-        setRequested(requestedData.requestSent)
-        setLoading(false)
-      }).catch((error)=>{
-        console.log(error.message);
-        
+    setLoading(true);
+    getUserConnection({ userId })
+      .then((response: any) => {
+        const requestedData = response.data.connection;
+        setRequested(requestedData.requestSent);
+        setLoading(false);
       })
+      .catch((error) => {
+        console.log(error.message);
+        setLoading(false);
+      });
+  }, [userId]);
 
-
-    }catch(error){
-      console.log(error);
-      
-    }
-  },[userId])
-
-return (
-    
+  return (
     <div>
-
-    {loading ? (
-     <div className="">
-     <div className="flex flex-row flex-wrap gap-x-8 gap-y-0 ">
- 
-    
+      {loading ? (
+        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <SkeletonUserCard key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
+          {requested?.map((user: any) => (
+            <PeopleCard key={user._id} user={user} updateRequested={setRequested} />
+          ))}
+        </div>
+      )}
     </div>
-       
-     </div>
-   ) : (
-     <div className="flex flex-row flex-wrap gap-x-8 gap-y-0 ">
-       {requested?.map((user: any) => (
-      
-         <PeopleCard user={user} updateRequested={setRequested}  />
-        
-       
-      
-       ))}
-     </div>
-   )}
-   </div>
-    
-     )
-    }
-    export default PeopleRequested
+  );
+}
+
+export default PeopleRequested;

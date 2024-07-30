@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import PeopleCard from "./PeopleCard";
+import SkeletonUserCard from "../Components/SkeltonUi/PeopleCardSkelton";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { followUser, getUserSuggestions } from "../services/api/user/apiMethods";
@@ -15,10 +16,11 @@ function PeopleDiscover() {
     getUserSuggestions({ userId })
       .then((response: any) => {
         setUsers(response.data.suggestedUsers);
-        setLoading(false);
+        setTimeout(() => setLoading(false), 500); // Introduce a delay of 2000ms
       })
       .catch((error: any) => {
         console.log(error.message);
+        setLoading(false);
       });
   }, [userId]);
 
@@ -29,7 +31,6 @@ function PeopleDiscover() {
         response.data.followed
           ? toast.info(`Followed ${followedUsername}`)
           : toast.info(`Follow request sent to ${followedUsername}`);
-        console.log(response.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -39,11 +40,13 @@ function PeopleDiscover() {
   return (
     <div>
       {loading ? (
-        <div className="">
-          <div className="flex flex-row flex-wrap gap-x-8 gap-y-0"></div>
+        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
+          {Array.from({ length: users.length || 5 }).map((_, index) => (
+            <SkeletonUserCard key={index} />
+          ))}
         </div>
       ) : (
-        <div className="flex flex-row flex-wrap gap-x-8 gap-y-0">
+        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
           {users?.map((user: any) => (
             <PeopleCard key={user._id} user={user} handleFollow={handleFollow} />
           ))}
