@@ -113,6 +113,11 @@ const appRouter = createBrowserRouter([
     path:'/features',
     element:<Features/>
   },
+  {
+    path:'/interview-call/:roomId/:userId',
+    element:<InterviewCall/>
+
+  },
 
   {
     path: '/home',
@@ -221,10 +226,7 @@ const appRouter = createBrowserRouter([
             element:<HiringInterviews/>
 
           },
-          {
-            path:"/jobs/hiring/interview-call/:roomId/:userId",
-            element:<InterviewCall/>
-          },
+          
         
           
         ]
@@ -248,11 +250,7 @@ const appRouter = createBrowserRouter([
           {
             path:"/jobs/open-to-work/interviews",
             element:<Interviews/>
-          },
-          {
-            path:"/jobs/open-to-work/interview-call/:roomId/:userId",
-            element:<InterviewCall/>
-          },
+          },       
         ]
       },
       {
@@ -282,10 +280,10 @@ const appRouter = createBrowserRouter([
           path:"/jobs/view-job/interviews/:jobId",
           element:<ViewJobInterviews/>
         },
-        {
-          path:"/jobs/view-job/interview-call/:roomId/:userId",
-          element:<InterviewCall/>
-        },
+        // {
+        //   path:"/jobs/view-job/interview-call/:roomId/:userId",
+        //   element:<InterviewCall/>
+        // },
 
         ]
 

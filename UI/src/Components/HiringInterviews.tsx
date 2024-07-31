@@ -15,7 +15,7 @@ const HiringInterviews=()=>{
     const handleGroupVideoCall =(interviewLink:string,interviewId:string)=>{
         const  roomId=interviewLink
         setInterviewStatus({interviewId:interviewId,status:"Started"})
-         navigate(`/interview-call/${roomId}`, { state: { from: location.pathname } })
+         navigate(`/interview-call/${roomId}/${userId}`, { state: { from: location.pathname } })
       
       }
 

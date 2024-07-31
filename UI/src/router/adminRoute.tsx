@@ -10,6 +10,7 @@ import PostList from '../pages/admin/PostList/PostList';
 import JobList from '../pages/admin/JobList/JobList'
 import Protect from './Protect/AdminProtect';
 import AdminSts from '../pages/admin/DashBoard/AdminSts';
+import AdminNotification from '../pages/admin/Notifications/Notification';
 
 
 
@@ -49,6 +50,9 @@ export const adminRoute = {
        },{
         path:'jobs',
         element:<JobList/>
+       },{
+        path:'notifications',
+        element:<AdminNotification/>
        }
     ],
 };

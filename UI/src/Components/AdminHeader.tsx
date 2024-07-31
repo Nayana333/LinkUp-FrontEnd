@@ -97,15 +97,7 @@ const AdminHeader: React.FC<HeaderProps> = () => {
           </form>
 
           <ul className="flex justify-between items-center gap-6">
-            <li>
-              <Bell color="gray" strokeWidth={1.5} size={20} />
-            </li>
-            <li>
-              <Bookmark color="gray" strokeWidth={1.5} size={20} />
-            </li>
-            <li>
-              <Mail color="gray" strokeWidth={1.5} size={20} />
-            </li>
+            
             <li className="relative">
               <button
                 type="button"

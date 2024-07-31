@@ -3,6 +3,8 @@ import { useLocation,useNavigate,useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useSelector, UseSelector } from "react-redux";
 import './InterviewCall.css'
+import Linkup from '../assets/Linkup.svg'
+
 
 function InterviewCall(){
     const {roomId}=useParams()
@@ -21,7 +23,6 @@ function InterviewCall(){
 
     useEffect(()=>{
         
-        // if(containerRef.current)return 
         const myMeeting=async()=>{
             const appId=1821525784
             const serverSecret="fd6d757ae0ec914a7eee1bdc2ec12f81"
@@ -44,7 +45,7 @@ function InterviewCall(){
                 title: "Interview Meeting" 
               },
               branding: {
-                logoURL: "https://i.postimg.cc/YC7Hwhxb/Screenshot-2024-03-04-151411.png"
+                // logoURL: LinkUp
               },
               showScreenSharingButton: true,
               showRoomTimer:true,

@@ -15,7 +15,7 @@ const Interviews = () => {
 
   const handleGroupVideoCall = (interviewLink: string) => {
     const roomId = interviewLink;
-    navigate(`/jobs/open-to-work/interview-call/${roomId}/${user._id}`, { state: { from: location.pathname } });
+    navigate(`/interview-call/${roomId}/${user._id}`, { state: { from: location.pathname } });
   };
 
   const [interviews, setInterviews] = useState<any[]>([]);
@@ -25,6 +25,7 @@ const Interviews = () => {
       getIntervieweeInterviews({ intervieweeId: userId })
         .then((response: any) => {
           const interviewsData = response.data.interviews;
+          
           setInterviews(interviewsData);
         })
         .catch((error) => {
@@ -59,6 +60,7 @@ const Interviews = () => {
                 <p className="text-sm font-bold">{interview.jobId.jobRole}</p>
               </div>
             </div>
+            {/* <div className="text-sm  text-gray-400">status:{interview.status}</div> */}
           </div>
 
           <div className="flex justify-between items-center">

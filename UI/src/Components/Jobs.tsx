@@ -8,6 +8,7 @@ import debounce from 'lodash/debounce';
 import { updateUser } from "../utils/context/reducers/authSlice";
 import PostSkeletonUi from "./SkeltonUi/PostSkeltonUi";
 import ApplyJobForm from "./ApplyJobForm";
+import NoJobs from "./SkeltonUi/NoJob";
 
 interface Job {
   _id: string;
@@ -99,7 +100,9 @@ const Jobs = () => {
     <>
       {loading && page === 1 ? (
         <PostSkeletonUi />
-      ) : (
+      ) : jobs.length === 0 ? (
+        <NoJobs/>
+    ):(
         <>
           {jobs.map((job) => (
             <div key={job._id} className="job-post-section bg-white p-4 py-10" style={{ height: "520px" }}>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
 import { useParams } from "react-router-dom";
-
+import ApplyJobForm from "./ApplyJobForm";
 interface jobProps {
   post: {
     _id: string;
@@ -151,7 +151,7 @@ const ViewerJobs= () => {
             </button>
           </div>
 
-          {/* {isApply && selectedjob._id === job._id && <ApplyJobForm job={selectedjob} cancelApplyJob={cancelApplyJob} />} */}
+          {isApply && selectedjob._id === job._id && <ApplyJobForm job={selectedjob} cancelApplyJob={cancelApplyJob} />}
         </div>
       ))}
     </>

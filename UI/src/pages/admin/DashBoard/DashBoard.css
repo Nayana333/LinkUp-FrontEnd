@@ -1,0 +1,15 @@
+/* AdminDashboard.css */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%; /* Ensures full width if needed */
+}
+
+.sticky-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    height: calc(100vh - 60px); /* Adjust based on your layout; ensure it doesn't exceed viewport height */
+    /* Add width and other styles as needed */
+}

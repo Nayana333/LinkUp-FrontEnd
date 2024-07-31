@@ -185,3 +185,21 @@ export const adminJobList=(page:number)=>{
     });
   };
   
+
+  export const getAdminNotifications= (userId: { userId: string }) => {
+    return new Promise((resolve, reject) => {
+      try {
+        
+        
+        adminApiCalls("post", adminUrl.getAdminNotifications, userId)
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      } catch (error) {
+        resolve({ status: 500, message: "Somethings wrong." });
+      }
+    });
+  };

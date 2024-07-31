@@ -13,7 +13,7 @@ const ViewJobInterviews = () => {
   const handleGroupVideoCall = (interviewLink: string, interviewId: string) => {
     setInterviewStatus({ interviewId: interviewId, status: "Started" });
     const roomId = interviewLink;
-    navigate(`/jobs/view-job/interview-call/${roomId}/${user._id}`, { state: { from: location.pathname }})
+    navigate(`/interview-call/${roomId}/${user._id}`, { state: { from: location.pathname }})
   };
 
   const selectUser = (state: any) => state.auth.user || "";

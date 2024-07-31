@@ -5,6 +5,7 @@ import { formatDistanceToNow } from "date-fns";
 import { getNotifications } from "../../services/api/user/apiMethods";
 import { setUnreadCount } from "../../utils/context/reducers/NotificationSlice";
 import './Notification.css';
+import NoNotifications from "../SkeltonUi/NoNotification";
 
 interface Notification {
   _id: string;
@@ -15,7 +16,7 @@ interface Notification {
   message: string;
   createdAt: string;
   link: string;
-  read?: boolean; // Ensure read property is optional
+  read?: boolean; 
 }
 
 const Notifications = () => {
@@ -33,7 +34,6 @@ const Notifications = () => {
         const notificationData: Notification[] = response.data.notifications;
         setNotifications(notificationData);
 
-        // Calculate unread count and update Redux store
         const unreadCount = notificationData.filter(n => n.read === false).length;
         dispatch(setUnreadCount(unreadCount));
       } catch (error) {
@@ -65,7 +65,9 @@ const Notifications = () => {
           <div className="home-scrollbox">
             {loading ? (
               <p>Loading...</p>
-            ) : (
+            ): notifications.length === 0 ? (
+              <NoNotifications/>
+          ) : (
               notifications.map((notification) => (
                 <div
                   key={notification._id}

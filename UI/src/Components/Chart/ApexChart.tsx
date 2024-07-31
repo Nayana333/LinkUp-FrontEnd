@@ -141,7 +141,7 @@ const ApexChart: React.FC = () => {
   };
 
   return (
-    <div id="chart" className="ms-20 mt-5 items-center p-10 border rounded-lg bg-white" style={{ width: "980px" }}>
+    <div id="chart" className="ms-20 mt-5 items-center p-10 border rounded-lg bg-white" style={{ width: "840px" }}>
       <ReactApexChart
         options={options}
         series={[userSeries, postSeries, jobSeries]}

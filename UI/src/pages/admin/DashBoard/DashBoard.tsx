@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import AdminHeader from '../../../Components/AdminHeader'
+import AdminHeader from '../../../Components/AdminHeader';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AdminSideNav from "../AdminSideNav/AdminSideNav";
@@ -10,20 +10,20 @@ function AdminDashboard() {
     const navigate = useNavigate();
     
     useEffect(() => {
-      if (!admin ) {
+      if (!admin) {
         navigate("/admin/login");
       }
-    },[admin,  navigate]);
+    }, [admin, navigate]);
+
     return (
-      <div className='main bg-gray-100 ' style={{height:"900px"}}>
-  <AdminHeader/>
-  <div className='flex '>
-    <AdminSideNav/>
-    <Outlet/>
-  
-  </div>
-  </div>
+      <div className='main bg-gray-100' style={{ height: "100vh", overflowY: 'auto' }}>
+        <AdminHeader className='sticky-header' />
+        <div className='flex'>
+          <AdminSideNav className='sticky-sidebar' />
+          <Outlet />
+        </div>
+      </div>
     )
-  }
-  
-  export default AdminDashboard
+}
+
+export default AdminDashboard;
