@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 
 
 
-function InterviewForm({ application, cancelscheduleInterview, setApplications }: any) {
+function InterviewForm({ application, cancelscheduleInterview, setApplications, }: any) {
     
   const { jobId } = useParams();
   const location = useLocation()

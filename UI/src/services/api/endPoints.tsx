@@ -71,7 +71,8 @@ export const jobUrls={
     getIntervieweeInterviews:'/job/getIntervieweeInterviews',
     getInterviewerInterviews:'/job/getInterviewerInterviews',
     setInterviewStatus:'/job/setInterviewStatus',
-    addInterview:'/job/addInterview'
+    addInterview:'/job/addInterview',
+    editInterview:'/job/editInterview'
     
 
 }   

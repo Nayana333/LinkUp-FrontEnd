@@ -38,7 +38,7 @@ const AdminSts: FC = () => {
                         </div>
                     </div>
                     <div className="h-50 ml-4 flex w-auto flex-col justify-center">
-                        <p className="font-dm text-sm font-medium text-gray-600">Total Posts</p>
+                        <p className="font-dm text-sm font-medium text-gray-600">Total Users</p>
                         <h4 className="text-xl font-bold text-navy-700 dark:text-white">{status?.totalUsers || 0}</h4>
                     </div>
                 </div>

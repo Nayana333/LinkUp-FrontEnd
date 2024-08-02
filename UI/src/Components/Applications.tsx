@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { cancelJobApplication, getEmployeeApplications } from '../services/api/user/apiMethods';
 import { updateUser } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
-import ViewApplication from './ViewApplication'; // Make sure to import your ViewApplication component
+import ViewApplication from './ViewApplication'; 
 
 const Applications = () => {
   const selectUser = (state: any) => state.auth.user || '';

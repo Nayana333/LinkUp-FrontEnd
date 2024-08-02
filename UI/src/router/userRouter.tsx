@@ -115,7 +115,12 @@ const appRouter = createBrowserRouter([
   },
   {
     path:'/interview-call/:roomId/:userId',
-    element:<InterviewCall/>
+    element:(
+      <Protect>
+            <InterviewCall/>
+
+      </Protect>
+    )
 
   },
 
@@ -280,10 +285,6 @@ const appRouter = createBrowserRouter([
           path:"/jobs/view-job/interviews/:jobId",
           element:<ViewJobInterviews/>
         },
-        // {
-        //   path:"/jobs/view-job/interview-call/:roomId/:userId",
-        //   element:<InterviewCall/>
-        // },
 
         ]
 

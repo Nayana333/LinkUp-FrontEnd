@@ -62,37 +62,6 @@ const ApexChart: React.FC = () => {
     },
   });
 
-  // useEffect(() => {
-  //   chartData()
-  //     .then((response: { data: { userJoinStatus: ChartData[]; postCreationStats: ChartData[]; jobCreationStats: ChartData[] } }) => {
-  //       const { userJoinStatus, postCreationStats, jobCreationStats } = response.data;
-
-  //       if (!userJoinStatus || !postCreationStats || !jobCreationStats) {
-  //         console.error('Invalid data structure:', response.data);
-  //         return;
-  //       }
-
-  //       setUserData(userJoinStatus.map((item) => ({
-  //         month: new Date(item._id).toISOString(),
-  //         count: item.userCount,
-  //       })));
-
-  //       setPostData(postCreationStats.map((item) => ({
-  //         month: new Date(item._id).toISOString(),
-  //         count: item.postCount, // Adjust if needed
-  //       })));
-
-  //       setJobData(jobCreationStats.map((item) => ({
-  //         month: new Date(item._id).toISOString(),
-  //         count: item.jobCount, // Adjust if needed
-  //       })));
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching chart data:", error);
-  //     })
-  //     .finally(() => setLoading(false)); 
-  // }, []);
-
 
   useEffect(() => {
     chartData()

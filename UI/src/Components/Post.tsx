@@ -7,6 +7,8 @@ import { useState, useEffect, useRef } from "react";
 import PostDetails from "./PostDetails";
 import { formatDistanceToNow } from "date-fns";
 import ReportModal from '../Components/ReportModal';
+import { io,Socket } from "socket.io-client";
+import { socketBaseURL } from "../config";
 
 interface PostProps {
   post: {
@@ -39,6 +41,8 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const [isCommentSection, SetIsCommentSection] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false); // State for managing the dropdown
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for the dropdown
+  const socket = useRef<any>()
+  
 
   const handleHideCommentToggle = () => {
     SetIsCommentSection(!isCommentSection);
@@ -76,6 +80,8 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   const handleLike = (postId: string, userId: string) => {
     try {
+      socket.current = io(socketBaseURL);
+      socket.current.emit('sendNotification',{senderName:user.userName,recieverId:postId,message:'liked your post'})
       likePost({ postId, userId })
         .then((response: any) => {
           const postData = response.data;

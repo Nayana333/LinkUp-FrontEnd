@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [unreadCount, setUnreadCount] = useState<number>(0); // State for unread notifications count
+  const [unreadCount, setUnreadCount] = useState<number>(0); 
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
@@ -37,21 +37,16 @@ const Header: React.FC<HeaderProps> = () => {
   }, []);
 
   useEffect(() => {
-    // Replace this with your actual API call to fetch the unread notifications count
     fetchUnreadNotificationsCount();
   }, []);
 
   const fetchUnreadNotificationsCount = async () => {
-    // Fetch unread notifications count from your API
-    // Replace the following line with your actual API call
     const count = await getUnreadNotificationsCountFromAPI();
     setUnreadCount(count);
   };
 
   const getUnreadNotificationsCountFromAPI = async () => {
-    // Mock API call - replace with your actual API logic
-    // This is just an example to demonstrate functionality
-    return 5; // Replace with the actual count
+    return 5; 
   };
 
   const navigate = useNavigate();

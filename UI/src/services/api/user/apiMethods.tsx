@@ -1005,3 +1005,27 @@ export const  addInterview= (
     }
   });
 };
+
+
+
+
+export const editInterview=( interviewData:{interviewId:string, interviewDate:string, interviewTime:string, jury:any[] })=>{
+  return new Promise((resolve,reject)=>{
+    try {
+      
+      
+      apiCalls("post", jobUrls.editInterview, interviewData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    }catch(error){
+      console.log(error);
+      
+    }
+
+  })
+
+}
