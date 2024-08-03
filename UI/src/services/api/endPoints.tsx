@@ -1,3 +1,4 @@
+import { diagramData } from "./admin/AdminApiMethods"
 
 export const userUrls ={
     register:'/users/register' ,
@@ -49,7 +50,9 @@ export const adminUrl = {
     jobBlock:'/admin/jobBlock',
     getDashboardStatus:'/admin/getDashboardStatus',
     chartData:'/admin/chartData',
-    getAdminNotifications:'/admin/getAdminNotifications'
+    getAdminNotifications:'/admin/getAdminNotifications',
+    diagramData:'/admin/diagramData',
+
     
 
 }

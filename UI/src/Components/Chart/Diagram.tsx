@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
-import { chartData } from '../../services/api/admin/AdminApiMethods';
+import React, { useEffect, useRef, useState } from 'react';
 import ApexCharts, { ApexOptions } from 'apexcharts';
+import { RefreshCw } from 'lucide-react';
+import { diagramData } from '../../services/api/admin/AdminApiMethods';
+import './Diagram.css';
+
+interface SeriesData {
+  month: string;
+  count: number;
+}
 
 const Diagram: React.FC = () => {
-  const [series, setSeries] = useState<number[]>([44, 55, 13, 33]);
+  const chartRef = useRef<ApexCharts | null>(null);
+  const [userData, setUserData] = useState<SeriesData[]>([]);
+  const [jobData, setJobData] = useState<SeriesData[]>([]);
+  const [jobApplied, setJobApplied] = useState<SeriesData[]>([]);
 
   const options: ApexOptions = {
     chart: {
-      width: 380,
       type: 'donut',
+      width: 300,
+      height: 250,
     },
     dataLabels: {
       enabled: false,
@@ -32,48 +42,84 @@ const Diagram: React.FC = () => {
       offsetY: 0,
       height: 230,
     },
+    labels: ['Active Users', 'Jobs Applied', 'Active Jobs'],
+  };
+
+  const reset = () => {
+    if (chartRef.current) {
+      chartRef.current.updateSeries([
+        userData.reduce((sum, item) => sum + item.count, 0),
+        jobApplied.reduce((sum, item) => sum + item.count, 0),
+        jobData.reduce((sum, item) => sum + item.count, 0),
+      ]);
+    }
   };
 
   useEffect(() => {
-    const chart = new ApexCharts(document.querySelector("#chart") as HTMLElement, options);
-    chart.render();
+    diagramData()
+      .then((response: any) => {
+        const { userJoinStatus, appliedJobStats, jobCreationStats } = response.data.diagramData;
 
-    function appendData() {
-      setSeries((prevSeries) => [...prevSeries, Math.floor(Math.random() * (100 - 1 + 1)) + 1]);
+        setUserData(userJoinStatus.map((item: any) => ({
+          month: new Date(item._id).toISOString(),
+          count: item.userCount,
+        })));
+
+        setJobApplied(appliedJobStats.map((item: any) => ({
+          month: new Date(item._id).toISOString(),
+          count: item.applicationCount,
+        })));
+
+        setJobData(jobCreationStats.map((item: any) => ({
+          month: new Date(item._id).toISOString(),
+          count: item.jobCount,
+        })));
+      })
+      .catch((error) => {
+        console.error("Error fetching chart data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.updateSeries([
+        userData.reduce((sum, item) => sum + item.count, 0),
+        jobApplied.reduce((sum, item) => sum + item.count, 0),
+        jobData.reduce((sum, item) => sum + item.count, 0),
+      ]);
     }
+  }, [userData, jobApplied, jobData]);
 
-    function removeData() {
-      setSeries((prevSeries) => prevSeries.slice(0, -1));
-    }
+  useEffect(() => {
+    chartRef.current = new ApexCharts(document.querySelector("#chart") as HTMLElement, {
+      ...options,
+      series: [
+        userData.reduce((sum, item) => sum + item.count, 0),
+        jobApplied.reduce((sum, item) => sum + item.count, 0),
+        jobData.reduce((sum, item) => sum + item.count, 0),
+      ],
+    });
 
-    function randomize() {
-      setSeries((prevSeries) => prevSeries.map(() => Math.floor(Math.random() * (100 - 1 + 1)) + 1));
-    }
-
-    function reset() {
-      setSeries([44, 55, 13, 33]);
-    }
-
-    document.querySelector("#randomize")?.addEventListener("click", randomize);
-    document.querySelector("#add")?.addEventListener("click", appendData);
-    document.querySelector("#remove")?.addEventListener("click", removeData);
-    document.querySelector("#reset")?.addEventListener("click", reset);
+    chartRef.current.render();
 
     return () => {
-      chart.destroy();
+      if (chartRef.current) {
+        chartRef.current.destroy();
+        chartRef.current = null;
+      }
     };
-  }, [options]);
+  }, []);
 
   return (
-    <div id="chart" className="ms-20 mt-5 items-center p-10 border rounded-lg bg-white" style={{ width: "840px" }}>
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="donut"
-        height={350}
-      />
+    <div className="ms-20 p-2 w-fit">
+      <div id="chart"></div>
+      <div className="refresh-button">
+        <button onClick={reset}>
+          <RefreshCw size={14} strokeWidth={2} style={{ color: 'green' }} />
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default Diagram;

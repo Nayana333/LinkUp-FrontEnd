@@ -1,0 +1,9 @@
+.refresh-button {
+    position: relative;
+    top: -36px; /* Adjust this value as needed to position the button */
+    left: 90px; /* Adjust this value to align under "Active Jobs" */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

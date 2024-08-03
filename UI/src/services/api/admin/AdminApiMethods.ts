@@ -203,3 +203,14 @@ export const adminJobList=(page:number)=>{
       }
     });
   };
+  export const diagramData = () => {
+    return new Promise((resolve, reject) => {
+      adminApiCalls('get', adminUrl.diagramData, null)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
