@@ -119,8 +119,8 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
           src={user?.profileImageUrl}
           alt="Profile"
         />
-        <p className="text-sm font-semibold flex items-center gap-1" > {user?.profile?.fullname||user?.companyProfile?.companyName}{user?.isPremium==true&&(<Target color="green" size={15}/>)} </p>
-        <p className="text-xs text-gray-400">{user?.profile?.designation||user?.companyProfile?.companyType}</p>
+          <p className="text-sm font-semibold flex items-center gap-1" > {user?.profile?.fullname||user?.companyProfile?.companyName}{user?.isPremium==true&&(<Target color="green" size={15}/>)} </p>
+          <p className="text-xs text-gray-400">{user?.profile?.designation||user?.companyProfile?.companyType}</p>
         <p className="text-xs text-green-600 font-medium">{user?.profile?.location||user?.companyProfile?.companyLocation}</p>
       </div>
 

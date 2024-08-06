@@ -57,6 +57,10 @@ import Interviews from '../Components/Interviews';
 import InterviewCall from '../pages/user/InterviewCall/InterviewCall';
 import HiringInterviews from '../Components/HiringInterviews';
 import ViewJobInterviews from '../Components/ViewJobInteriews';
+import Premium from '../Components/Premium';
+import PremiumPlans from '../pages/Premium/PremiumPage';
+import PaymentSuccess from '../Components/PaymentSuccess';
+import PaymentFailed from '../Components/PaymentFailed';
 
 
 const appRouter = createBrowserRouter([
@@ -373,6 +377,30 @@ const appRouter = createBrowserRouter([
         },
        ]
      }
+    ]
+  },
+  {
+    path:"/premium",
+    element: (
+      <Protect>
+   <PremiumPlans/>
+      </Protect>
+    ),
+    errorElement:<Error/>
+ ,
+    children:[
+      {
+        path:"/premium/plans",
+        element:<Premium/>,
+      },
+      {
+        path:"/premium/payment-success",
+        element:<PaymentSuccess/>,
+      },
+      {
+        path:"/premium/payment-failed",
+        element:<PaymentFailed/>,
+      }
     ]
   },
   {

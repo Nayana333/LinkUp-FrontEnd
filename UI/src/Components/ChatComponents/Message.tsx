@@ -52,7 +52,7 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
   useEffect(() => {
     if (arrivalMessage && currentChat?.members.some((member: any) => member._id === arrivalMessage.sender._id)) {
       setMessages((prev) => [...prev, arrivalMessage]);
-      setArrivalMessage(null); // Reset arrivalMessage after adding it to messages
+      setArrivalMessage(null); 
     }
   }, [arrivalMessage, currentChat?.members]);
 
@@ -130,9 +130,9 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
             </div>
             {messages.length !== 0 &&
               messages.map((message, index) => {
-                if (!message || !message.sender) return null; // Defensive check
+                if (!message || !message.sender) return null; 
 
-                const key = message._id || index; // Ensure the key is unique
+                const key = message._id || index; 
 
                 return message.sender._id === user._id || message.sender === user._id ? (
                   <div key={key} className='mb-3'>
@@ -174,3 +174,9 @@ function Messages({ user, currentChat, socket, onlineUsers }: any) {
 }
 
 export default Messages;
+
+
+
+
+
+                                                                                                                                                                                                                                

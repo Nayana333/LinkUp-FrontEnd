@@ -107,7 +107,13 @@ const ApplyJobForm: React.FC<ApplyJobFormProps> = ({ job, cancelApplyJob }) => {
                       className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                       accept=".pdf"
                       onChange={(event: any) => {
-                        form.setFieldValue('resume', event.currentTarget.files[0]);
+                        const file = event.currentTarget.files[0];
+                        if (file && file.type === 'application/pdf') {
+                          form.setFieldValue('resume', file);
+                        } else {
+                          form.setFieldValue('resume', null);
+                          toast.error('Invalid file type. Only PDF files are allowed.');
+                        }
                       }}
                     />
                   )}

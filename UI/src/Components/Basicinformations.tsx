@@ -163,6 +163,7 @@ function BasicInformation() {
                         {({ field }: any) => (
                           <input
                             type="file"
+                              accept="image/*"
                             ref={fileInputRef}
                             style={{ display: "none" }}
                             onChange={(e) => {
@@ -332,6 +333,7 @@ function BasicInformation() {
                         {({ field }: any) => (
                           <input
                             type="file"
+                              accept="image/*"
                             ref={fileInputRef}
                             style={{ display: "none" }}
                             onChange={(e) => {

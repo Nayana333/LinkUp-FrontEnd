@@ -50,7 +50,7 @@ function UserBio() {
             <button onClick={handleEditButtonClick}><Edit size={15} /></button>
           </div>
           <div className="flex gap-10">
-            <p className="text-sm font-bold flex items-center gap-1">{user.profile?.fullname || user.companyProfile?.companyName} {user.isPremium && (<Target color="green" size={15} />)}</p>
+          <p className="text-sm font-semibold flex items-center gap-1" > {user?.profile?.fullname||user?.companyProfile?.companyName}{user?.isPremium==true&&(<Target color="green" size={15}/>)} </p>
             {/* <p className="text-xs">{user.userName}</p> */}
           </div>
           <div>

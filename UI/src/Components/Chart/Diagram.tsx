@@ -111,11 +111,15 @@ const Diagram: React.FC = () => {
   }, []);
 
   return (
-    <div className="ms-20 p-2 w-fit">
-      <div id="chart"></div>
+    <div >
+      <div id="chart" style={{ color: 'green'  ,   position: "relative",
+    left: "326px"
+}}></div>
       <div className="refresh-button">
         <button onClick={reset}>
-          <RefreshCw size={14} strokeWidth={2} style={{ color: 'green' }} />
+          <RefreshCw size={14} strokeWidth={2} style={{ color: 'green'  ,   position: "relative",
+    left: "326px"
+}} />
         </button>
       </div>
     </div>

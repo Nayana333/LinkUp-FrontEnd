@@ -312,6 +312,7 @@ function EditBio({ onCancelEdit }: any) {
                           <input
                             type="file"
                             ref={fileInputRef}
+                              accept="image/*"
                             style={{ display: "none" }}
                             onChange={(e) => {
                               const files = e.target.files;

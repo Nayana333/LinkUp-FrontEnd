@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Bookmark } from "lucide-react";
+import { Bookmark,Lock } from "lucide-react";
 import { listJob, savePost } from "../services/api/user/apiMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { useFilterContext } from '../utils/context/JobFilterData/FilterContext';
@@ -164,14 +164,37 @@ const Jobs = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end mt-10">
+              {/* <div className="flex justify-end mt-10">
                 <button
                   onClick={() => handleApplyJob(job)}
                   className="bg-green-600 text-white text-xs font-bold px-5 py-2 rounded-md"
                 >
                   Apply Now
                 </button>
-              </div>
+              </div> */}
+
+{(user.dailyJobsApplied <3 || user.isPremium == true) &&(
+               <div className="w-full flex justify-end mt-10">
+               <button
+                 onClick={() => handleApplyJob(job)}
+                 className="  hover:bg-white hover:border duration-300 hover:text-green-600 text-xs rounded btn border w-24 px-4 py-2 cursor-pointer text-white ml-2 bg-green-600"
+               >
+                 Apply
+               </button>
+             </div>
+
+           )}
+                {user.dailyJobsApplied>=3&&(
+               <div className="w-full flex justify-end mt-10">
+               <button
+                onClick={()=>{toast.error("Upgrade to premium to apply more jobs")}}
+                 className=" flex opacity-60 gap-1 items-center hover:border duration-300 text-xs rounded btn border w-24 px-4 py-2 cursor-auto text-white ml-2 bg-green-600"
+               >
+                 <Lock size={15}/> Apply
+               </button>
+             </div>
+
+           )}
             </div>
           ))}
           {hasMore && !loading && (

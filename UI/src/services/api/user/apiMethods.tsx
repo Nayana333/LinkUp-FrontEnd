@@ -1029,3 +1029,59 @@ export const editInterview=( interviewData:{interviewId:string, interviewDate:st
   })
 
 }
+
+
+export const getAllTransactions = (userId: {userId:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", userUrls.allTransactions, userId)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+
+export const initiateCheckout = (userId:{userId:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+     
+       
+      apiCalls("post", userUrls.checkout,userId).then((response)=>{
+
+        resolve(response);
+        
+    })   .catch((err) => {
+      reject(err);
+    });
+} catch (error) {
+    resolve({status:500, message: "Somethings wrong."})
+}
+});
+};
+
+export const validatePayment = (paymentData: {userId:string,sessionId:string}) => {
+  return new Promise((resolve, reject) => {
+    try {
+      apiCalls("post", userUrls.validate, paymentData)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    } catch (error) {
+      resolve({ status: 500, message: "Somethings wrong." });
+    }
+  });
+};
+
+
+

@@ -15,7 +15,10 @@ export const userUrls ={
     userSuggestions:'/users/userSuggestions',
     userDeatils:'/users/userDeatils',
     search:'/users/search',
-    getNotifications:'/users/getNotifications'
+    getNotifications:'/users/getNotifications',
+    allTransactions:'/users/allTransactions',
+    checkout:'/users/checkout',
+    validate:'/users/validate'
     
    
 }
