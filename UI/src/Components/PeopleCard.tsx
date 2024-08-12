@@ -112,7 +112,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
 
  return (
   <>
-    <div className="home-recommed-section bg-white flex justify-between px-4 py-4 items-end relative" style={{width:'346px'}}>
+    <div className="home-recommed-section bg-white flex justify-between px-4 py-4 items-end relative sm:ms-2" style={{width:'346px'}}>
       <div>
         <img
           className="h-9 w-9 rounded-full border-2 p-.5 mb-3 border-green-600"
@@ -124,7 +124,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
         <p className="text-xs text-green-600 font-medium">{user?.profile?.location||user?.companyProfile?.companyLocation}</p>
       </div>
 
-      <div className="flex gap-2 justify-between">
+      <div className="flex gap-2 justify-between sm:flex-col md:flex-col md:p-2 lg:flex-row sm:p-2">
         {location.pathname.startsWith('/visit-profile/connections/') && (
           <div>
             {requested?.some((request: any) => request._id === user?._id) ? (
@@ -155,7 +155,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
         {location.pathname === '/people/discover' && (
           <button
             onClick={() => handleFollow(user?._id, user.userName)}
-            className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600"
+            className="text-xs flex gap-1 text-green-600 font-semibold border px-2 py-1 rounded-md border-green-600 sm:flex-col"
           >
             Link up <CircleArrowUp size={15} />
           </button>
@@ -164,7 +164,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
         {location.pathname === '/people/connections' && (
           <button
             onClick={() => handleUnFollow(user)}
-            className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600" 
+            className="text-xs flex gap-1 text-red-600 font-semibold border px-2 py-1 rounded-md border-red-600 sm:flex-col" 
           >
             Link down <CircleArrowDownIcon size={15} />
           </button>

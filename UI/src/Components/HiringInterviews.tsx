@@ -4,6 +4,7 @@ import { getInterviewerInterviews, setInterviewStatus } from "../services/api/us
 import CopyLink from "./CopyLink";
 import { View } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import NoApplicant from "./SkeltonUi/NoApplicant";
 
 
 
@@ -48,59 +49,64 @@ const HiringInterviews=()=>{
       };
 
 
-    return (
+      return (
         <>
-        {interviews?.map((interview) => (
-          <div key={interview._id} className="home-post-section bg-white p-4">
-            <div className="w-full flex justify-between">
-              <div className="flex">
-                <div className="w-14 h-14 rounded-md bg-green-600 flex items-center justify-center font-bold text-white text-2xl">
-                  {interview?.jobId?.jobRole?.slice(0, 1)}
+          {interviews.length === 0 ? (
+            <NoApplicant />
+          ) : (
+            interviews?.map((interview) => (
+              <div key={interview._id} className="home-post-section bg-white p-4">
+                <div className="w-full flex justify-between">
+                  <div className="flex">
+                    <div className="w-14 h-14 rounded-md bg-green-600 flex items-center justify-center font-bold text-white text-2xl">
+                      {interview?.jobId?.jobRole?.slice(0, 1)}
+                    </div>
+                    <div className="mx-5">
+                      <p className="text-sm">{interview.jobId.companyName}</p>
+                      <p className="text-sm font-bold">{interview.jobId.jobRole}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mx-5">
-                  <p className="text-sm">{interview.jobId.companyName}</p>
-                  <p className="text-sm font-bold">{interview.jobId.jobRole}</p>
+      
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col items-start mt-4">
+                    <div>
+                      <div className="flex text-xs gap-1">
+                        <p className="font-semibold">Interview Date :</p>
+                        <p className="text-xs">{formatDate(interview.interviewDate)}</p>
+                      </div>
+                      <div className="flex text-xs gap-1">
+                        <p className="font-semibold">Interview Time :</p>
+                        <p className="text-xs">{interview.interviewTime}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+                <div className="flex items-end justify-between">
+                  <CopyLink interview={interview} />
+                  <div className="flex justify-end mt-4">
+                    <button
+                      className="text-xs rounded btn border px-4 py-2 cursor-pointer text-green-600 ml-2 bg-white"
+                    >
+                      <View size={15} />
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleGroupVideoCall(interview.interviewLink, interview._id);
+                      }}
+                      className="text-xs rounded btn border px-4 py-2 cursor-pointer text-green-600 ml-2 bg-white"
+                    >
+                      Join Interview
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-    
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col items-start mt-4">
-              <div>
-                <div className="flex text-xs gap-1">
-                  <p className="font-semibold">Interview Date :</p>
-                  <p className="text-xs">{formatDate(interview.interviewDate)}</p>
-                </div>
-                <div className="flex text-xs gap-1">
-                  <p className="font-semibold">Interview Time :</p>
-                  <p className="text-xs">{interview.interviewTime}</p>
-                </div>
-              </div>
-              </div>
-             
-            </div>
-    
-            <div className="flex items-end justify-between">
-              <CopyLink interview={interview} />
-              <div className="flex justify-end mt-4">
-              <button
-                  className="text-xs rounded btn border px-4 py-2 cursor-pointer text-green-600 ml-2 bg-white"
-                >
-                 <View size={15}/>
-                </button>
-                <button
-                onClick={()=>{handleGroupVideoCall(interview.interviewLink,interview._id)}}
-                  className="text-xs rounded btn border px-4 py-2 cursor-pointer text-green-600 ml-2 bg-white"
-                >
-                  Join Interview
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </>
+            ))
+          )}
+        </>
       );
-
+      
 }
 
 export default HiringInterviews

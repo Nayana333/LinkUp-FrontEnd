@@ -214,3 +214,19 @@ export const adminJobList=(page:number)=>{
         });
     });
   };
+
+  export const adminTransactions= (page:number) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const queryParams = `?page=${page}`
+            adminApiCalls("get", adminUrl.transactionsList+queryParams, null).then((response) => {
+                resolve(response);
+              }
+            ).catch((err) => {
+                reject(err);
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+};

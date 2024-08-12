@@ -3,6 +3,8 @@ import PeopleCard from "./PeopleCard";
 import SkeletonUserCard from "../Components/SkeltonUi/PeopleCardSkelton";
 import { getUserConnection } from "../services/api/user/apiMethods";
 import { useSelector } from "react-redux";
+import NoApplicant from "./SkeltonUi/NoApplicant";
+import NoConnections from "./SkeltonUi/NoConnections";
 
 function PeopleRequests() {
   const [loading, setLoading] = useState(true);
@@ -33,19 +35,24 @@ function PeopleRequests() {
     <div>
       {loading ? (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
-          {Array.from({ length: requests.length }).map((_, index) => ( 
+          {Array.from({ length: requests.length }).map((_, index) => (
             <SkeletonUserCard key={index} />
           ))}
         </div>
       ) : (
-        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
-          {requests?.map((user: any) => (
-            <PeopleCard key={user._id} user={user} updateRequestes={setRequests} />
-          ))}
+        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4" style={{width:"728px"}}>
+          {requests?.length > 0 ? (
+            requests.map((user: any) => (
+              <PeopleCard key={user._id} user={user} updateRequestes={setRequests} />
+            ))
+          ) : (
+            <NoConnections/>
+          )}
         </div>
       )}
     </div>
   );
+  
 }
 
 export default PeopleRequests;

@@ -15,7 +15,7 @@ const Reset = () => {
     newPassword(values)
       .then((response: any) => {
         const data = response.data;
-        toast.success(data.message);
+        toast.success(response.message);
         navigate('/login');
       })
       .catch((error) => {

@@ -3,6 +3,7 @@ import { getSavedPost } from '../services/api/user/apiMethods';
 import PostSkeletonUi from './SkeltonUi/PostSkeltonUi';
 import Post from './Post';
 import { useSelector } from 'react-redux';
+import NoPost from './SkeltonUi/NoPost';
 
 function SavedPosts() {
   const [posts, setPosts] = useState([]); 
@@ -36,6 +37,7 @@ function SavedPosts() {
   return (
     <div>
       {loading && <PostSkeletonUi />}
+      {!loading && posts?.length === 0 && <NoPost />}
       {posts?.length > 0 && (
         <div className="posts">
           {posts.map((post: any) => (
@@ -45,6 +47,7 @@ function SavedPosts() {
       )}
     </div>
   );
+  
 }
 
 export default SavedPosts;

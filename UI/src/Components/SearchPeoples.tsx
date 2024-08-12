@@ -54,7 +54,7 @@ function SearchPeople() {
     <div>
       {loading ? (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-0 justify-center">
-     loading
+          Loading...
         </div>
       ) : (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-0 justify-center">
@@ -63,7 +63,7 @@ function SearchPeople() {
               <PeopleCardLarge key={user._id} user={user} updateConnection={setConnections} />
             ))
           ) : (
-      <NoConnections/>
+            <NoConnections />
           )}
         </div>
       )}

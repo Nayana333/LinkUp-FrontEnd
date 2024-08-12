@@ -3,6 +3,8 @@ import { getUserConnection } from '../services/api/user/apiMethods';
 import PeopleCard from './PeopleCard';
 import SkeletonUserCard from '../Components/SkeltonUi/PeopleCardSkelton';
 import { useSelector } from 'react-redux';
+import NoApplicant from './SkeltonUi/NoApplicant';
+import NoConnections from './SkeltonUi/NoConnections';
 
 function PeopleConnections() {
   const [connections, setConnections] = useState<any[]>([]);
@@ -20,16 +22,15 @@ function PeopleConnections() {
           const fetchedConnections = response.data.connection.connections;
           setConnections(fetchedConnections);
 
-          // Simulate a delay
-          setTimeout(() => setLoading(false), 500); // 2000ms delay
+          setTimeout(() => setLoading(false), 500); 
         })
         .catch((error) => {
           console.log(error.message);
-          setLoading(false); // Ensure loading state is stopped on error
+          setLoading(false);
         });
     } catch (error) {
       console.log(error);
-      setLoading(false); // Ensure loading state is stopped on catch block error
+      setLoading(false); 
     }
   }, [userId]);
 
@@ -37,19 +38,24 @@ function PeopleConnections() {
     <div>
       {loading ? (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
-          {Array.from({ length: connections.length }).map((_, index) => ( // Show 5 skeleton cards during loading
+          {Array.from({ length: connections.length  }).map((_, index) => (
             <SkeletonUserCard key={index} />
           ))}
         </div>
       ) : (
-        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
-          {connections?.map((user: any) => (
-            <PeopleCard key={user._id} user={user} updateConnection={setConnections} />
-          ))}
+        <div className="flex flex-row flex-wrap gap-x-8 gap-y-4" style={{width:"728px"}}>
+          {connections?.length > 0 ? (
+            connections.map((user: any) => (
+              <PeopleCard key={user._id} user={user} updateConnection={setConnections} />
+            ))
+          ) : (
+            <NoConnections />
+          )}
         </div>
       )}
     </div>
   );
+  
 }
 
 export default PeopleConnections;

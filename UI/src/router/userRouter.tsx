@@ -65,6 +65,10 @@ import PaymentFailed from '../Components/PaymentFailed';
 
 const appRouter = createBrowserRouter([
   {
+    path:'*',
+    element:<NotFoundPage/>
+  },
+  {
     path: '/register',
     element: <Register />,
   },

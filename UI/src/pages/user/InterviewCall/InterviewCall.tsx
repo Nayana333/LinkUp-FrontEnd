@@ -18,7 +18,6 @@ function InterviewCall(){
 
     const handleLeaveRoom=()=>{
         navigate(location.state?.from ||'/')
-
     }
 
     useEffect(()=>{

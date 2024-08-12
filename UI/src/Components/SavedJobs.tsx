@@ -6,6 +6,7 @@ import { useDispatch,useSelector } from "react-redux";
 import ApplyJobForm from "./ApplyJobForm";
 import { updateUser } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
+import NoJobs from "./SkeltonUi/NoJob";
 
 
 
@@ -88,39 +89,35 @@ const handleSave=(jobId:string,userId:string)=>{
 }
 
 
-
-
-
-
-
-
 return (
   <>
+    {jobs.length === 0 && <NoJobs />}
     {jobs.map((job) => (
       <div key={job._id} className="home-post-section bg-white p-4 py-10" style={{ height: "520px" }}>
         <div className="w-full flex justify-between items-center">
           <div className="flex">
-          <div className="w-14 h-14 rounded-md bg-green-600 flex items-center justify-center font-bold text-white text-2xl">
-              {job.jobRole.slice(0,1)}
-              </div>              <div className="mx-5">
+            <div className="w-14 h-14 rounded-md bg-green-600 flex items-center justify-center font-bold text-white text-2xl">
+              {job.jobRole.slice(0, 1)}
+            </div>
+            <div className="mx-5">
               <p className="text-sm">{job.companyName}</p>
               <p className="text-sm font-bold">{job.jobRole}</p>
             </div>
           </div>
 
-          <div className="flex ">
-           {user.savedJobs?.includes(job._id) ? (
-<button onClick={() => handleSave(job._id, user._id)} type="button">
-  <Bookmark color="green" fill="green" strokeWidth={1.5} size={22} />
-</button>
-) : (
-<button onClick={() => handleSave(job._id, user._id)} type="button">
-  <Bookmark color="gray" strokeWidth={1.5} size={22} />
-</button>
-)}
-
-           </div>
+          <div className="flex">
+            {user.savedJobs?.includes(job._id) ? (
+              <button onClick={() => handleSave(job._id, user._id)} type="button">
+                <Bookmark color="green" fill="green" strokeWidth={1.5} size={22} />
+              </button>
+            ) : (
+              <button onClick={() => handleSave(job._id, user._id)} type="button">
+                <Bookmark color="gray" strokeWidth={1.5} size={22} />
+              </button>
+            )}
+          </div>
         </div>
+
         <div className="mt-10">
           <p className="text-sm mb-3 font-bold">Job Overview</p>
           <p className="text-xs">{job.jobDescription}</p>
@@ -160,7 +157,7 @@ return (
         <div className="w-full flex justify-end mt-10">
           <button
             onClick={() => handleApplyJob(job)}
-            className="  hover:bg-white hover:border duration-300 hover:text-green-600 text-xs rounded btn border w-24 px-4 py-2 cursor-pointer text-white ml-2 bg-green-600"
+            className="hover:bg-white hover:border duration-300 hover:text-green-600 text-xs rounded btn border w-24 px-4 py-2 cursor-pointer text-white ml-2 bg-green-600"
           >
             Apply
           </button>
@@ -171,5 +168,6 @@ return (
     ))}
   </>
 );
+
 }
 export default savedJobs

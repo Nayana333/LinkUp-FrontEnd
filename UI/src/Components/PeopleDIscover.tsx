@@ -4,6 +4,7 @@ import SkeletonUserCard from "../Components/SkeltonUi/PeopleCardSkelton";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { followUser, getUserSuggestions } from "../services/api/user/apiMethods";
+import NoApplicant from "./SkeltonUi/NoApplicant";
 
 function PeopleDiscover() {
   const selectUser = (state: any) => state.auth.user;
@@ -47,13 +48,18 @@ function PeopleDiscover() {
         </div>
       ) : (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-4">
-          {users?.map((user: any) => (
-            <PeopleCard key={user._id} user={user} handleFollow={handleFollow} />
-          ))}
+          {users?.length > 0 ? (
+            users.map((user: any) => (
+              <PeopleCard key={user._id} user={user} handleFollow={handleFollow} />
+            ))
+          ) : (
+            <NoApplicant />
+          )}
         </div>
       )}
     </div>
   );
+  
 }
 
 export default PeopleDiscover;

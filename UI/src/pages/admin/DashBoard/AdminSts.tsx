@@ -29,9 +29,7 @@ const AdminSts: FC = () => {
 
     return (
         <div className="flex flex-col h-[100vh] pt-4 w-full">
-              <div >
-                        <Diagram />
-                    </div>
+             
             <div className="min-w-[375px] md:min-w-[700px] xl:min-w-[800px] mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6 w-full px-20">
                 <div className="relative flex flex-grow flex-col items-center rounded-[10px] border-[1px] border-gray-200 bg-white shadow-md shadow-[#F3F3F3] dark:border-[#ffffff33] dark:bg-navy-800 dark:text-white dark:shadow-none" style={{ height: '101px' }}>
                     <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">

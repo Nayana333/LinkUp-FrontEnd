@@ -55,6 +55,7 @@ export const adminUrl = {
     chartData:'/admin/chartData',
     getAdminNotifications:'/admin/getAdminNotifications',
     diagramData:'/admin/diagramData',
+    transactionsList:'/admin/transactionsList'
 
     
 

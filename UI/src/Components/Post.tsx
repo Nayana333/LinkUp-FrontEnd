@@ -7,8 +7,9 @@ import { useState, useEffect, useRef } from "react";
 import PostDetails from "./PostDetails";
 import { formatDistanceToNow } from "date-fns";
 import ReportModal from '../Components/ReportModal';
-import { io,Socket } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import { socketBaseURL } from "../config";
+import { useNavigate } from "react-router-dom";
 
 interface PostProps {
   post: {
@@ -42,7 +43,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false); // State for managing the dropdown
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for the dropdown
   const socket = useRef<any>()
-  
+
 
   const handleHideCommentToggle = () => {
     SetIsCommentSection(!isCommentSection);
@@ -81,7 +82,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const handleLike = (postId: string, userId: string) => {
     try {
       socket.current = io(socketBaseURL);
-      socket.current.emit('sendNotification',{senderName:user.userName,recieverId:postId,message:'liked your post'})
+      socket.current.emit('sendNotification', { senderName: user.userName, recieverId: postId, message: 'liked your post' })
       likePost({ postId, userId })
         .then((response: any) => {
           const postData = response.data;
@@ -137,7 +138,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   }, [dropdownOpen]);
 
   if (!post || !post.userId) {
-    return null; // or a placeholder
+    return null;
   }
 
   return (
@@ -166,9 +167,15 @@ const Post: React.FC<PostProps> = ({ post }) => {
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
                 <div className="py-1">
-                  <div className="text-xs px-4 py-2 cursor-pointer hover:bg-gray-100" onClick={() => { /* Handle View Profile */ }}>
-                    View Profile
-                  </div>
+                <div
+  className="text-xs px-4 py-2 cursor-pointer hover:bg-gray-100"
+  onClick={() => {
+ 
+  }}
+>
+  View Profile
+</div>
+
                   {user._id !== post.userId._id && (
                     <div className="text-xs px-4 py-2 cursor-pointer hover:bg-gray-100" onClick={openReportModal}>
                       Report

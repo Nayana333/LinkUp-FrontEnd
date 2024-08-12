@@ -327,10 +327,15 @@ const Header: React.FC<HeaderProps> = () => {
   const activeLinkStyle = "text-green-600";
   const inactiveLinkStyle = "text-gray-700";
 
+  const handleLinkClick = (path:string) => {
+    setIsMobileMenuOpen(false);
+    navigate(path);
+  };
+
 
   return (
-    <nav className="border bg-white lg:px-6 py-2.5 h-16 sticky top-0 z-10">
-      <div className="flex flex-wrap justify-between items-center">
+    <nav className="border bg-white lg:px-6 py-2.5 lg:height:4.8rem sticky top-0 z-10">
+      <div className="flex flex-wrap justify-between items-center ">
         <a href="/" className="flex items-center">
           <img src={Linkup} className="mr-3 h-4 sm:h-9" alt="linkup logo" />
         </a>
@@ -345,37 +350,19 @@ const Header: React.FC<HeaderProps> = () => {
           </button>
         </div>
 
-        {/*  */}
-        
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-        {/*  */}
-        <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} lg:flex lg:items-center lg:w-auto w-full`} id="mobile-menu">
-          <ul className="flex flex-col mt-4 lg:flex-row lg:space-x-8 lg:mt-0">
+        <div className={`${isMobileMenuOpen ? 'block z-30 bg-gray-200' : 'hidden'} lg:flex lg:items-center lg:w-auto w-full `} id="mobile-menu">
+          <ul className='flex flex-col mt-4 lg:flex-row lg:space-x-8 lg:mt-0 cursor-pointer'>
             <li>
-              <a
-                onClick={() => navigate('/home')}
+              <p
+                 onClick={() => handleLinkClick('/home')}
                 className={`text-xs font-bold block py-2 pr-4 pl-3 ${location.pathname.startsWith('/home') ? activeLinkStyle : inactiveLinkStyle}`}
               >
                 Home
-              </a>
+              </p>
             </li>
             <li>
               <a
-                onClick={() => navigate('/people/discover')}
+                onClick={() => handleLinkClick('/people/discover')}
                 className={`text-xs font-bold block py-2 pr-4 pl-3 ${location.pathname.startsWith('/people') ? activeLinkStyle : inactiveLinkStyle}`}
               >
                 People
@@ -383,7 +370,7 @@ const Header: React.FC<HeaderProps> = () => {
             </li>
             <li>
               <a
-                onClick={() => navigate('/jobs/open-to-work/job-list')}
+                onClick={() => handleLinkClick('/jobs/open-to-work/job-list')}
                 className={`text-xs font-bold block py-2 pr-4 pl-3 ${location.pathname.startsWith('/jobs') ? activeLinkStyle : inactiveLinkStyle}`}
               >
                 Jobs
@@ -411,8 +398,8 @@ const Header: React.FC<HeaderProps> = () => {
               </button>
             </div>
           </form>
-          <ul className="flex flex-col lg:flex-row items-center lg:gap-6 mt-4 lg:mt-0">
-            <li className="relative" onClick={() => navigate('/home/notifications')}>
+          <ul className="flex flex-row lg:flex-row items-center lg:gap-6 mt-4 lg:mt-0 justify-center gap-5 p-2 cursor-pointer ">
+            <li className="relative" onClick={() => handleLinkClick ('/home/notifications')}>
               <Bell color="gray" strokeWidth={1.3} size={23} />
               {unreadCount > 0 && (
                 <span className="absolute -top-2 -right-2 flex items-center justify-center w-4 h-4 text-[8px] font-bold text-red-100 bg-red-600 rounded-full">
@@ -420,7 +407,7 @@ const Header: React.FC<HeaderProps> = () => {
                 </span>
               )}
             </li>
-            <li onClick={() => navigate('/home/saved/posts')}>
+            <li onClick={() => handleLinkClick ('/home/saved/posts')}>
               <Bookmark color="gray" strokeWidth={1.5} size={20} />
             </li>
             <li onClick={() => navigate('/chat', { state: { from: location.pathname } })}>
@@ -464,6 +451,8 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
       </div>
     </nav>
+
+
   );
 
 
