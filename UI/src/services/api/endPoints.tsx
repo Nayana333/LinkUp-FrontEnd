@@ -1,4 +1,3 @@
-import { diagramData } from "./admin/AdminApiMethods"
 
 export const userUrls ={
     register:'/users/register' ,

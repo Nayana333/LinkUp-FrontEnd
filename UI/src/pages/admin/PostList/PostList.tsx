@@ -10,7 +10,7 @@ const PostList: React.FC = () => {
   const [posts, setPosts] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {

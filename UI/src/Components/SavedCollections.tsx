@@ -1,6 +1,4 @@
-import { useEffect,useState } from "react";
 import { Outlet,useNavigate,useLocation } from "react-router-dom";
-import {  useSelector } from "react-redux";
 
 
 
@@ -8,8 +6,7 @@ function SavedCollection(){
 
 const navigate=useNavigate()
 const location=useLocation()
-const selectUser=(state:any)=>state.auth.user
-const user=useSelector(selectUser)
+
 
 
 

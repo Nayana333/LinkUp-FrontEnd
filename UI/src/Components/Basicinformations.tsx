@@ -15,7 +15,7 @@ function BasicInformation() {
   const user = useSelector(selectUser) || "";
   const userId = user._id || "";
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -165,7 +165,7 @@ function BasicInformation() {
                   <div className="w-1/3 flex items-center flex-col ">
                     <div className="flex flex-col text-gray-500  mt-4  gap-4">
                       <Field name="image">
-                        {({ field }: any) => (
+                        {() => (
                           <input
                             type="file"
                             ref={fileInputRef}
@@ -327,7 +327,7 @@ function BasicInformation() {
                   <div className="w-1/3 flex items-center flex-col ">
                     <div className="flex flex-col text-gray-500  mt-4  gap-4">
                       <Field name="image">
-                        {({ field }: any) => (
+                        {() => (
                           <input
                             type="file"
                             ref={fileInputRef}

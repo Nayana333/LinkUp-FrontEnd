@@ -2,7 +2,6 @@ import { FC, useState, useEffect } from "react";
 import { User, Files, FileText } from "lucide-react";
 import ApexChart from '../../../Components/Chart/ApexChart'; 
 import { getDashboardStatus } from "../../../services/api/admin/AdminApiMethods";
-import Diagram from "../../../Components/Chart/Diagram";
 
 interface DashboardStatus {
     totalUsers: number;

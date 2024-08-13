@@ -7,7 +7,7 @@ import NoApplicant from "../../../Components/SkeltonUi/NoApplicant";
 
 function AdminReportList() {
   const [posts, setPosts] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [_isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -171,7 +171,7 @@ function AdminReportList() {
                             type="button"
                             style={{ width: '110px' }}
                             onClick={() => handlePostBlock(post._id, "unblock")}
-                            className="text-xs bg-white text-green-600 hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2"
+                            className=" bg-white text-green-600 hover:bg-gray-100 border border-gray-200 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2"
                           >
                             <ShieldCheck size={18} /> UnBlock
                           </button>

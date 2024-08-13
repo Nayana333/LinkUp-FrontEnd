@@ -10,7 +10,6 @@ import ForgotOtpPage from '../pages/user/Forgot-otp/Forgot-otp';
 import Reset from '../pages/user/ResetPSW/Reset';
 import UserHome from '../pages/user/userHome/UserHome';
 import { adminLoginRouter, adminRoute } from './adminRoute';
-import Profile from '../Components/Profile/Profile';
 import NotFoundPage from '../Components/ErrorPage/NotFound';
 import UserBio from '../Components/UserBio';
 import NotAuthorized from '../Components/ErrorPage/NotAuthorized';

@@ -7,7 +7,7 @@ import './UserList.css'
 import NoApplicant from '../../../Components/SkeltonUi/NoApplicant';
 
 const UserList: React.FC = () => {
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
   const [users, setUsers] = useState<any[]>([]);  
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);

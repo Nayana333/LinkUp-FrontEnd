@@ -1,4 +1,3 @@
-import React from 'react';
 import Linkup from '../../assets/Linkup.svg'
 
 

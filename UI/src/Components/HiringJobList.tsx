@@ -15,7 +15,7 @@ function HiringJobList(){
     const userId=user._id
     const [currentPage,setCurrentPage]=useState(1)
     const [jobs,setJobs]=useState<any[]>([])
-    const [loading,setLoading]=useState(false)
+    const [_loading,setLoading]=useState(false)
     const [totalPages, setTotalPages] = useState(1);
 
     useEffect(()=>{

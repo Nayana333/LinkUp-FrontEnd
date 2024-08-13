@@ -1,16 +1,11 @@
-import PeopleCard from "./PeopleCard";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Search } from "../services/api/user/apiMethods";
-import { useParams, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import NoConnections from "./SkeltonUi/NoConnections";
 import PeopleCardLarge from "./PeopleCardLarge";
 
 function SearchPeople() {
-  const selectUser = (state: any) => state.auth.user;
-  const userData = useSelector(selectUser);
-  const { userId } = useParams();
-  const currentUserId = userData._id;
+  
   const [connections, setConnections] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<string>("");

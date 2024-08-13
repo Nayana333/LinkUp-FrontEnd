@@ -16,7 +16,7 @@ interface Transaction {
 }
 
 function Premium() {
-  const [latestTransactions, setLatestTransaction] = useState<Transaction | {}>({});
+  const [_latestTransactions, setLatestTransaction] = useState<Transaction | {}>({});
   const [daysRemaining, setDaysRemaining] = useState<number | null>(null);
   const selectUser = (state: any) => state.auth.user || "";
   const user = useSelector(selectUser) || "";
@@ -68,7 +68,6 @@ function Premium() {
           toast.error(response.data.message);
         }
       } catch (error) {
-        toast.error(error);
         localStorage.removeItem('sessionId');
         console.error(error);
       }

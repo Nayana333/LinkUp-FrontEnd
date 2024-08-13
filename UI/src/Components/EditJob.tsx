@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import TextError from './TextError';
 import { editJob, getJobDetails } from '../services/api/user/apiMethods';
-import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -11,9 +10,9 @@ import { toast } from 'sonner';
 
 const EditJob=()=>{
 
-    const selectUser=(state:any)=>state.auth.user
-    const user=useSelector(selectUser)
-    const userId=user._id
+    // const selectUser=(state:any)=>state.auth.user
+    //  const user=useSelector(selectUser)
+    //  const _userId=user._id
     const {jobId}=useParams()
     const [job,setJob]=useState<any>({})
     const [loading,setLoading]=useState(false)

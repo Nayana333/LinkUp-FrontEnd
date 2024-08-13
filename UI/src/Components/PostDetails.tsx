@@ -74,7 +74,7 @@ const PostDetails: React.FC<PostProps> = ({
   const [replyComments, setReplyComments] = useState(false);
   const [parentCommentId, setParentCommentId] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  const commentBoxRef = useRef(null);
+  const commentBoxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     getPostComments({ postId: post._id })
@@ -103,16 +103,16 @@ const PostDetails: React.FC<PostProps> = ({
 
   const handleDeleteComments = (commentId: any) => {
     deleteComment(commentId)
-    .then((response: any) => {
-      const data = response.data;
-      if (response.status === 200) {
-        const commentData = data.comments;
-        setComments(commentData);
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
-    })
+      .then((response: any) => {
+        const data = response.data;
+        if (response.status === 200) {
+          const commentData = data.comments;
+          setComments(commentData);
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
+        }
+      })
       .catch((error) => {
         console.log(error?.message);
         toast.error("An error occurred. Please try again.");
@@ -298,6 +298,8 @@ const PostDetails: React.FC<PostProps> = ({
     }
   };
 
+
+
   useEffect(() => {
 
     if (commentBoxRef.current) {
@@ -312,7 +314,7 @@ const PostDetails: React.FC<PostProps> = ({
   return (
     <div
       className="bg-white overflow-hidden shadow-none  mt-7 rounded-md"
-      style={{  height: "476px" }}
+      style={{ height: "476px" }}
     >
       <div className=" grid grid-cols-3 min-w-full">
         <div className="col-span-2 w-full">
@@ -524,7 +526,7 @@ const PostDetails: React.FC<PostProps> = ({
                     </button>
                   )}
 
-               </div>
+                </div>
                 <span className="block ml-2 text-xs text-gray-600">
                   5 minutes
                 </span>

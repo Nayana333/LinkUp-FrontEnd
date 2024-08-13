@@ -5,7 +5,7 @@ import UseCropImage from '../../Hooks/GetCroppedImage'
 interface Props {
   imgUrl: string;
   aspectInit: { value: number };
-  setCroppedImg: React.Dispatch<React.SetStateAction<string[]>>; 
+  setCroppedImg: React.Dispatch<React.SetStateAction<string>>;
   handleNextImage: () => void;
 }
 
@@ -18,7 +18,7 @@ const CropImage: React.FC<Props> = ({
   const [disable, setDisable] = useState<boolean>(false);
   const zoomInit: number = 1;
   const cropInit: { x: number; y: number } = { x: 0, y: 0 };
-  
+
   const [zoom, setZoom] = useState<number>(zoomInit);
   const [crop, setCrop] = useState<{ x: number; y: number }>(cropInit);
   const [croppedAreaPx, setCroppedAreaPx] = useState<any>(null);
@@ -31,7 +31,7 @@ const CropImage: React.FC<Props> = ({
     setZoom(zoom);
   };
 
-  const onCropComplete = (croppedArea: any, croppedAreaPxc: any) => {
+  const onCropComplete = (_croppedArea: any, croppedAreaPxc: any) => {
     setCroppedAreaPx(croppedAreaPxc);
   };
 
@@ -40,12 +40,12 @@ const CropImage: React.FC<Props> = ({
     try {
       const croppedUrl = await UseCropImage(imgUrl, croppedAreaPx);
       setDisable(false);
-      setCroppedImg(prevImages => [...prevImages, croppedUrl]);
+      setCroppedImg(croppedUrl);
       handleNextImage()
       console.log(croppedUrl)
     } catch (error) {
       setDisable(false);
-     
+
     }
   };
 
@@ -71,7 +71,7 @@ const CropImage: React.FC<Props> = ({
             max={3}
             step={0.1}
             value={zoom}
-            onInput={(e) => {
+            onChange={(e) => {
               onZoomChange(parseFloat(e.target.value));
             }}
             className="w-[50%]"
@@ -80,7 +80,7 @@ const CropImage: React.FC<Props> = ({
         <div className="text-center">
           <button type="button"
             className="bg-red-500 text-white px-4 p-1 mr-5 rounded-lg"
-            onClick={() => setimgSelected(false)}
+            // onClick={() => setimgSelected(false)}
           >
             cancel
           </button>

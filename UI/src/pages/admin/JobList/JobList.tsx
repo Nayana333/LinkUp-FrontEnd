@@ -1,7 +1,6 @@
 
 import { Pagination } from "flowbite-react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import { toast } from "sonner";
 import { adminJobList, jobBlock } from "../../../services/api/admin/AdminApiMethods";
 import { useEffect, useState } from "react";
@@ -14,7 +13,7 @@ function HiringJobList() {
   
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {

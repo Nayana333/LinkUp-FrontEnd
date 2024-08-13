@@ -1,4 +1,4 @@
-import { ImagePlus,FileImage,Smile,Type,Camera} from "lucide-react";
+import { FileImage,Smile,Type,Camera} from "lucide-react";
 import { useState, useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { addPost } from "../../services/api/user/apiMethods";
 import CropImage from "./CropImage";
 
-import { Button, Spinner } from "flowbite-react";
+import {  Spinner } from "flowbite-react";
 
   
 

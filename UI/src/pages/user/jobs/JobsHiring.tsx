@@ -11,7 +11,7 @@ function JobsHiring() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchText, setSearchText] = useState("");
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, _setIsDrawerOpen] = useState(false);
 
   useEffect(() => {
     if (user.isHiring === false) {
@@ -80,7 +80,7 @@ function JobsHiring() {
             Add Job
           </button>
     
-          <div className="border w-full md:w-1/3 profile-nav flex items-center justify-center gap-4 md:gap-20 bg-white rounded-md ms-4 hidden sm:flex mt-2 md:mt-0 sm:justify-center">
+          <div className="border w-full md:w-1/3 profile-nav  items-center justify-center gap-4 md:gap-20 bg-white rounded-md ms-4 hidden sm:flex mt-2 md:mt-0 sm:justify-center">
             <div className="flex items-center justify-center gap-2 w-full p-2">
               <p className="text-xs text-gray-500 w-1/3 ps-5">Search Job</p>
               <input

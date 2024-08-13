@@ -1,9 +1,8 @@
 import { useEffect,useRef } from "react";
 import { useLocation,useNavigate,useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
-import { useSelector, UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import './InterviewCall.css'
-import Linkup from '../assets/Linkup.svg'
 
 
 function InterviewCall(){

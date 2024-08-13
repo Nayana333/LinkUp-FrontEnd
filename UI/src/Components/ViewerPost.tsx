@@ -1,7 +1,6 @@
 import { getUserPost } from "../services/api/user/apiMethods"
 import { useEffect,useState } from "react"
 import { useParams } from "react-router-dom"
-import { toast } from "sonner"
 import PostDetailsUi from "./SkeltonUi/PostDetailsUi"
 import PostDetails from "./PostDetails"
 import NoApplicant from "./SkeltonUi/NoApplicant"

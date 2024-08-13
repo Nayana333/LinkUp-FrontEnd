@@ -2,16 +2,57 @@ import ReactApexChart from 'react-apexcharts';
 import { useState, useEffect } from 'react';
 import { chartData } from '../../services/api/admin/AdminApiMethods';
 
-interface ChartData {
-  _id: string;
-  userCount: number;
-  postCount: number;
-  jobCount: number;
-}
+// interface ChartData {
+//   _id: string;
+//   userCount: number;
+//   postCount: number;
+//   jobCount: number;
+// }
 
 interface SeriesData {
   month: string;
   count: number;
+}
+
+interface charts {
+  chart:{
+    height:number;
+    type:"area" | "line" | "bar" | "pie" | "donut" | "radialBar" | "scatter" | "bubble" | "heatmap" | "candlestick" | "boxPlot" | "radar" | "polarArea" | "rangeBar" | "rangeArea" | "treemap" | undefined;
+  };
+  stroke: {
+    width: 5,
+    curve: "smooth",
+  },
+  xaxis: {
+    type: "datetime",
+    labels: {
+      formatter:any
+    },
+  },
+  title: {
+    text: "User Growth, Post, and Job Creation",
+    align: "left",
+    style: {
+      fontSize: "16px",
+      color: "#666",
+    },
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shade: "dark",
+      gradientToColors: ["#7E3AF2", "#3BA55D"],
+      shadeIntensity: 1,
+      type: "horizontal",
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100, 100, 100],
+    },
+  },
+  yaxis: {
+    min: 0,
+  },
+
 }
 
 const ApexChart: React.FC = () => {
@@ -20,7 +61,7 @@ const ApexChart: React.FC = () => {
   const [postData, setPostData] = useState<SeriesData[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [options] = useState({
+  const [options] = useState<charts>({
     chart: {
       height: 350,
       type: "line",
@@ -32,7 +73,7 @@ const ApexChart: React.FC = () => {
     xaxis: {
       type: "datetime",
       labels: {
-        formatter: function (value: number, timestamp: number, opts: any) {
+        formatter: function (value: number, _timestamp: number, opts: any) {
           return opts.dateFormatter(new Date(value), "MMM yyyy");
         },
       },

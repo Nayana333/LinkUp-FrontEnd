@@ -4,8 +4,7 @@ import {
   Users, 
   FileText, 
   MessageCircle, 
-  CheckSquare, 
-  Briefcase, 
+
   DollarSign, 
   File 
 } from 'lucide-react';
@@ -40,17 +39,7 @@ const AdminSideNav: React.FC = () => {
             <span className="text-xs">Users</span>
           </a>
         </li>
-          {/* <li className="mb-1 group">
-            <a
-              onClick={() => navigate('/admin/job-category')}
-              className={`flex font-semibold items-center gap-1 py-3 px-4 hover:bg-gray-950 hover:text-gray-100 rounded-md ${
-                location.pathname === '/admin/job-category' ? 'bg-gray-950 text-gray-100' : ''
-              }`}
-            >
-              <CheckSquare strokeWidth={1.5} size={16} />
-              <span className="text-xs">Jobs category</span>
-            </a>
-          </li> */}
+     
           <li className="mb-1 group">
             <a
               onClick={() => navigate('/admin/jobs')}

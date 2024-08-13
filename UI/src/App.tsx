@@ -36,9 +36,6 @@ import { socketBaseURL } from "./config";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
-type SocketRef = {
-  current: Socket | null;
-};
 
 function App() {
   const socket = useRef<Socket | null>(null);
@@ -69,8 +66,8 @@ function App() {
 
   return (
     <>
-      <FilterProvider>
         <div>
+        <FilterProvider>
           <Header1 />
           <div className="home-main">
             <div className="hidden lg:block home-section-1" id="mobile-menu-2">
@@ -78,8 +75,8 @@ function App() {
             </div>
             <Outlet />
           </div>
+          </FilterProvider>
         </div>
-      </FilterProvider>
     </>
   );
 }

@@ -14,14 +14,13 @@ import {auth,provider} from "../../../utils/fireConfig"
 import { googleAuthenticate} from '../../../services/api/user/apiMethods';
 import {signInWithPopup} from "firebase/auth";
 import { logged } from '../../../utils/context/reducers/authSlice';
-import { string } from 'yup';
 
 
 function Register() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get('email') || '';
-  const [userEmail, setUserEmail] = useState(email);
+  const [userEmail, _setUserEmail] = useState(email);
 
   const navigate=useNavigate();
 

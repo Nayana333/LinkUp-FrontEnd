@@ -6,7 +6,7 @@ import { useFilterContext } from "../../../utils/context/JobFilterData/FilterCon
 
 function JobsOpenToWork() {
   const selectUser = (state: any) => state.auth.user;
-  const { filterData, setFilterData } = useFilterContext();
+  const {  setFilterData } = useFilterContext();
   const user = useSelector(selectUser);
   const location = useLocation();
   const navigate = useNavigate();

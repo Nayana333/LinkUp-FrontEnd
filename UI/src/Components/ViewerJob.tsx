@@ -1,6 +1,6 @@
 import  { useEffect, useState } from "react";
 import { Bookmark } from "lucide-react";
-import { getSavedPost, listUserJob, savePost } from "../services/api/user/apiMethods";
+import {  listUserJob, savePost } from "../services/api/user/apiMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../utils/context/reducers/authSlice";
 import { toast } from "sonner";
@@ -47,7 +47,7 @@ const ViewerJobs= () => {
 
   useEffect(() => {
     try {
-     listUserJob({userId:userId,page:null})
+     listUserJob({userId:userId,page:1})
         .then((response: any) => {
           const jobsData = response.data.jobs;
           setJobs(jobsData);

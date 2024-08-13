@@ -1,16 +1,12 @@
 import PeopleCard from "./PeopleCard";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserConnection } from "../services/api/user/apiMethods";
 import { useParams } from "react-router-dom";
 import NoConnections from "./SkeltonUi/NoConnections";
 
 function ViewerConnections() {
-  const selectUser = (state: any) => state.auth.user;
-  const userData = useSelector(selectUser);
   const { userId } = useParams();
-  const currentUserId = userData._id;
-  const [connections, setConnections] = useState<any[]>([]); // Initialize as an empty array
+  const [connections, setConnections] = useState<any[]>([]); 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

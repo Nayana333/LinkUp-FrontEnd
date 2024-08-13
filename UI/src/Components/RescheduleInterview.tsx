@@ -9,7 +9,6 @@ import { editInterview, getUserConnection } from "../services/api/user/apiMethod
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useLocation, useParams } from "react-router-dom";
 
 interface Connection {
     _id: string;
@@ -49,14 +48,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const RescheduleInterview: React.FC<RescheduleInterviewProps> = ({ interview, onCancelEdit, setInterviews }) => {
-    const { jobId } = useParams<{ jobId: string }>();
-    const location = useLocation();
-    const { pathname } = location;
+    // const { jobId } = useParams<{ jobId: string }>();
+    // const location = useLocation();
+    // const { pathname } = location;
 
     const userData = useSelector((state: any) => state.auth.user);
     const userId = userData._id;
     const [connections, setConnections] = useState<Connection[] | null>(null);
-    const [initialValues, setInitialValues] = useState<FormValues>({
+    const [initialValues, _setInitialValues] = useState<FormValues>({
         interviewDate: interview.interviewDate || '',
         interviewTime: interview.interviewTime || '',
         jury: interview.jury || [],

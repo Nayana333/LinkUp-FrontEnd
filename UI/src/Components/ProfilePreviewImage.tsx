@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 
 
 interface ProfilePreviewImageProps {
@@ -8,8 +7,8 @@ interface ProfilePreviewImageProps {
 
 const ProfilePreviewImage: React.FC<ProfilePreviewImageProps> = ({ file }) => {
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null); 
-  const selectUser = (state: any) => state.auth.user || ''; 
-  const user = useSelector(selectUser) || '';
+  // const selectUser = (state: any) => state.auth.user || ''; 
+  // const _user = useSelector(selectUser) || '';
 
 
   useEffect(() => {

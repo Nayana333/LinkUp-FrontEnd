@@ -1,6 +1,5 @@
 import {adminUrl} from '../endPoints'
 import adminApiCalls from './AdminApiCalls'
-import { adminApi } from './api';
 
 
 export const AdminLoginPost=(adminData:any)=>{

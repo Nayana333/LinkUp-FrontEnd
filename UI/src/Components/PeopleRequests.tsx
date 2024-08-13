@@ -3,7 +3,6 @@ import PeopleCard from "./PeopleCard";
 import SkeletonUserCard from "../Components/SkeltonUi/PeopleCardSkelton";
 import { getUserConnection } from "../services/api/user/apiMethods";
 import { useSelector } from "react-redux";
-import NoApplicant from "./SkeltonUi/NoApplicant";
 import NoConnections from "./SkeltonUi/NoConnections";
 
 function PeopleRequests() {

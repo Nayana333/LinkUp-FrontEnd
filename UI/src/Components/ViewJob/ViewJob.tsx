@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { toast } from "sonner";
-import { useSelector } from "react-redux";
-import { View } from "lucide-react";
 import {viewJob} from '../../services/api/user/apiMethods'
 import './ViewJob.css'
 
@@ -11,9 +9,9 @@ import './ViewJob.css'
 
 const ViewJob = () => {
 
-    const selectuser=(state:any)=>state.auth.user
-    const user=useSelector(selectuser)
-    const userId=user._id;
+    // const selectuser=(state:any)=>state.auth.user
+    // const user=useSelector(selectuser)
+    // const userId=user._id;
     const {jobId}=useParams()
     const [job,setJob]=useState<any>({})
     const [loading,setLoading]=useState(false)

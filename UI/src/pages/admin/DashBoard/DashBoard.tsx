@@ -17,9 +17,9 @@ function AdminDashboard() {
 
     return (
       <div className='main bg-gray-100' style={{ height: "100vh", overflowY: 'auto' }}>
-        <AdminHeader className='sticky-header' />
+        <AdminHeader />
         <div className='flex'>
-          <AdminSideNav className='sticky-sidebar' />
+          <AdminSideNav />
           <Outlet />
         </div>
       </div>

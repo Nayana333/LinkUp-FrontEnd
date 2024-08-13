@@ -1,4 +1,4 @@
-import { Bookmark, Heart, MessageCircle, X, MoreHorizontal } from "lucide-react"; // Import MoreHorizontal for three-dot icon
+import { Bookmark, Heart, MessageCircle, X, MoreHorizontal } from "lucide-react"; 
 import { likePost, savePost } from "../services/api/user/apiMethods";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsePosts, updateUser } from "../utils/context/reducers/authSlice";
@@ -7,9 +7,8 @@ import { useState, useEffect, useRef } from "react";
 import PostDetails from "./PostDetails";
 import { formatDistanceToNow } from "date-fns";
 import ReportModal from '../Components/ReportModal';
-import { io, Socket } from "socket.io-client";
+import { io } from "socket.io-client";
 import { socketBaseURL } from "../config";
-import { useNavigate } from "react-router-dom";
 
 interface PostProps {
   post: {
@@ -28,6 +27,7 @@ interface PostProps {
     hideComment: boolean;
     hideLikes: boolean;
     date: string;
+    isEdited:Boolean
   };
 }
 

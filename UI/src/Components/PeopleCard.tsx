@@ -2,7 +2,7 @@ import { CircleArrowUp, CircleCheck,CircleX,CircleArrowDownIcon,Ban,Target} from
 import {useNavigate} from 'react-router-dom'
 import { toast } from "sonner"
 import {unfollowUser,acceptFollowRequest,cancelFollowRequest,followUser,getUserConnection,rejectFollowRequest} from '../services/api/user/apiMethods'
-import { useSelector, UseSelector } from "react-redux"
+import { useSelector, } from "react-redux"
 import { useLocation } from "react-router-dom"
 import { useEffect,useState } from "react"
 
@@ -16,7 +16,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
 
   const [connections,setConnections]=useState<any>(null)
   const [requested,setRequested]=useState<any>(null)
-  const [loading,setLoading]=useState(true)
+  const [_loading,setLoading]=useState(true)
 
   useEffect(()=>{
     {
@@ -96,7 +96,7 @@ function PeopleCard({user,handleFollow,updateConnection,updateRequested,updateRe
  }
 
 
- const handleFollowFromViewProfile=(folowedUserId:string,followedUserName:string)=>{
+ const handleFollowFromViewProfile=(folowedUserId:string,_followedUserName:string)=>{
   followUser({userId,followingUser:folowedUserId})
   .then((response:any)=>{
     const connectionData=response.data.connection

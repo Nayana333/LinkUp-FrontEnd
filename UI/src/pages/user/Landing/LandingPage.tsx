@@ -13,9 +13,7 @@ const LandingPage:React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
 
-  const handleNavigate = (path:string) => {
-    navigate(path);
-  };
+
 
   const handleSubmit = (e:React.FormEvent) => {
     e.preventDefault();

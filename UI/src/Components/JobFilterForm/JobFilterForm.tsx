@@ -1,14 +1,14 @@
-import  { useContext, useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Accordion } from "flowbite-react";
 import Select from "react-select";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { FilterContext,useFilterContext, } from '../../utils/context/JobFilterData/FilterContext';
+import { useFilterContext, } from '../../utils/context/JobFilterData/FilterContext';
 import { getFormSelectFormData } from "../../services/api/user/apiMethods";
 import { toast } from "sonner";
 import { useNavigate} from "react-router-dom";
 function JobFilterForm({  onReset }:any) {
-  const { filterData, setFilterData } = useFilterContext();
+  const { setFilterData } = useFilterContext();
   const [locationOptions,setLocationOptions]=useState([])
   const [jobRoleOptions,setJobRoleOptions]=useState([])
   const [selectedJobRole, setSelectedJobRole] = useState({value:""});
@@ -16,7 +16,7 @@ function JobFilterForm({  onReset }:any) {
   const [selectedJobType, setSelectedJobType] = useState("");
   const [selectedSalaryRange, setSelectedSalaryRange] = useState(0);
   const [selectedExperienceRange, setSelectedExperienceRange] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [_loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     setLoading(true);

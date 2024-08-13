@@ -100,7 +100,7 @@ const ApplyJobForm: React.FC<ApplyJobFormProps> = ({ job, cancelApplyJob }) => {
               <div className="mb-4 w-full flex flex-col gap-2">
                 <label className="text-xs text-gray-600" htmlFor="resume">Resume (PDF only):</label>
                 <Field name="resume">
-                  {({ form, field }: any) => (
+                  {({ form }: any) => (
                     <input
                       type="file"
                       id="resume"

@@ -12,7 +12,7 @@ function PeopleCardLarge({ user, handleFollow ,updateConnection,updateRequested,
   const userId = currentUser?._id
   const [connections,setConnections] = useState<any>(null);
   const [requested, setRequested] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [_loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -91,7 +91,7 @@ const handleUnFollowFromViewProfile = (user:any) => {
     });
 };
 
-const handleFollowFromViewProfile = (foloweduserId:string,followedUserName:string) => {
+const handleFollowFromViewProfile = (foloweduserId:string,_followedUserName:string) => {
   followUser({ userId, followingUser: foloweduserId })
     .then((response: any) => {
       const connectionData = response.data.connection;

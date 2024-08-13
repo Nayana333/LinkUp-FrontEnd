@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getIntervieweeInterviews } from "../services/api/user/apiMethods";
-import CopyLink from "./CopyLink";
 import { View } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NoApplications from "./SkeltonUi/NoApplication";

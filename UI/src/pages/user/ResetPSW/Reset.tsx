@@ -1,4 +1,3 @@
-import React from 'react';
 import './Reset.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormValues, initialValues, validationSchema } from '../../../utils/validation/changePasswordValidation';
@@ -6,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { newPassword } from '../../../services/api/user/apiMethods';
 import TextError from '../../../Components/TextError';
-import Linkup from '../../../assets/Linkup.svg'
 
 const Reset = () => {
   const navigate = useNavigate();
@@ -14,7 +12,6 @@ const Reset = () => {
   const submit = (values: FormValues, { setSubmitting }: any) => {
     newPassword(values)
       .then((response: any) => {
-        const data = response.data;
         toast.success(response.message);
         navigate('/login');
       })

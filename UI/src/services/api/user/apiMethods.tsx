@@ -1,9 +1,7 @@
 import { userUrls,postUrls,jobUrls } from "../endPoints";
 import apiCalls from "./apiCalls";
 import { FormValues } from "../../../utils/validation/signUpValidation";
-import { useRouteLoaderData } from "react-router-dom";
 import { connectUrl } from "../endPoints";
-import { reject } from "lodash";
 import { chatUrls } from "../endPoints";
 
 export const postRegister = (userData: FormValues) => { 
@@ -619,6 +617,8 @@ export const acceptFollowRequest=(data:{userId:string,requestedUser:string})=>{
         resolve(response)
       }).catch((err)=>{
         reject({status:500,message:'something wrong'})
+        console.log(err);
+        
       })
     }catch(error){
       reject({status:500,message:'something went wrong'})

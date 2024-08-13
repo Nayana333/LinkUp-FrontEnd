@@ -1,4 +1,3 @@
-import React from 'react';
 import { Briefcase, MessageCircle, Share } from "lucide-react";
 import Header2 from '../Components/Header';
 

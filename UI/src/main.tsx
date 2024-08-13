@@ -34,7 +34,6 @@
 
 
 
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -59,9 +58,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         }}
       />
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={appRouter}>
-          <App />
-        </RouterProvider>
+        <RouterProvider fallbackElement={<App />} router={appRouter}></RouterProvider>
       </PersistGate>
     </Provider>
 );

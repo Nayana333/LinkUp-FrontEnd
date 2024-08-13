@@ -1,7 +1,6 @@
 import ChatUsers from "../../../Components/ChatComponents/ChatUsers";
 import Messages from "../../../Components/ChatComponents/Message";
-import ChatingUser from "../../../Components/ChatComponents/ChatingUsers";
-import { addConversation, getUserConversations, getUserMessages } from "../../../services/api/user/apiMethods";
+import { addConversation, getUserConversations,  } from "../../../services/api/user/apiMethods";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import NochatScreen from "../../../Components/ChatComponents/NonChatScreen";

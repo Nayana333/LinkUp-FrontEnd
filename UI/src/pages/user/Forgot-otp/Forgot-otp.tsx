@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'sonner';
-import { useLocation, useNavigate,Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { postForgotOtp,postResendOtp } from '../../../services/api/user/apiMethods';
 import Linkup from '../../../assets/Linkup.svg'
 
 function ForgotOtpPage() {
-  const [code, setCode] = useState<string[]>(Array(4).fill(''));
+  const [_code, _setCode] = useState<string[]>(Array(4).fill(''));
 
   const location = useLocation();
   const navigate = useNavigate();

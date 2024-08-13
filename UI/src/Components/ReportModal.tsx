@@ -14,7 +14,7 @@ function ReportModal({userId,postId,openReportModal,closeReportModal}:any){
     const handleReport = () => {
         setIsLoading(true);
         reportPost({ userId, postId, cause: reportCause })
-            .then((response) => {
+            .then(() => {
                 toast.info('You have reported this post');
                 setIsLoading(false); 
                 closeReportModal(true);

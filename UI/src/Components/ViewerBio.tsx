@@ -10,12 +10,12 @@ function ViewerBio() {
   const selectUser = (state: any) => state.auth.user;
   const userData = useSelector(selectUser);
   const loggedUserId = userData._id;
-  const [isConnected, setIsConnected] = useState(false);
+  const [_isConnected, setIsConnected] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [connections, setConnections] = useState<any>(null);
   const [loggedUserConnections, setLoggedUserConnections] = useState<any>(null);
   const [requested, setRequested] = useState<any>(null);
-  const [post, setPost] = useState([]);
+  const [_post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const { userId } = useParams();
 
@@ -72,7 +72,7 @@ function ViewerBio() {
       });
   };
 
-  const handleFollowFromViewProfile = (followeduserId: string | undefined, followedUserName: string) => {
+  const handleFollowFromViewProfile = (followeduserId: string | undefined, _followedUserName: string) => {
     followUser({ userId: loggedUserId, followingUser: followeduserId })
       .then((response: any) => {
         const connectionData = response.data.connection;

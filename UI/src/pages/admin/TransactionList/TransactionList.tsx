@@ -1,7 +1,6 @@
 import { useEffect,useState, } from "react";
 import { toast } from "sonner";
-import { ShieldAlert,ShieldCheck } from "lucide-react";
-import { adminUserBlock,adminTransactions,adminUserList } from "../../../services/api/admin/AdminApiMethods";
+import { adminTransactions } from "../../../services/api/admin/AdminApiMethods";
 import { Pagination } from "flowbite-react";
 import NoApplicant from "../../../Components/SkeltonUi/NoApplicant";
 
@@ -9,7 +8,7 @@ import NoApplicant from "../../../Components/SkeltonUi/NoApplicant";
 const TransactionList:React.FC=()=>{
 
 
-    const [loading,setLoading]=useState(false)
+    const [_loading,setLoading]=useState(false)
     const [transaction,setTransaction]=useState<any[]>([])
     const [currentPage,setCurrenPage]=useState(1)
     const [totalPages,setTotalPages]=useState(1)

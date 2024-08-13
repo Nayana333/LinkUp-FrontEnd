@@ -1,6 +1,6 @@
 import { formatDistanceToNow } from "date-fns";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import  { useEffect, useState } from "react";
+import {  useSelector } from "react-redux";
 import { BellRing } from "lucide-react";
 import { getAdminNotifications } from "../../../services/api/admin/AdminApiMethods";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,6 @@ interface Notification {
 }
 
 function AdminNotification() {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state: any) => state.auth.user);
     const userId = user?._id || "";
