@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import { unfollowUser, cancelFollowRequest, followUser, getUserConnection, getUserDetails, getUserPost } from "../services/api/user/apiMethods";
+import NoApplicant from "./SkeltonUi/NoApplicant";
 
 function ViewerBio() {
   const selectUser = (state: any) => state.auth.user;
@@ -99,7 +100,9 @@ function ViewerBio() {
 
   return (
     <div>
-      {user && (
+      {!user ? (
+        <NoApplicant />
+      ) : (
         <div>
           <div className="background w-full h-36 bg-gray-300 mt-7 rounded-t-md"></div>
           <div className="bio bg-white w-full h-96 rounded-b-md pt-16 px-10">

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserConnection } from "../services/api/user/apiMethods";
 import { useParams } from "react-router-dom";
+import NoConnections from "./SkeltonUi/NoConnections";
 
 function ViewerConnections() {
   const selectUser = (state: any) => state.auth.user;
@@ -40,15 +41,18 @@ function ViewerConnections() {
       {loading ? (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-0 justify-center">
         </div>
-      ) : (
+      ) : connections.length > 0 ? (
         <div className="flex flex-row flex-wrap gap-x-8 gap-y-0 justify-center">
           {connections.map((user: any) => (
             <PeopleCard key={user.id} user={user} updateConnection={setConnections} />
           ))}
         </div>
+      ) : (
+        <NoConnections/>
       )}
     </div>
   );
+  
 }
 
 export default ViewerConnections;

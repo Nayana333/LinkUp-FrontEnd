@@ -6,7 +6,7 @@ import Diagram from "../../../Components/Chart/Diagram";
 
 interface DashboardStatus {
     totalUsers: number;
-    totalPosts: number;
+    totalPost: number;
     totalJobs: number;
     totalReports: number;
 }

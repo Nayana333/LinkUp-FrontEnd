@@ -50,54 +50,17 @@ const AdminHeader: React.FC<HeaderProps> = () => {
             alt="LinkUp logo"
           />
         </a>
-
+  
         <div
           className="hidden justify-between items-center w-full lg:flex lg:w-auto"
           id="mobile-menu-2"
         >
-       
-
-          <form className="relative w-80 ms-32 me-6">
-            <div className="relative">
-              <input
-                type="search"
-                name="search"
-                placeholder="Search"
-                className="search-input text-xs bg-white h-8 px-5 w-full pr-10 rounded-full focus:outline-none border border-gray-300"
-                style={{
-                  position: "relative",
-                }}
-              />
-              <button
-                type="submit"
-                className="search-icon text-white rounded-full absolute bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-800 font-medium text-sm px-2 py-2"
-                style={{
-                  position: "absolute",
-                  right: "2px",
-                  top: "2px",
-                }}
-              >
-                <svg
-                  className="w-3 h-3 text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </button>
-            </div>
-          </form>
-
-          <ul className="flex justify-between items-center gap-6">
-            
+          <span className="block text-sm text-green-500 truncate">
+            Admin Logged
+            <span className="inline-block ml-2 w-2.5 h-2.5 bg-green-500 rounded-full"></span>
+          </span>
+  
+          <ul className="flex justify-between items-center gap-6 ms-4">
             <li className="relative">
               <button
                 type="button"
@@ -110,7 +73,7 @@ const AdminHeader: React.FC<HeaderProps> = () => {
                   alt="user photo"
                 />
               </button>
-
+  
               <div
                 ref={dropdownRef}
                 className={`z-50 absolute right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow-lg ${
@@ -119,33 +82,16 @@ const AdminHeader: React.FC<HeaderProps> = () => {
               >
                 <div className="px-4 py-2">
                   <span className="block text-xs font-semibold text-gray-900">
-                Admin
+                    Admin
                   </span>
                   <span className="block text-xs text-gray-500 truncate">
-                  admin@gamil.com
+                    admin@gamil.com
                   </span>
                 </div>
                 <ul className="py-2">
-                  {/* <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
-                    >
-                      Dashboard
-                    </a>
-                  </li>
                   <li>
                     <a
-                      href="#"
-                      className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100"
-                    >
-                      Settings
-                    </a>
-                  </li> */}
-
-                  <li>
-                    <a
-                         onClick={handleLogout}
+                      onClick={handleLogout}
                       className="block px-4 py-2 font-semibold text-xs text-red-500 hover:bg-gray-100"
                     >
                       Sign out
@@ -159,6 +105,7 @@ const AdminHeader: React.FC<HeaderProps> = () => {
       </div>
     </nav>
   );
+  
 };
 
 export default AdminHeader;

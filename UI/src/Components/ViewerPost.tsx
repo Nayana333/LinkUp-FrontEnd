@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { toast } from "sonner"
 import PostDetailsUi from "./SkeltonUi/PostDetailsUi"
 import PostDetails from "./PostDetails"
+import NoApplicant from "./SkeltonUi/NoApplicant"
 
 
 
@@ -40,29 +41,20 @@ try{
 }
 },[userId])
 return (
+  <>
+    {loading ? (
+      <PostDetailsUi />
+    ) : posts.length > 0 ? (
+      <div className="posts">
+        {posts.map((post: any) => (
+          <PostDetails key={post._id} post={post} likesValue={false} commentsValue={false} />
+        ))}
+      </div>
+    ) : (
+      <NoApplicant/>
+    )}
+  </>
+);
 
-    <>
-
-    {loading&&(
-      <PostDetailsUi/>
-  
-    )
-      
-
-    }
-     
-          {posts.length >0 && !loading&&(
-          <div className="posts">
-            {posts.map((post: any) => (
-
-              <PostDetails  key={post._id} post={post} likesValue={false} commentsValue={false} />
-            ))}
-          </div>
-        )}
-      
-    </>
-
-
-  )
 }
 export default ViewerPost
