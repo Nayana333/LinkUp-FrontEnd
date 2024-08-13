@@ -1,7 +1,8 @@
+console.log(import.meta.env.VITE_APP_BASEURL);
 
 const config = {
-    baseURL: 'http://localhost:3000/api/',
-    socketBaseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_APP_BASEURL,
+    socketBaseURL:import.meta.env.VITE_APP_SOCKET_BASEURL,
     headers: {
       'Content-Type': 'application/json',
     },

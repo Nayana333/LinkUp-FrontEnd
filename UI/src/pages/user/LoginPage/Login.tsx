@@ -12,11 +12,6 @@ import TextError from '../../../Components/TextError'
 import Linkup from '../../../assets/Linkup.svg'
 import {auth,provider} from "../../../utils/fireConfig"
 import {signInWithPopup} from "firebase/auth";
-
-
-
-
-
 import './Login.css'
 function Login() {
 
