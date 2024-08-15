@@ -47,7 +47,9 @@ function Register() {
       .then((response: any) => {
         if (response.status === 200) {
           navigate('/otp')
-          toast.success(response.message)
+          console.log(response,"register");
+          
+          toast.success(response.data.message)
         } else {
           toast.error(response.message)
         }
@@ -104,7 +106,7 @@ function Register() {
           <div>
           { <img
             src={Linkup}
-            className="mr-3 h-6 sm:h-9"
+            className="mr-3 h-4 sm:h-9"
             alt="CircleUp logo"
           /> }
           </div>

@@ -49,7 +49,7 @@ const Notifications = () => {
 
   const handleViewClick = (link: string) => {
     if (link) {
-      window.location.href = link.startsWith("http") ? link : `http://localhost:5173${link}`;
+      window.location.href = link.startsWith("http") ? link : `https://link-up-jobs.vercel.app/${link}`;
     }
   };
 

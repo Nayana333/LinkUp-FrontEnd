@@ -10,7 +10,7 @@ function  ViewApplication({application,cancelViewApplication}:any) {
 
   const showPdf = (pdf: string) => {
     const encodedPdf = encodeURIComponent(pdf);
-    window.open(`http://localhost:3000/uploads/${encodedPdf}`, "_blank", "noreferrer");
+    window.open(`https://link-up-jobs.vercel.app/uploads/${encodedPdf}`, "_blank", "noreferrer");
   };
   
 const navigate=useNavigate()

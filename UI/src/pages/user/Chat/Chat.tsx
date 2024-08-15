@@ -23,7 +23,7 @@ function Chat() {
   
   useEffect(() => {
     socket.current = io(socketBaseURL);
-
+    
     if(messageUserId){
 
       addConversation({ senderId: userId, receiverId: messageUserId }).then(
@@ -73,7 +73,6 @@ function Chat() {
 
         {currentChat ? <Messages user={user}   onlineUsers={onlineUsers} socket={socket} currentChat={currentChat} /> : <NochatScreen/>}
 
-        {/* <ChatingUser /> */}
       </div>
     </div>
   );

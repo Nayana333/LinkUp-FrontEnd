@@ -12,7 +12,7 @@ const Reset = () => {
   const submit = (values: FormValues, { setSubmitting }: any) => {
     newPassword(values)
       .then((response: any) => {
-        toast.success(response.message);
+        toast.success(response.data.message);
         navigate('/login');
       })
       .catch((error) => {
