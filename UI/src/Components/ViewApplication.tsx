@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function  ViewApplication({application,cancelViewApplication}:any) {
 
 const showPdf=(pdf:string)=>{
-    window.open(`https://zoneapple.online/api/${pdf}`,"_blank","noreferrer")
+    window.open(`https://zoneapple.online/api/uploads/${pdf}`,"_blank","noreferrer")
 }
   
 const navigate=useNavigate()
