@@ -8,7 +8,7 @@ function Rsuccess() {
   return (
     <div className="flex h-screen">
       <div className="container hidden login lg:flex items-center justify-center flex-1 bg-white text-black">
-      <img className="bg-image" src='src/assets/bg2.jpg' alt="Background" />
+      <img className="bg-image" src='bg2.jpg' alt="Background" />
     </div>
 
     <div className="w-full  lg:w-1/2 flex items-center justify-center">
