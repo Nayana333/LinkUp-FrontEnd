@@ -10,8 +10,9 @@ function  ViewApplication({application,cancelViewApplication}:any) {
 
   const showPdf = (pdf: string) => {
     const encodedPdf = encodeURIComponent(pdf);
-    window.open(`https://zoneapple.online/api/uploads/${encodedPdf}`, "_blank", "noreferrer");
+    window.open(`https://zoneapple.online/uploads/${encodedPdf}`, "_blank", "noreferrer");
   };
+  
   
 const navigate=useNavigate()
 console.log(application);
