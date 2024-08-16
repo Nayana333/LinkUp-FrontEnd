@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 function  ViewApplication({application,cancelViewApplication}:any) {
 
-const showPdf=(pdf:string)=>{
-    window.open(`https://zoneapple.online/api/uploads/${pdf}`,"_blank","noreferrer")
-}
+  const showPdf = (pdf: string) => {
+    const encodedPdf = encodeURIComponent(pdf);
+    window.open(`https://zoneapple.online/api/uploads/${encodedPdf}`, "_blank", "noreferrer");
+  };
   
 const navigate=useNavigate()
 console.log(application);
