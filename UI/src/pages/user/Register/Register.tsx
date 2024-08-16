@@ -217,7 +217,7 @@ function Register() {
           className="flex-1 bg-indigo-100 text-center hidden lg:flex" 
           id='signup'
           style={{
-            backgroundImage: "url('src/assets/bg1.jpg')",
+            backgroundImage: "url('https://i.pinimg.com/736x/39/8e/e9/398ee9d588c742aeea3d1356bf25a894.jpg')",
           }}
         ></div>
       </div>
